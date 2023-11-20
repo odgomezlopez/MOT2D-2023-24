@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class Indicator
 {
     //Info
-    public String name;
+    public String indicatorName;
     public Image icon;
 
     //Datos
@@ -32,20 +32,19 @@ public class Indicator
     //Opción 2. Delegate. Facil pasar parámetros asociados al evento.
     //public delegate void OnIndicatorChangeDelegate(float newValue);
     //public event OnIndicatorChangeDelegate OnIndicatorChange;
-
-
-    #region Sistema Auto-Curacion/Deterioro
-    //Constructor y recuperación/deterioro automatico
-
-    public Indicator() {
+    //Contrustor
+    public Indicator()
+    {
         UpdateCaller.OnUpdate += Update;
     }
 
     ~Indicator()
-    {
+    { 
+        OnIndicatorChange.RemoveAllListeners();
         UpdateCaller.OnUpdate -= Update;
     }
 
+    #region Sistema Auto-Curacion/Deterioro
     //Gestion de restauracion/deterioro
     void Update()
     {
@@ -83,4 +82,13 @@ public class Indicator
         }
     }
 
+    public void Update(Indicator newIndicator)
+    {
+        indicatorName = newIndicator.indicatorName;
+        CurrentValue = newIndicator.currentValue;
+        initValue = newIndicator.initValue;
+        maxValue = newIndicator.maxValue;
+        enableAutoUpdate = newIndicator.enableAutoUpdate;
+        autoUpdateRate = newIndicator.autoUpdateRate;
+    }
 }

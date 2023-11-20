@@ -1,20 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using static UnityEngine.EventSystems.EventTrigger;
 
+[RequireComponent(typeof(PlayerController))]
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerLateralMovementController : MonoBehaviour, IActorController
+public class PlayerLateralMovementController : MonoBehaviour
 {
-    //Referencia a los Stats
+    //PlayerStats
     PlayerStats stats;
 
-    //Eventos generales
-    [Header("Eventos generales")]
-    public UnityEvent onDie = new();
-
+    //Eventos de movimiento
+    public UnityEvent OnJump;
 
     //Referencia al player input
     PlayerInput playerInput;
@@ -36,12 +36,14 @@ public class PlayerLateralMovementController : MonoBehaviour, IActorController
     Animator animator;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
-        //Referencia a componentes externos
-        stats = GameObject.FindGameObjectWithTag("GameData").GetComponent<Data>().stats;
+        //Referencia a los stats
+        stats = (PlayerStats) GetComponent<PlayerController>().GetStats();
 
+        //Acciones de PlayerLateralMovement
         playerInput = GameObject.FindGameObjectWithTag("PlayerInput").GetComponent<PlayerInput>();
+
         m_moveAction = playerInput.actions["Move"];
         m_jumpAction = playerInput.actions["Jump"];
 
@@ -49,21 +51,9 @@ public class PlayerLateralMovementController : MonoBehaviour, IActorController
         rb = GetComponent<Rigidbody2D>();
         sprite= GetComponentInChildren<SpriteRenderer>();
         animator = GetComponentInChildren<Animator>();
-
-
-        //Me suscribo a los cambios de HP de los stats
-        stats.HP.RestartStats();
-        stats.HP.OnIndicatorChange.AddListener(OnHPUpdate);
     }
 
-    //Gestión del HP
-    private void OnHPUpdate(float val)
-    {
-        if (val <= 0)
-        {
-            onDie.Invoke();
-        }
-    }
+
 
     // Update is called once per frame
     void Update()
@@ -141,6 +131,10 @@ public class PlayerLateralMovementController : MonoBehaviour, IActorController
     {
         if (jump)
         {
+            //Invocamos el evento de salto
+            OnJump.Invoke();
+
+            //Hacemos el salto
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(Vector2.up * stats.jumpSpeed, ForceMode2D.Impulse);
             jump = false;
@@ -175,23 +169,4 @@ public class PlayerLateralMovementController : MonoBehaviour, IActorController
     }
 
 
-    public Stats GetStats()
-    {
-        return stats;
-    }
-
-    public GameObject GetGameObject()
-    {
-        return gameObject;
-    }
-
-    public void OnHeal(float heal)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void OnDamage(float damage)
-    {
-        stats.HP.CurrentValue -= damage;
-    }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 using UnityEngine.Events;
@@ -17,14 +18,21 @@ public class AddPoints : MonoBehaviour
 
     private void Awake()
     {
-        data = GameObject.FindGameObjectWithTag("GameData").GetComponent<Data>();
+        if (GameObject.FindGameObjectWithTag("GameData"))
+        {
+            data = GameObject.FindGameObjectWithTag("GameData").GetComponent<Data>();
+        }
+        else
+        {
+            Debug.Log("Error: GameData gameobject/tag not found");
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            data.AddPoints(points);//Sumo los puntos a data
+            data?.AddPoints(points);//Sumo los puntos a data
             pointCollectEvent.Invoke();//Llamo al evento
             Destroy(gameObject);//Me destruyo
         }

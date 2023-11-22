@@ -10,10 +10,11 @@ public class PlayerController : MonoBehaviour, IActorController
     //Referencia a los Stats
     [SerializeField] PlayerDataSO defaultPlayerData;
     [SerializeField] PlayerStats stats;
+    [HideInInspector] public PlayerInput playerInput;
 
     //Eventos generales
     [Header("Eventos generales")]
-    public UnityEvent onDie = new();
+    public UnityEvent onDie;
 
     // Start is called before the first frame update
     void Start()
@@ -25,11 +26,14 @@ public class PlayerController : MonoBehaviour, IActorController
         else
         {
             //throw new System.Exception("Error: GameData gameobject/tag not found");
-            Debug.Log("Error: GameData gameobject/tag not found");
+            Debug.LogError("Error: GameData gameobject/tag not found");
         }
 
         //Comprobar si hay GameData por defecto
         if (defaultPlayerData) InitializeFromSO(defaultPlayerData);
+        
+        //Obtengo el PlayerInput
+        playerInput = GameObject.FindGameObjectWithTag("PlayerInput").GetComponent<PlayerInput>();
 
 
         //Me suscribo a los cambios de HP de los stats

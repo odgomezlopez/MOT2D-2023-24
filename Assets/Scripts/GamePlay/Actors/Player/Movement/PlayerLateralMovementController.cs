@@ -10,14 +10,14 @@ using static UnityEngine.EventSystems.EventTrigger;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerLateralMovementController : MonoBehaviour
 {
-    //PlayerStats
+    //Referencias al PlayerController
+    PlayerController playerController;
     PlayerStats stats;
 
     //Eventos de movimiento
     public UnityEvent OnJump;
 
     //Referencia al player input
-    PlayerInput playerInput;
     InputAction m_moveAction, m_jumpAction;
 
 
@@ -38,14 +38,13 @@ public class PlayerLateralMovementController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Referencia a los stats
-        stats = (PlayerStats) GetComponent<PlayerController>().GetStats();
-
+        //Referencia al playerController
+        playerController = GetComponent<PlayerController>();
+        stats = (PlayerStats) playerController.GetStats();
         //Acciones de PlayerLateralMovement
-        playerInput = GameObject.FindGameObjectWithTag("PlayerInput").GetComponent<PlayerInput>();
 
-        m_moveAction = playerInput.actions["Move"];
-        m_jumpAction = playerInput.actions["Jump"];
+        m_moveAction = playerController.playerInput.actions["Move"];
+        m_jumpAction = playerController.playerInput.actions["Jump"];
 
         //Referencia a componentes propios
         rb = GetComponent<Rigidbody2D>();

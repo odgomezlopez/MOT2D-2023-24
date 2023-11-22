@@ -24,7 +24,7 @@ public class AddPoints : MonoBehaviour
         }
         else
         {
-            Debug.Log("Error: GameData gameobject/tag not found");
+            Debug.LogError("Error: GameData gameobject/tag not found");
         }
     }
 

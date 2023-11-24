@@ -67,7 +67,11 @@ PrefabInstance:
     - target: {fileID: 4359079220989833908, guid: 5d5586f793b1955488b757be5017e638, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 965e0f314868db7459bd29b788b20463, type: 2}
+      objectReference: {fileID: 9100000, guid: 18088bf0d4db7274dba1c5f20c555f8b, type: 2}
+    - target: {fileID: 7966593922018775093, guid: 5d5586f793b1955488b757be5017e638, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.38
+      objectReference: {fileID: 0}
     - target: {fileID: 8761127814153965868, guid: 5d5586f793b1955488b757be5017e638, type: 3}
       propertyPath: m_Name
       value: Enemy2 Variant

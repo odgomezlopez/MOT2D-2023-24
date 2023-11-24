@@ -8,6 +8,8 @@ TagManager:
   - GameData
   - PlayerInput
   - Enemy
+  - HUD/Canvas
+  - HUD/HP
   layers:
   - Default
   - TransparentFX

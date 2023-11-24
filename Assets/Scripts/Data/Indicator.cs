@@ -40,7 +40,7 @@ public class Indicator
 
     ~Indicator()
     { 
-        OnIndicatorChange.RemoveAllListeners();
+        //OnIndicatorChange.RemoveAllListeners();
         UpdateCaller.OnUpdate -= Update;
     }
 
@@ -74,7 +74,7 @@ public class Indicator
             currentValue = Mathf.Clamp(value, 0.0f, maxValue);
 
             //1. Unity Event
-            OnIndicatorChange.Invoke(currentValue);
+            OnIndicatorChange.Invoke(currentValue / maxValue);
 
             //2. Delegate
             //if (OnIndicatorChange != null)

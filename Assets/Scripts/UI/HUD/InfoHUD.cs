@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class InfoHUD : MonoBehaviour
 {
-    //Elementos de la UI a asociar
+    //Información del HP
     [SerializeField] GameObject HPBar;
 
     // Utilizo el Stats para asociar los elementos de la UI con los stats que quiera
@@ -25,8 +26,12 @@ public class InfoHUD : MonoBehaviour
             }
 
             //Asociamos el stat con la UI
-            UpdateFilledImageUI updater = HPBar.GetComponent<UpdateFilledImageUI>();
-            stats.HP.OnIndicatorChange.AddListener(updater.UpdateFilledImage);
+            if (stats!=null)
+            {
+                UpdateFilledImageUI updater = HPBar.GetComponent<UpdateFilledImageUI>();
+                updater.WatchEvent(stats.HP.OnIndicatorChange);
+            }
+
         }
     }
 }

@@ -27,6 +27,7 @@ public class Indicator
     //Opción 1. Unity Event Facil enlazar elementos en el Editor.
 
     public UnityEvent<float> OnIndicatorChange;
+    public GameEventFloat gameEvent;
 
 
     //Opción 2. Delegate. Facil pasar parámetros asociados al evento.
@@ -75,6 +76,7 @@ public class Indicator
 
             //1. Unity Event
             OnIndicatorChange.Invoke(currentValue / maxValue);
+            gameEvent?.TriggerEvent(currentValue / maxValue);
 
             //2. Delegate
             //if (OnIndicatorChange != null)

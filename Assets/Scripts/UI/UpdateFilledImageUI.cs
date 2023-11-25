@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
+
 public class UpdateFilledImageUI : MonoBehaviour
 {
     //Referencia a la imagen

@@ -27,6 +27,7 @@ MonoBehaviour:
       OnIndicatorChange:
         m_PersistentCalls:
           m_Calls: []
+      gameEvent: {fileID: 0}
     attDamage: 1
     movementSpeed: 7
     acceleration: 15
@@ -34,5 +35,5 @@ MonoBehaviour:
     jumpSpeed: 7
     airMomemtum: 0.8
     jumpMax: 1
-    invulnerabilityColor: {r: 1, g: 0, b: 0, a: 1}
+    invulnerabilityColor: {r: 1, g: 0.0603773, b: 0.0603773, a: 1}
     invulnerabilitySeconds: 1

@@ -1,15 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
+[ExecuteInEditMode]
 public class PlayerController : MonoBehaviour, IActorController
 {
+    //Player default info
+    [Header("Player Info")]
+    [SerializeField] public PlayerDataSO playerData;
+    [SerializeField] public bool statsInitialized = false;
+
     //Referencia a los Stats
-    [SerializeField] PlayerDataSO defaultPlayerData;
+    [Header("Player Current Stats")]
+
     [SerializeField] PlayerStats stats;
+
     [HideInInspector] public PlayerInput playerInput;
 
     //Eventos generales
@@ -19,9 +28,12 @@ public class PlayerController : MonoBehaviour, IActorController
     // Start is called before the first frame update
     void Start()
     {
-        //Sincronizar los stats locales con lo de GameData si existen 
-        if (GameObject.FindGameObjectWithTag("GameData")) {
-            stats = GameObject.FindGameObjectWithTag("GameData").GetComponent<Data>().stats;
+        //1. Sincronizar la info local con GameData si existe 
+        Data data = GameObject.FindGameObjectWithTag("GameData").GetComponent<Data>();
+        if (data) {
+            stats = data.stats;
+            playerData = data.playerData;
+            statsInitialized = data.statsInitialized;
         }
         else
         {
@@ -29,16 +41,30 @@ public class PlayerController : MonoBehaviour, IActorController
             Debug.LogError("Error: GameData gameobject/tag not found");
         }
 
-        //Comprobar si hay GameData por defecto
-        if (defaultPlayerData) InitializeFromSO(defaultPlayerData);
-        
-        //Obtengo el PlayerInput
-        playerInput = GameObject.FindGameObjectWithTag("PlayerInput").GetComponent<PlayerInput>();
+        //2. Cargo la info del SO
+        if (playerData)
+        {
+            //2.1. Actualizo los stats
+            if (!statsInitialized)
+            {
+                stats.Update(data.playerData.playerStats);
+                statsInitialized = true;
+                if (data) data.statsInitialized = true;
+            }
 
+            //2.2. Actualizo el avatar
+            LoadAvatar(data.playerData);
+        }
+
+        //3.Obtengo el PlayerInput
+        playerInput = GameObject.FindGameObjectWithTag("PlayerInput").GetComponent<PlayerInput>();
 
         //Me suscribo a los cambios de HP de los stats
         stats.HP.RestartStats();
         stats.HP.OnIndicatorChange.AddListener(OnHPUpdate);
+
+        stats = (PlayerStats)GetComponent<PlayerController>().GetStats();
+
 
         //Comprobaciones de por si acaso
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemies"), false);
@@ -51,9 +77,23 @@ public class PlayerController : MonoBehaviour, IActorController
 
 
     #region Init PlayerDataSO
-    //Inicializamos desde el Scriptable Object si está
-    public void InitializeFromSO(PlayerDataSO newPlayerData)
+    private void OnRenderObject()
     {
+        Data data = GameObject.FindGameObjectWithTag("GameData").GetComponent<Data>();
+        if (data)
+        {
+            LoadAvatar(data.playerData);
+        }
+        else
+        {
+            LoadAvatar(playerData);
+        }
+    }
+
+    //Inicializamos desde el Scriptable Object si está
+    public void LoadAvatar(PlayerDataSO newPlayerData)
+    {
+        if (!newPlayerData) return;
         //Obtenemos componentes necesarios para la actualización
         SpriteRenderer ren = GetComponentInChildren<SpriteRenderer>();
         Animator ani = GetComponentInChildren<Animator>();
@@ -70,10 +110,6 @@ public class PlayerController : MonoBehaviour, IActorController
 
         // Adjust the position of the collider to match the sprite position
         capCol.offset = new Vector2(ren.bounds.center.x - ren.transform.position.x, ren.bounds.center.y - ren.transform.position.y);
-        
-        
-        //3.Inicializamos los stats
-        stats.Update(newPlayerData.playerStats);
     }
     #endregion
 
@@ -129,6 +165,4 @@ public class PlayerController : MonoBehaviour, IActorController
     {
         return gameObject;
     }
-
-
 }

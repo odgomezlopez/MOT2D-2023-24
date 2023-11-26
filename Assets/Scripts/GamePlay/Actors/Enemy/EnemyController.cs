@@ -47,6 +47,6 @@ public class EnemyController : MonoBehaviour, IActorController
 
     public void OnHeal(float heal)
     {
-        throw new System.NotImplementedException();
+        stats.HP.CurrentValue += heal;
     }
 }

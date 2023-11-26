@@ -11,6 +11,11 @@ public class Data : MonoBehaviour
     [Header("Sistema de stats")]
     [SerializeField] public PlayerStats stats;
 
+    //Player default info
+    [Header("Player Info")]
+    [SerializeField] public PlayerDataSO playerData;
+    [SerializeField] public bool statsInitialized = false;
+
     //Datos persistentes entre escenas
     private void Awake()
     {

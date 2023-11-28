@@ -11,11 +11,8 @@ public class UpdateFilledImageUI : MonoBehaviour
     //Referencia a la imagen
     Image img;
 
-    //Evento al que estoy suscripto
-    UnityEvent<float> watchingEvent;
-
     //Inicializaciones
-    private void Start()
+    private void Awake()
     {
         img = GetComponent<Image>();   
     }
@@ -26,7 +23,10 @@ public class UpdateFilledImageUI : MonoBehaviour
         img.fillAmount = value;
     }
 
+    /*
     //Gestión eventos
+    //Evento al que estoy suscripto
+    UnityEvent<float> watchingEvent;
     public void WatchEvent(UnityEvent<float> e)
     {
         watchingEvent = e;
@@ -36,5 +36,5 @@ public class UpdateFilledImageUI : MonoBehaviour
     private void OnDestroy()
     {
         watchingEvent?.RemoveListener(UpdateFilledImage);
-    }
+    }*/
 }

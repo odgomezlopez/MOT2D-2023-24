@@ -28,8 +28,8 @@ public class InfoHUD : MonoBehaviour
             //Asociamos el stat con la UI
             if (stats!=null)
             {
-                UpdateFilledImageUI updater = HPBar.GetComponent<UpdateFilledImageUI>();
-                updater.WatchEvent(stats.HP.OnIndicatorChange);
+                //UpdateFilledImageUI updater = HPBar.GetComponent<UpdateFilledImageUI>();
+                //updater.WatchEvent(stats.HP.OnIndicatorChange);
             }
 
         }

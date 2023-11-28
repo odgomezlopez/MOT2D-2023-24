@@ -29,8 +29,8 @@ public class PlayerController : MonoBehaviour, IActorController
     void Start()
     {
         //1. Sincronizar la info local con GameData si existe 
-        Data data = GameObject.FindGameObjectWithTag("GameData").GetComponent<Data>();
-        if (data) {
+        if (GameObject.FindGameObjectWithTag("GameData")) {
+            Data data = GameObject.FindGameObjectWithTag("GameData").GetComponent<Data>();
             stats = data.stats;
             playerData = data.playerData;
             statsInitialized = data.statsInitialized;
@@ -47,13 +47,15 @@ public class PlayerController : MonoBehaviour, IActorController
             //2.1. Actualizo los stats
             if (!statsInitialized)
             {
-                stats.Update(data.playerData.playerStats);
+                stats.Update(playerData.playerStats);
                 statsInitialized = true;
+
+                Data data = GameObject.FindGameObjectWithTag("GameData").GetComponent<Data>();
                 if (data) data.statsInitialized = true;
             }
 
             //2.2. Actualizo el avatar
-            LoadAvatar(data.playerData);
+            LoadAvatar(playerData);
         }
 
         //3.Obtengo el PlayerInput
@@ -79,9 +81,9 @@ public class PlayerController : MonoBehaviour, IActorController
     #region Init PlayerDataSO
     private void OnRenderObject()
     {
-        Data data = GameObject.FindGameObjectWithTag("GameData").GetComponent<Data>();
-        if (data)
+        if (GameObject.FindGameObjectWithTag("GameData"))
         {
+            Data data = GameObject.FindGameObjectWithTag("GameData").GetComponent<Data>();
             LoadAvatar(data.playerData);
         }
         else
@@ -121,8 +123,9 @@ public class PlayerController : MonoBehaviour, IActorController
 
     private void OnHPUpdate(float val)
     {
-        if (val <= 0)
-        {
+
+        if (val <= 0)        {
+            Debug.Log("Mueroooo");
             onDie.Invoke();
         }
     }
@@ -136,11 +139,48 @@ public class PlayerController : MonoBehaviour, IActorController
         stats.HP.CurrentValue -= damage;
 
         //Lanzar corutina de invulnerabilidad temporal
-        if(stats.HP.CurrentValue > 0 ) StartCoroutine(TemporalInvulneravility());
+        if(stats.HP.CurrentValue > 0 ) StartCoroutine(TemporalInvulneravility2D());
     }
 
-    public IEnumerator TemporalInvulneravility()
+    public IEnumerator TemporalInvulneravility2D()
     {
+        //1.1. Activar la invulnarabilidad utilizando las capas (Layer)
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemies"),true);
+
+        //1.2. Hacer cambios al sprite para que el usuario sepa que es invulnerable. Rojo
+        SpriteRenderer ren=GetComponentInChildren<SpriteRenderer>();//NO ES EFICIENTE
+        Color colorBase = ren.color;
+
+        ren.color = stats.invulnerabilityColor;
+
+        //2. Esperar el tiempo de la invulnerabilidad
+        yield return new WaitForSecondsRealtime(stats.invulnerabilitySeconds);
+
+        //3.1. Deshacemos los cambios al sprite
+        ren.color = colorBase;
+
+        //3.2. Desactivar la invulnarabilidad utilizando las capas (Layer)
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemies"), false);
+
+        yield return null;
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*public IEnumerator TemporalInvulneravility()
+    {
+
         //1.1. Activo la invulnerabilidad
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemies"), true);
 
@@ -158,7 +198,7 @@ public class PlayerController : MonoBehaviour, IActorController
 
         //3.2. Desactivo la invulnerabilidad
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemies"), false);
-    }
+    }*/
 
     //Other
     public GameObject GetGameObject()

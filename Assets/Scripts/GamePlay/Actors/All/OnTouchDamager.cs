@@ -18,8 +18,8 @@ public class OnTouchDamager : MonoBehaviour
     {
         if (collision.CompareTag("Player") || collision.CompareTag("Enemy"))
         {
-            float damage = GetComponent<IActorController>().GetStats().attDamage;
-            collision.GetComponent<IActorController>().OnDamage(damage);
+            float damage = GetComponentInParent<IActorController>().GetStats().attDamage;
+            collision.GetComponentInParent<IActorController>().OnDamage(damage);
         }
     }
 }

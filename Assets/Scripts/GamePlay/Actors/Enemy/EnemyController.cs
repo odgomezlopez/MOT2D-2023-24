@@ -23,7 +23,7 @@ public class EnemyController : MonoBehaviour, IActorController
         if (val <= 0)
         {
             onDie.Invoke();
-            Destroy(gameObject,0.5f);
+            Destroy(gameObject);
         }
     }
 

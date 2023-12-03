@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 379d72f354d0fe34a8749af62371c89a, type: 3}
+  m_Name: MeleeBasicAttack
+  m_EditorClassIdentifier: 
+  actionName: Melee
+  cooldown: 1
+  damage: 0.5
+  prefab: {fileID: 5646186423644297413, guid: f32bc2b266bacda41bebfb5fe80cdbd5, type: 3}
+  speed: 5
+  maxLife: 10
+  sprite: {fileID: 0}
+  color: {r: 1, g: 1, b: 1, a: 1}

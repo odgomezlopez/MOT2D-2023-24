@@ -15,11 +15,19 @@ public class PlayerStats : Stats
     [Range(1, 5)] public int jumpMax = 1;
 
     [Header("Invulnerability")]
+    public bool invulnerable = false;
     public Color invulnerabilityColor = Color.red;
     [Range(0, 3)] public float invulnerabilitySeconds = 1f;
 
+    public override void ResetStats()
+    {
+        base.ResetStats();
+        invulnerable = false;
+    }
+
     public void Update(PlayerStats newStats)
     {
+        actorName = newStats.actorName;
         HP.Update(newStats.HP);
         attDamage = newStats.attDamage;
         movementSpeed = newStats.movementSpeed;

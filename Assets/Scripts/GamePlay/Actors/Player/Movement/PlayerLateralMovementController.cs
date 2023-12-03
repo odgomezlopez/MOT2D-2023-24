@@ -120,10 +120,10 @@ public class PlayerLateralMovementController : MonoBehaviour
 
     private void Flip()
     {
-        Vector2 aux = sprite.transform.localScale;
+        Vector2 aux = transform.localScale;
         if (rb.velocity.x > 0) aux.x = Mathf.Abs(aux.x);
         else if (rb.velocity.x < 0) aux.x = -Mathf.Abs(aux.x);
-        sprite.transform.localScale = aux;
+        transform.localScale = aux;
     }
 
     private void Jump()

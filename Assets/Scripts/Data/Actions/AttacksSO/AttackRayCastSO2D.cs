@@ -1,19 +1,18 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Attack", menuName = "Actions/Attacks/RayCast2D Attack")]
-public class AttackRayCast2D : Attack
+public class AttackRayCastSO2D : AttackSO
 {
     [Header("RayCast Attack")]
     public float range;
 
-    public override void Use(IActorController actor)
+    public override void Use(GameObject org)
     {
         //Usamos el metodo heredado 
-        base.Use(actor);
+        base.Use(org);
         
         //Obtenemos la info que necesitamos del actor
-        Transform transform = actor.GetGameObject().transform;
-        Stats stats = actor.GetStats();
+        Transform transform = org.transform;
 
         //TODO lanzar Animacion/SFX/VFX
 
@@ -26,7 +25,7 @@ public class AttackRayCast2D : Attack
         {
             Debug.DrawRay(transform.position, dir * hit.distance, Color.red, 1f);
 
-            float damage = stats.attDamage + this.damage;
+            float damage = this.damage;
             hit.collider.GetComponentInParent<IActorController>()?.OnDamage(damage);
         }
         else

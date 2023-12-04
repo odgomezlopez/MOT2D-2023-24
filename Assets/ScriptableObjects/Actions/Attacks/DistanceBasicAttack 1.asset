@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionName: DistanceBasicAttack
   cooldown: 2
-  damage: 0
+  damage: 0.5
   prefab: {fileID: 6629855155164621748, guid: ba33d4c7f852bac4ca6bf8894877760b, type: 3}
   type: 1
   speed: 10

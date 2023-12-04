@@ -33,6 +33,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "ContextualAction",
+                    "type": "Button",
+                    "id": "4dee75f7-b29a-40f2-ab86-df390c2de0f4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Action1",
                     "type": "Button",
                     "id": "594cc467-86a8-437d-aad3-bfc7c457770f",
@@ -280,6 +289,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Action2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "abb751c2-c316-4617-8082-7c1df50096a2",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "ContextualAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "acf4a7c0-60e5-47ed-a651-6e1b63c7f5ae",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "ContextualAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

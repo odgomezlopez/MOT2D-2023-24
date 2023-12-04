@@ -13,8 +13,8 @@ public class Stats
 
     [Header("Att")]
     public float attDamage;
-    public Action action1;//MeleeAttack
-    public Action action2;//DistanceAttack
+    public ActionSO action1;//MeleeAttack
+    public ActionSO action2;//DistanceAttack
 
     [Header("Movimiento")]
     public float movementSpeed;

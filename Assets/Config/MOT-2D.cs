@@ -55,6 +55,15 @@ public partial class @MOT2D: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""ContextualAction"",
+                    ""type"": ""Button"",
+                    ""id"": ""4dee75f7-b29a-40f2-ab86-df390c2de0f4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Action1"",
                     ""type"": ""Button"",
                     ""id"": ""594cc467-86a8-437d-aad3-bfc7c457770f"",
@@ -302,6 +311,28 @@ public partial class @MOT2D: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Action2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""abb751c2-c316-4617-8082-7c1df50096a2"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""ContextualAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""acf4a7c0-60e5-47ed-a651-6e1b63c7f5ae"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ContextualAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -892,6 +923,7 @@ public partial class @MOT2D: IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_ContextualAction = m_Player.FindAction("ContextualAction", throwIfNotFound: true);
         m_Player_Action1 = m_Player.FindAction("Action1", throwIfNotFound: true);
         m_Player_Action2 = m_Player.FindAction("Action2", throwIfNotFound: true);
         // UI
@@ -970,6 +1002,7 @@ public partial class @MOT2D: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_ContextualAction;
     private readonly InputAction m_Player_Action1;
     private readonly InputAction m_Player_Action2;
     public struct PlayerActions
@@ -979,6 +1012,7 @@ public partial class @MOT2D: IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @ContextualAction => m_Wrapper.m_Player_ContextualAction;
         public InputAction @Action1 => m_Wrapper.m_Player_Action1;
         public InputAction @Action2 => m_Wrapper.m_Player_Action2;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -999,6 +1033,9 @@ public partial class @MOT2D: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @ContextualAction.started += instance.OnContextualAction;
+            @ContextualAction.performed += instance.OnContextualAction;
+            @ContextualAction.canceled += instance.OnContextualAction;
             @Action1.started += instance.OnAction1;
             @Action1.performed += instance.OnAction1;
             @Action1.canceled += instance.OnAction1;
@@ -1018,6 +1055,9 @@ public partial class @MOT2D: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @ContextualAction.started -= instance.OnContextualAction;
+            @ContextualAction.performed -= instance.OnContextualAction;
+            @ContextualAction.canceled -= instance.OnContextualAction;
             @Action1.started -= instance.OnAction1;
             @Action1.performed -= instance.OnAction1;
             @Action1.canceled -= instance.OnAction1;
@@ -1209,6 +1249,7 @@ public partial class @MOT2D: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnContextualAction(InputAction.CallbackContext context);
         void OnAction1(InputAction.CallbackContext context);
         void OnAction2(InputAction.CallbackContext context);
     }

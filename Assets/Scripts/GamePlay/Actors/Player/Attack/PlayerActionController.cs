@@ -34,14 +34,14 @@ public class PlayerActionController : MonoBehaviour
         {
             Debug.Log("Action1");
             CoolDown(m_action1Action, stats.action1.cooldown);
-            stats.action1?.Use(playerController);
+            stats.action1?.Use(gameObject);
         }
         //Acción2
         if (m_action2Action.triggered)
         {
             Debug.Log("Action2");
             CoolDown(m_action2Action, stats.action2.cooldown);
-            stats.action2?.Use(playerController);
+            stats.action2?.Use(gameObject);
         }
     }
 

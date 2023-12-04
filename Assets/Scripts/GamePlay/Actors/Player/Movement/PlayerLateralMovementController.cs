@@ -151,7 +151,7 @@ public class PlayerLateralMovementController : MonoBehaviour
     //Metodos control colisiones y triggers
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Floor") && Utils.Utils.IsGrounded2D(gameObject))
+        if (collision.gameObject.CompareTag("Floor"))//&& Utils.Utils.IsGrounded2D(gameObject)
         {
             isGrounded = true;
             jumpPerformed = 0;

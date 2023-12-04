@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ChangePlayerAction : MonoBehaviour
 {
-    public Action newAction;
+    public ActionSO newAction;
     public enum ActionType { Action1, Action2 };
     public ActionType type;
 

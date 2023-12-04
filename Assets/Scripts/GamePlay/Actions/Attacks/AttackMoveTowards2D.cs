@@ -6,10 +6,13 @@ using UnityEngine;
 public class AttackMoveTowards2D : MonoBehaviour
 {
     [SerializeField] float speed;
+    [SerializeField] Vector2 dir;
+
     Rigidbody2D rb;
-    public void Initializate(float newSpeed)
+    public void Initializate(float newSpeed,Vector2 newDir)
     {
         speed = newSpeed;
+        dir = newDir;
     }
     void Start()
     {
@@ -19,6 +22,6 @@ public class AttackMoveTowards2D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.velocity = new Vector3(speed, 0, 0);
+        rb.velocity = dir* speed;
     }
 }

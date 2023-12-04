@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Attack", menuName = "Actions/Attacks/Prefab Attack")]
-public class AttackPrefab : Attack
+public class AttackPrefabSO : AttackSO
 {
     [Header("Prefab Attack")]
     public GameObject prefab;
@@ -18,24 +18,36 @@ public class AttackPrefab : Attack
     public Sprite sprite;
     public Color color=Color.white;
 
-    public override void Use(IActorController actor)
+    public override void Use(GameObject org)
     {
         //Usamos el metodo heredado 
-        base.Use(actor);
+        base.Use(org);
 
+        //Calculo valores
+        float damage = this.damage;
+        Vector3 dir = Vector2.right * org.transform.localScale.x;//TODO Adapt for 3D Vector3.forward
+
+        //Si el origen tiene un IActorController (Si se quiere que el daño)//TODO Pensar como hacer más generico
+        /*if (org.GetComponent<IActorController>()!=null)
+        {
+            damage+=org.GetComponent<IActorController>().GetStats().attDamage;
+        }*/
+        //Actualizo la apariencia del prefab
+        GameObject prefabInitialized = Initialize(prefab);
+
+        //Realizo el ataque
+        Attack(org, prefabInitialized, damage, dir);
+    }
+
+    private void Attack(GameObject org, GameObject newPrefab, float damage, Vector3 dir)
+    {
         //Instanciamos el ataque donde esta el jugador
-        GameObject g=Instantiate(prefab, actor.GetGameObject().transform);
+        GameObject g = Instantiate(newPrefab, org.transform);
 
-        //Modifico la apariencia del arma
-        Initialize(g);
-
-        //Inicializamos los componentes
-        float damage = actor.GetStats().attDamage + this.damage;
-
+        //Inicializo componentes
         bool destroyOnCollision = (type == AttackType.Distance);//Solo se destruye cuando colisiona los ataques de distancia
-        g.GetComponent<OnAttackImpact>()?.Initializate(damage, destroyOnCollision, actor.GetGameObject().tag,10);
+        g.GetComponent<OnAttackImpact>()?.Initializate(damage, destroyOnCollision, org.tag, 10);
 
-        
         //Modifico según tipo de ataque
         if (type == AttackType.Melee)
         {
@@ -48,13 +60,12 @@ public class AttackPrefab : Attack
             //Si es un ataque a distancia hacemos que se desacople del actor
             g.transform.SetParent(null, true);
             //Inicializo la velocidad teniendo en cuenta hacie donde miro
-            g.GetComponent<AttackMoveTowards2D>()?.Initializate(speed* actor.GetGameObject().transform.localScale.x);
+            g.GetComponent<AttackMoveTowards2D>()?.Initializate(speed, dir);
         }
- 
-        //Debug.Break();
     }
 
-    public void Initialize(GameObject g)
+
+    public GameObject Initialize(GameObject g)
     {
         SpriteRenderer ren = g.GetComponentInChildren<SpriteRenderer>();
         //Animator ani = g.GetComponentInChildren<Animator>();
@@ -87,5 +98,6 @@ public class AttackPrefab : Attack
                 capCol.offset = new Vector2(ren.bounds.center.x - g.transform.position.x, ren.bounds.center.y - g.transform.position.y);
             }
         }
+        return g;
     }
 }

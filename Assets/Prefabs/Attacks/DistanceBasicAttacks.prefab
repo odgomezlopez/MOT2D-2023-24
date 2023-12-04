@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 7482667652216324306, guid: 9bae1e77e2d5a0b44beb23c0358ef67d, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.15668, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -131,7 +131,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.2094773, y: 0.13159353}
+  m_Size: {x: 1.2094773, y: 0.1326297}
   m_EdgeRadius: 0
 --- !u!50 &3928437579658045297
 Rigidbody2D:
@@ -173,6 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
+  onColisionDestroy: 0
   maxLife: 10
   attackerTag: 
 --- !u!114 &4450639487747349523
@@ -188,3 +189,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  dir: {x: 0, y: 0}

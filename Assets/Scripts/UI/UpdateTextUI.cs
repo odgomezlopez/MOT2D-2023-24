@@ -9,34 +9,26 @@ using UnityEngine.UI;
 
 public class UpdateTextUI : MonoBehaviour
 {
-    //Referencia a la imagen
     TextMeshProUGUI textUI;
 
-    [SerializeField] Color enable=Color.black;
-    [SerializeField] Color disable=Color.gray;
+    [SerializeField] Color enableColor = Color.black;
+    [SerializeField] Color disableColor = Color.gray;
 
-    //Inicializaciones
-    private void Awake()
+    private void Start()
     {
-        textUI = GetComponent<TextMeshProUGUI>();   
+        textUI = GetComponent<TextMeshProUGUI>();
     }
-
-    //Actualización UI
     public void UpdateText(string text)
     {
         textUI.SetText(text);
     }
-    public void UpdateText(string text,bool active)
+
+    public void UpdateText(string text, bool enable)
     {
         UpdateText(text);
 
-        if (active)
-        {
-            textUI.color = Color.black;
-        }
-        else
-        {
-            textUI.color = Color.gray;
-        }
+        if (enable) textUI.color = enableColor;
+        else textUI.color = disableColor;
     }
+
 }

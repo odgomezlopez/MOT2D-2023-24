@@ -68,7 +68,6 @@ public class PlayerContextualActionTriggerer : MonoBehaviour
                 PlayerInArea = false;
                 //Se ejecuta la acción
                 ActionTriggered.Invoke();
-
             }
         }
     }

@@ -8,13 +8,13 @@ using UnityEngine.Events;
 public class MovePlataform : MonoBehaviour
 {
     [Header("Plataform Movement Parameters")]
-    [SerializeField] float speed = 5;
+    [SerializeField] float speed=5f;
 
     int nextPosition;
     [SerializeField] List<Vector3> positions;
 
     //Eventos
-    public UnityEvent actionEnded;
+    public UnityEvent OnActionEnded;
 
     private void Start()
     {
@@ -25,25 +25,41 @@ public class MovePlataform : MonoBehaviour
             positions.Add(patrolGO.GetChild(i).position);
         }
 
-        //Añadir la posición inicial
         positions.Add(transform.position);
 
-        //Siguiente posición
+        //Siguiente posicion
         nextPosition = 0;
     }
 
-    public void Use()
+    //Movimiento a la siguiente posición
+    public void Move()
     {
         StartCoroutine(MoveToNextPosition());
     }
+
     private IEnumerator MoveToNextPosition()
     {
-        while (transform.position != positions[nextPosition])//Si no es necesaria exactitud utilizar Vector.Distance >1
-        {
-            transform.position = Vector3.MoveTowards(transform.position, positions[nextPosition], speed * Time.deltaTime);
+        while (transform.position != positions[nextPosition]) { 
+            transform.position = Vector3.MoveTowards(transform.position, positions[nextPosition], speed*Time.fixedDeltaTime);
             yield return new WaitForFixedUpdate();
         }
-        nextPosition= (nextPosition+1) % positions.Count;
-        actionEnded.Invoke();
+        nextPosition = (nextPosition+1)%positions.Count;
+        OnActionEnded.Invoke();
     }
+
+    //Hacer toda la patrulla en bucle
+    public void MovePatrol()
+    {
+        StartCoroutine(MovePatrolCoroutine());
+    }
+
+    private IEnumerator MovePatrolCoroutine()
+    {
+        while (true)
+        {
+            yield return MoveToNextPosition();
+        }
+    }
+
+
 }

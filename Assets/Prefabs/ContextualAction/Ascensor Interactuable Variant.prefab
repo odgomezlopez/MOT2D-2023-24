@@ -223,7 +223,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1623256433369407328, guid: 23e83f0f34d2b194b8cb3d61978dec27, type: 3}
       propertyPath: ActionTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Use
+      value: Move
       objectReference: {fileID: 0}
     - target: {fileID: 1623256433369407328, guid: 23e83f0f34d2b194b8cb3d61978dec27, type: 3}
       propertyPath: ActionTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

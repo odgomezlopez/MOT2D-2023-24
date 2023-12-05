@@ -36,7 +36,7 @@ public class PlayerStats : Stats
         deceleration = newStats.deceleration;
         jumpSpeed = newStats.jumpSpeed;
         airMomemtum = newStats.airMomemtum;
-        jumpSpeed = newStats.jumpSpeed;
+        jumpMax = newStats.jumpMax;
 
         invulnerabilityColor=newStats.invulnerabilityColor;
         invulnerabilitySeconds = newStats.invulnerabilitySeconds;

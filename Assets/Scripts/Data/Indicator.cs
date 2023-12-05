@@ -92,11 +92,10 @@ public class Indicator
             //    OnIndicatorChange(value);
         }
     }
-
     public void Update(Indicator newIndicator)
     {
         indicatorName = newIndicator.indicatorName;
-        CurrentValue = newIndicator.currentValue;
+        currentValue = newIndicator.currentValue;
         initValue = newIndicator.initValue;
         maxValue = newIndicator.maxValue;
         enableAutoUpdate = newIndicator.enableAutoUpdate;

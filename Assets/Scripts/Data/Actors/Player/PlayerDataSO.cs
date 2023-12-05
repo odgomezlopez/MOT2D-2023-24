@@ -1,6 +1,5 @@
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
-using UnityEditor.Animations;
 using UnityEngine;
+using UnityEditor.Animations;
 
 [CreateAssetMenu(fileName = "new PlayerData", menuName = "Actor/PlayerData", order = 1)]
 
@@ -39,7 +38,7 @@ public class PlayerDataSO : ScriptableObject
         }
         if (ani)
         {
-            ani.runtimeAnimatorController = animator;
+            if (animator != null) ani.runtimeAnimatorController = animator;
         }
 
         //2.2. Recalcular el colider (MODIFICAR EN 3D)

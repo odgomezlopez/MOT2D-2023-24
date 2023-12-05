@@ -29,11 +29,8 @@ public class PlayerController : MonoBehaviour, IActorController
     // Start is called before the first frame update
     void Start()
     {
-        //Cargo la info del SO
-        playerData?.Initialize(this);
-
-
         //1. Sincronizar la info local con GameData si existe 
+        #region SincronizacionGameData
         if (GameObject.FindGameObjectWithTag("GameData")) {
             Data data = GameObject.FindGameObjectWithTag("GameData").GetComponent<Data>();
             stats = data.stats;
@@ -45,6 +42,7 @@ public class PlayerController : MonoBehaviour, IActorController
             //throw new System.Exception("Error: GameData gameobject/tag not found");
             Debug.LogError("Error: GameData gameobject/tag not found");
         }
+        #endregion
 
         //2. Cargo la info del SO
         playerData?.Initialize(this);
@@ -97,12 +95,7 @@ public class PlayerController : MonoBehaviour, IActorController
     #region Init Editor
     private void OnRenderObject()
     {
-        if (GameObject.FindGameObjectWithTag("GameData"))
-        {
-            Data data = GameObject.FindGameObjectWithTag("GameData").GetComponent<Data>();
-        }
-        playerData?.Initialize(this);
-        
+        playerData?.Initialize(this);      
     }
     #endregion
 

@@ -41,12 +41,12 @@ public class PlayerLateralMovementController : MonoBehaviour
         //Referencia al playerController
         playerController = GetComponent<PlayerController>();
         stats = (PlayerStats) playerController.GetStats();
-        //Acciones de PlayerLateralMovement
 
+        //Acciones de PlayerLateralMovement
         m_moveAction = playerController.playerInput.actions["Move"];
         m_jumpAction = playerController.playerInput.actions["Jump"];
 
-        //Referencia a componentes propios
+        //Referencia a componentes
         rb = GetComponent<Rigidbody2D>();
         sprite= GetComponentInChildren<SpriteRenderer>();
         animator = GetComponentInChildren<Animator>();

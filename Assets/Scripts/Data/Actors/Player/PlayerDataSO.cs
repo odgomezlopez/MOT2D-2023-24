@@ -10,21 +10,21 @@ public class PlayerDataSO : ScriptableObject
     public AnimatorController animator;
     public Color color = Color.white;
 
-    [Header("Stats")]
-    public PlayerStats playerStats;
+    //[Header("Stats")]
+    //public PlayerStats playerStats;
 
     public void Initialize(PlayerController player)
     {
 
         //1. Actualizo los stats
-        if (!player.StatsInitialized)
-        {
-            ((PlayerStats)player.GetStats()).Update(playerStats);
-            player.StatsInitialized = true;
-        }
-  
+        //if (!player.StatsInitialized)
+        //{
+        //((PlayerStats)player.GetStats()).Update(playerStats);
+        //player.StatsInitialized = true;
+        //}
+
         //2. Actualizo el GameObject
-        GameObject g= player.GetGameObject();
+        GameObject g = player.GetGameObject();
 
         //2.1. Actualizo los elementos visuales 
         SpriteRenderer ren = g.GetComponentInChildren<SpriteRenderer>();

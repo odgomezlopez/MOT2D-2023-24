@@ -20,11 +20,12 @@ public class PlayerActionController : MonoBehaviour
         //Referencia al playerController
         playerController = GetComponent<PlayerController>();
         stats = (PlayerStats)playerController.GetStats();
-        //Acciones de PlayerLateralMovement
 
+        //Acciones de PlayerActionController
         m_action1Action = playerController.playerInput.actions["Action1"];
         m_action2Action = playerController.playerInput.actions["Action2"];
     }
+
 
     // Update is called once per frame
     void Update()
@@ -33,15 +34,28 @@ public class PlayerActionController : MonoBehaviour
         if (m_action1Action.triggered)
         {
             Debug.Log("Action1");
-            CoolDown(m_action1Action, stats.action1.cooldown);
-            stats.action1?.Use(gameObject);
+            if (stats.action1)
+            {
+                Instantiate(stats.action1Prefab.GetComponent<OnAttackImpack2>(), transform);
+            }
+            //TODO Invulnerabiliy???
+            //CoolDown(m_action1Action, stats.action1.cooldown);
+            //stats.action1?.Use(gameObject);
         }
+
         //Acción2
         if (m_action2Action.triggered)
         {
             Debug.Log("Action2");
-            CoolDown(m_action2Action, stats.action2.cooldown);
-            stats.action2?.Use(gameObject);
+            if (stats.action2)
+            {
+                Instantiate(stats.action2Prefab, transform.position, Quaternion.identity);
+            }
+
+
+            //TODO Invulnerabiliy???
+            //CoolDown(m_action2Action, stats.action2.cooldown);
+            //stats.action2?.Use(gameObject);
         }
     }
 

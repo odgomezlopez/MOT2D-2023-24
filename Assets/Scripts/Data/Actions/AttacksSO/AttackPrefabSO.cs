@@ -25,7 +25,6 @@ public class AttackPrefabSO : AttackSO
 
         //Calculo valores
         float damage = this.damage;
-        Vector3 dir = Vector2.right * org.transform.localScale.x;//TODO Adapt for 3D Vector3.forward
 
         //Si el origen tiene un IActorController (Si se quiere que el daño)//TODO Pensar como hacer más generico
         /*if (org.GetComponent<IActorController>()!=null)
@@ -36,10 +35,10 @@ public class AttackPrefabSO : AttackSO
         GameObject prefabInitialized = Initialize(prefab);
 
         //Realizo el ataque
-        Attack(org, prefabInitialized, damage, dir);
+        Attack(org, prefabInitialized, damage);
     }
 
-    private void Attack(GameObject org, GameObject newPrefab, float damage, Vector3 dir)
+    private void Attack(GameObject org, GameObject newPrefab, float damage)
     {
         //Instanciamos el ataque donde esta el jugador
         GameObject g = Instantiate(newPrefab, org.transform);
@@ -60,7 +59,7 @@ public class AttackPrefabSO : AttackSO
             //Si es un ataque a distancia hacemos que se desacople del actor
             g.transform.SetParent(null, true);
             //Inicializo la velocidad teniendo en cuenta hacie donde miro
-            g.GetComponent<AttackMoveTowards2D>()?.Initializate(speed, dir);
+            g.GetComponent<AttackMoveTowards2D>()?.Initialize(speed, g.transform.right);//TODO Adapt for 3D Vector3.forward
         }
     }
 

@@ -5,23 +5,26 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class AttackMoveTowards2D : MonoBehaviour
 {
+    //Propiedades
     [SerializeField] float speed;
     [SerializeField] Vector2 dir;
 
+    //Referencias a componentes
     Rigidbody2D rb;
-    public void Initializate(float newSpeed,Vector2 newDir)
-    {
-        speed = newSpeed;
-        dir = newDir;
-    }
-    void Start()
+
+    void Start()//Se puede cambiar a Awake
     {
         rb = GetComponent<Rigidbody2D>();
+        rb.velocity = dir * speed;
     }
-
-    // Update is called once per frame
-    void Update()
+    public void Initialize(float newSpeed, Vector2 newDir)
     {
-        rb.velocity = dir* speed;
+        //Actualizo la variables
+        speed = newSpeed;
+        dir = newDir;
+
+        //Actualizo la velocidad
+        rb = GetComponent<Rigidbody2D>();
+        rb.velocity = dir * speed;
     }
 }

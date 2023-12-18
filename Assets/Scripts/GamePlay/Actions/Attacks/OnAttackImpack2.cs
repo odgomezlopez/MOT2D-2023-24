@@ -5,27 +5,31 @@ using UnityEngine;
 public class OnAttackImpack2 : MonoBehaviour
 {
     [SerializeField] float damage = 1;
-    [SerializeField] string originTag="";
-
+    [SerializeField] bool destroyOnImpact = true;
 
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(gameObject,10);
+        Destroy(gameObject,10f);
     }
 
-    public void Initialize(string newTag)
+    public void Initialize(float newDamage)
     {
-        originTag = newTag;
+        damage = newDamage;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag(originTag)) return;
+        //Realizar daño si el ataque colisiona con algún actor
         if (collision.CompareTag("Enemy") || collision.CompareTag("Player"))
         {
             collision.gameObject.GetComponentInParent<IActorController>()?.OnDamage(damage);
-            Destroy(gameObject);
+            if(destroyOnImpact)  Destroy(gameObject);
+        }
+        //Destruir también si el disparo toca el suelo o las paredes
+        else if(collision.CompareTag("Floor") || collision.CompareTag("Wall"))
+        {
+            if (destroyOnImpact) Destroy(gameObject);
         }
     }
 }

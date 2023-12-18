@@ -133,6 +133,8 @@ public class PlayerController : MonoBehaviour, IActorController
             onHurt.Invoke();
         }
     }
+
+    #region Invulnerabilidad
     public void TemporalInvulneravility2D()
     {
         StartCoroutine(TemporalInvulneravilityCoroutine2D());
@@ -160,11 +162,24 @@ public class PlayerController : MonoBehaviour, IActorController
 
         //3.2. Desactivar la invulnarabilidad utilizando las capas (Layer)
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemies"), false);
+        
+        //3.3. Desactivo la invulnerabilidad en los stats
         stats.invulnerable = false;
 
         yield return null;
-
     }
+
+    public void TemporalInvulneravility2D(float seconds)
+    {
+        StartCoroutine(TemporalInvulneravilityCoroutine2D(seconds));
+    }
+    private IEnumerator TemporalInvulneravilityCoroutine2D(float seconds)
+    {
+        stats.invulnerable = true;
+        yield return new WaitForSecondsRealtime(seconds);
+        stats.invulnerable = false;
+    }
+    #endregion
 
     //Other
     public GameObject GetGameObject()

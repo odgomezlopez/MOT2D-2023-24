@@ -15,4 +15,4 @@ MonoBehaviour:
   actionName: Near RayCast Att
   cooldown: 1
   damage: 0.5
-  range: 1
+  range: 4

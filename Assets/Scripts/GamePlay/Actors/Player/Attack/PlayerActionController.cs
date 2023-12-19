@@ -34,42 +34,15 @@ public class PlayerActionController : MonoBehaviour
         //Acción1
         if (m_action1Action.triggered)
         {
-            StartCoroutine(CoolDown(m_action1Action, 0.5f));
-
-
-            Debug.Log("Action1");
-            if (stats.action1Prefab)
-            {
-                GameObject att=Instantiate(stats.action1Prefab, transform);
-                att.layer = gameObject.layer;
-
-                //Inicializo el ataque
-                att.GetComponent<OnAttackImpack2>()?.Initialize(2f);
-                playerController.TemporalInvulneravility2D(1f);
-                //att.GetComponent<Animator>().speed = 10.0f;
-                //att.GetComponent<AttackMoveTowards2D>()?.Initialize(10f, new Vector2(1, 0));
-            }
-            //TODO Invulnerabiliy???
-            //stats.action1?.Use(gameObject);
+            StartCoroutine(CoolDown(m_action1Action, stats.action1.cooldown));
+            stats.action1?.Use(gameObject);
         }
 
         //Acción2
         if (m_action2Action.triggered)
         {
-            StartCoroutine(CoolDown(m_action2Action, 1f));
-
-
-            Debug.Log("Action2");
-            if (stats.action2Prefab)
-            {
-                GameObject att = Instantiate(stats.action2Prefab, transform.position, Quaternion.identity);
-                att.layer = gameObject.layer;
-
-                //Inicializo el ataque a distancia
-                att.GetComponent<OnAttackImpack2>()?.Initialize(1f);
-                att.GetComponent<AttackMoveTowards2D>()?.Initialize(10f,transform.right);
-            }
-
+            StartCoroutine(CoolDown(m_action2Action, stats.action2.cooldown));    
+            stats.action2?.Use(gameObject);
         }
     }
 

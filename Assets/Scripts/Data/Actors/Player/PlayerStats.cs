@@ -43,7 +43,5 @@ public class PlayerStats : Stats
 
         action1 = newStats.action1;
         action2 = newStats.action2;
-        action1Prefab = newStats.action1Prefab;
-        action2Prefab = newStats.action2Prefab;
     }
 }

@@ -1,102 +1,70 @@
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEditor;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 [CreateAssetMenu(fileName = "New Attack", menuName = "Actions/Attacks/Prefab Attack")]
-public class AttackPrefabSO : AttackSO
+public class AttackPrefabSO : ActionSO
 {
-    [Header("Prefab Attack")]
-    public GameObject prefab;
-
+    [Header("Basic Attack info")]
+    public float damage;
+    public float speed = 5f;
+    public float maxLife = 10;
     public enum AttackType { Melee, Distance };
     public AttackType type;
 
-    public float speed = 5f;
-    public float maxLife=10;
-
-    [Header("Sprite info")]
-    public Sprite sprite;
-    public Color color=Color.white;
+    [Header("Prefab Attack")]
+    public GameObject prefab;
 
     public override void Use(GameObject org)
     {
         //Usamos el metodo heredado 
         base.Use(org);
 
-        //Calculo valores
-        float damage = this.damage;
-
-        //Si el origen tiene un IActorController (Si se quiere que el daño)//TODO Pensar como hacer más generico
-        /*if (org.GetComponent<IActorController>()!=null)
+        //Calculo del daño
+        float d = damage; //TODO multiplicar por daño del jugador
+        /*Si el origen tiene un IActorController (Si se quiere que el daño)if (org.GetComponent<IActorController>()!=null)
         {
-            damage+=org.GetComponent<IActorController>().GetStats().attDamage;
+            d+=org.GetComponent<IActorController>().GetStats().attDamage;
         }*/
-        //Actualizo la apariencia del prefab
-        GameObject prefabInitialized = Initialize(prefab);
 
-        //Realizo el ataque
-        Attack(org, prefabInitialized, damage);
-    }
-
-    private void Attack(GameObject org, GameObject newPrefab, float damage)
-    {
-        //Instanciamos el ataque donde esta el jugador
-        GameObject g = Instantiate(newPrefab, org.transform);
-
-        //Inicializo componentes
-        bool destroyOnCollision = (type == AttackType.Distance);//Solo se destruye cuando colisiona los ataques de distancia
-        g.GetComponent<OnAttackImpact>()?.Initializate(damage, destroyOnCollision, org.tag, 10);
-
-        //Modifico según tipo de ataque
+        //Instancio el ataque
+        GameObject att;
         if (type == AttackType.Melee)
         {
-            if (g.GetComponent<Animator>()) g.GetComponent<Animator>().speed = speed;
-            //TODO Activar invulnerabilidad cuando se hacen los ataques melee
+            att = Instantiate(prefab, org.transform);//Instanciar como hijo
+        }
+        else //if (type == AttackType.Distance)
+        {
+            att = Instantiate(prefab, org.transform.position, Quaternion.identity);//Instanciar como elemento independiente en el mundo
+        }
+
+        att.layer = org.layer;
+
+        //Inicializo componentes
+        att.GetComponent<OnAttackImpact>()?.Initializate(d);
+        if (type == AttackType.Melee)
+        {
+            Animator ani = att.GetComponent<Animator>();
+
+            float currentAnimationClipSeconds = 1f;//TODO
+            if (ani != null)
+            {
+                ani.speed = speed; //Aumento la velocidad del ataque
+
+               currentAnimationClipSeconds = ani.GetCurrentAnimatorClipInfo(0)[0].clip.length / speed;
+               //Debug.Log(currentAnimationClipSeconds);
+            }
+
+            //Invulnerabilidad al PlayerController
+            org.GetComponent<PlayerController>()?.TemporalInvulneravility2D(currentAnimationClipSeconds);
         }
 
         if (type == AttackType.Distance)
         {
-            //Si es un ataque a distancia hacemos que se desacople del actor
-            g.transform.SetParent(null, true);
-            //Inicializo la velocidad teniendo en cuenta hacie donde miro
-            g.GetComponent<AttackMoveTowards2D>()?.Initialize(speed, g.transform.right);//TODO Adapt for 3D Vector3.forward
+            att.GetComponent<AttackMoveTowards2D>()?.Initialize(speed, org.transform.right);
         }
     }
 
 
-    public GameObject Initialize(GameObject g)
-    {
-        SpriteRenderer ren = g.GetComponentInChildren<SpriteRenderer>();
-        //Animator ani = g.GetComponentInChildren<Animator>();
-        Collider2D col = g.GetComponentInChildren<Collider2D>();
-
-        //1. Intercambiamos info
-        if (ren)
-        {
-            if(sprite!=null) ren.sprite = sprite;
-            ren.color = color;
-        }
-        /*if (ani)
-        {
-            ani.runtimeAnimatorController = animator;
-        }*/
-
-        //2. Recalcular el colider (MODIFICAR EN 3D)
-        // Adjust the size of the collider to match the sprite size
-        if (col)
-        {
-            if (col is BoxCollider2D boxCol)
-            {
-                boxCol.size = new Vector2(ren.bounds.size.x, ren.bounds.size.y);
-                boxCol.offset = new Vector2(ren.bounds.center.x - g.transform.position.x, ren.bounds.center.y - g.transform.position.y);
-            }
-
-            if (col is CapsuleCollider2D capCol)
-            {
-                capCol.size = new Vector2(ren.bounds.size.x, ren.bounds.size.y);
-                capCol.offset = new Vector2(ren.bounds.center.x - g.transform.position.x, ren.bounds.center.y - g.transform.position.y);
-            }
-        }
-        return g;
-    }
 }

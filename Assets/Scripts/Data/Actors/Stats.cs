@@ -13,8 +13,6 @@ public class Stats
 
     [Header("Att")]
     public float attDamage;
-    public GameObject action1Prefab;
-    public GameObject action2Prefab;
     
     public ActionSO action1;//MeleeAttack
     public ActionSO action2;//DistanceAttack
@@ -37,8 +35,6 @@ public class Stats
 
         action1 = newStats.action1;
         action2 = newStats.action2;
-        action1Prefab = newStats.action1Prefab;
-        action2Prefab = newStats.action2Prefab;
     }
 
 }

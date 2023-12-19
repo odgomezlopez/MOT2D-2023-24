@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 379d72f354d0fe34a8749af62371c89a, type: 3}
-  m_Name: MeleeBasicAttack
+  m_Name: BolaFuego
   m_EditorClassIdentifier: 
-  actionName: Melee
+  actionName: Bola de fuego
   cooldown: 1
-  damage: 1
-  speed: 1
+  damage: 1.5
+  speed: 15
   maxLife: 10
-  type: 0
-  prefab: {fileID: 5646186423644297413, guid: f32bc2b266bacda41bebfb5fe80cdbd5, type: 3}
+  type: 1
+  prefab: {fileID: 1115985751124688540, guid: 1e84e72fceb762741af55eef08ad4d5b, type: 3}

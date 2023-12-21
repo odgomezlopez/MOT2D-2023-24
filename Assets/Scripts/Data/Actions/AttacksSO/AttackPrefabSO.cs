@@ -12,6 +12,7 @@ public class AttackPrefabSO : ActionSO
     public float maxLife = 10;
     public enum AttackType { Melee, Distance };
     public AttackType type;
+    public bool onColisionDestroy=true;
 
     [Header("Prefab Attack")]
     public GameObject prefab;
@@ -42,7 +43,7 @@ public class AttackPrefabSO : ActionSO
         att.layer = org.layer;
 
         //Inicializo componentes
-        att.GetComponent<OnAttackImpact>()?.Initializate(d);
+        att.GetComponent<OnAttackImpact>()?.Initializate(d,onColisionDestroy);
         if (type == AttackType.Melee)
         {
             Animator ani = att.GetComponent<Animator>();

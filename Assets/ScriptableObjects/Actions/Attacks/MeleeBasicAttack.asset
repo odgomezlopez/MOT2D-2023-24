@@ -18,4 +18,5 @@ MonoBehaviour:
   speed: 1
   maxLife: 10
   type: 0
+  onColisionDestroy: 0
   prefab: {fileID: 5646186423644297413, guid: f32bc2b266bacda41bebfb5fe80cdbd5, type: 3}

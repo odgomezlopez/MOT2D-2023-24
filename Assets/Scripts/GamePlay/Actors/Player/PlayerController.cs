@@ -109,6 +109,7 @@ public class PlayerController : MonoBehaviour, IActorController
     {
         if (val <= 0)        {
             onDie.Invoke();
+            //GameManager.Instance.LevelRestart(0.5f);
         }
     }
 

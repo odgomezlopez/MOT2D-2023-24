@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameController : MonoBehaviour
+public class GameManager : MonoBehaviourSingleton<GameManager>
 {
     public void LevelRestart(float seconds=0)
     {

@@ -14,7 +14,7 @@ public class EnemyController : MonoBehaviour, IActorController
     private void Awake()
     {
         //Me suscribo a los cambios de HP de los stats
-        stats.HP.OnIndicatorChange.AddListener(OnHPUpdate);
+        stats.HP.OnPercentChange.AddListener(OnHPUpdate);
     }
 
     //Gestión del HP

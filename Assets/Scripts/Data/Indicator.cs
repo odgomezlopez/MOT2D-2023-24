@@ -20,13 +20,15 @@ public class Indicator
     public float maxValue;
 
     //Gestion recuperación/deterioro automatico
-    public bool enableAutoUpdate=true;
-    public float autoUpdateRate = 0;
+    //public bool enableAutoUpdate=true;
+    //public float autoUpdateRate = 0;
 
     //Eventos para detectar cambios en el indicador. (mas info en https://gamedevbeginner.com/events-and-delegates-in-unity)
     //Opción 1. Unity Event Facil enlazar elementos en el Editor.
 
-    public UnityEvent<float> OnIndicatorChange;
+    public UnityEvent<float> OnPercentChange;
+    public UnityEvent<float> OnValueChange;
+
     public GameEventFloat gameEvent;
 
 
@@ -34,7 +36,7 @@ public class Indicator
     //public delegate void OnIndicatorChangeDelegate(float newValue);
     //public event OnIndicatorChangeDelegate OnIndicatorChange;
     //Contrustor
-    public Indicator()
+    /*public Indicator()
     {
         UpdateCaller.OnUpdate += Update;
     }
@@ -51,7 +53,7 @@ public class Indicator
     {
         if (enableAutoUpdate && autoUpdateRate != 0) this.CurrentValue += autoUpdateRate * Time.deltaTime;
     }
-    #endregion
+#endregion*/
 
     //Inicialización
     public virtual void RestartStats()
@@ -63,6 +65,7 @@ public class Indicator
     //Operaciones
     public float GetPercentage()
     {
+        if (maxValue == 0) return 1;
         return CurrentValue / maxValue;
     }
 
@@ -76,15 +79,16 @@ public class Indicator
 
             //1. Unity Event
             try {
-                OnIndicatorChange.Invoke(GetPercentage());
+                OnPercentChange?.Invoke(GetPercentage());
+                OnValueChange?.Invoke(currentValue);
             }
-            catch (Exception e) { Debug.LogError("An event attached to indicator have failed"); }
+            catch (Exception e) { Debug.LogError("An event attached to indicator have failed"); Debug.LogError(e); }
 
             try
             {
                 gameEvent?.TriggerEvent(GetPercentage());
             }
-            catch (Exception e) { Debug.LogError("A gameevent attached to indicator have failed"); }
+            catch (Exception e) { Debug.LogError("A gameevent attached to indicator have failed"); Debug.LogError(e); }
 
 
             //2. Delegate
@@ -98,7 +102,7 @@ public class Indicator
         currentValue = newIndicator.currentValue;
         initValue = newIndicator.initValue;
         maxValue = newIndicator.maxValue;
-        enableAutoUpdate = newIndicator.enableAutoUpdate;
-        autoUpdateRate = newIndicator.autoUpdateRate;
+        //enableAutoUpdate = newIndicator.enableAutoUpdate;
+        //autoUpdateRate = newIndicator.autoUpdateRate;
     }
 }

@@ -5,6 +5,7 @@ using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using static System.Net.Mime.MediaTypeNames;
 
 
 public class UpdateTextUI : MonoBehaviour
@@ -14,7 +15,7 @@ public class UpdateTextUI : MonoBehaviour
     [SerializeField] Color enableColor = Color.black;
     [SerializeField] Color disableColor = Color.gray;
 
-    private void Start()
+    private void Awake()
     {
         textUI = GetComponent<TextMeshProUGUI>();
     }
@@ -29,6 +30,11 @@ public class UpdateTextUI : MonoBehaviour
 
         if (enable) textUI.color = enableColor;
         else textUI.color = disableColor;
+    }
+
+    public void UpdateText(float value)
+    {
+        textUI.SetText(value.ToString()); ;//Si se quiere un formato se puede dar en los parametros de toString
     }
 
 }

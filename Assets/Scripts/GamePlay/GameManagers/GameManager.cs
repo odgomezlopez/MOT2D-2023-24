@@ -1,24 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviourSingleton<GameManager>
 {
+
+    public UnityEvent onWin;
+    public UnityEvent onGameOver;
+
     public void LevelWin(float seconds = 0)
     {
-        Debug.Log(ScoreManager.Instance.score.CurrentValue);
-        StartCoroutine(LevelRestartCorutine(seconds));
+        onWin.Invoke();
+
+        StartCoroutine(
+            DelayedAction(LevelManager.Instance.NextLevel, seconds)
+        );
     }
 
-    public void LevelRestart(float seconds=0)
+    public void LevelGameOver(float seconds = 0)
     {
-        StartCoroutine(LevelRestartCorutine(seconds));
+        onGameOver.Invoke();
+
+        StartCoroutine(
+            DelayedAction(LevelManager.Instance.RestartLevel, seconds)
+        );
     }
 
-    private IEnumerator LevelRestartCorutine(float seconds = 0)
+    private IEnumerator DelayedAction(System.Action action, float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        action.Invoke();
     }
 }

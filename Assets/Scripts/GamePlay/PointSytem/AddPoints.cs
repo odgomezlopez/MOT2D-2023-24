@@ -9,6 +9,7 @@ public class AddPoints : MonoBehaviour
 {
     //Datos propios
     [SerializeField] [Range(1,10)] private int points=1;
+
     public UnityEvent<float> addPointEvent;
     public UnityEvent pointCollectEvent;
 

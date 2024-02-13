@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviourSingleton<LevelManager>
 {
-    public string nextSceneName;
-
+    [SerializeField] private string nextSceneName;
     public void GoToStartMenu()
     {
         SceneManager.LoadScene(0);
@@ -20,7 +19,7 @@ public class LevelManager : MonoBehaviourSingleton<LevelManager>
         SceneManager.LoadScene(name);
     }
 
-    public void btn_StartTheGame()
+    public void StartTheGame()
     {
         GoToLevel("Level1");
     }

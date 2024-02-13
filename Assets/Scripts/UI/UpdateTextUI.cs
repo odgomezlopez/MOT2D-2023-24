@@ -36,5 +36,4 @@ public class UpdateTextUI : MonoBehaviour
     {
         textUI.SetText(value.ToString()); ;//Si se quiere un formato se puede dar en los parametros de toString
     }
-
 }

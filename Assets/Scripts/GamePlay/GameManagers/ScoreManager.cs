@@ -5,16 +5,17 @@ using UnityEngine.Events;
 
 public class ScoreManager : MonoBehaviourSingleton<ScoreManager>
 {
-    [SerializeField] public Indicator score;
-    [SerializeField] float winningScore = 10;
+    [SerializeField] private Indicator score;
+    [SerializeField] private float winningScore = 10;
 
     public UnityEvent OnWinningScore;
+
 
     //Inicialización
     private void Start()
     {
         ResetScore();
-        score.OnValueChange.AddListener(CheckWinningCondition);
+        //score.OnValueChange.AddListener(CheckWinningCondition);//Alternativa con eventos para comprobar si se ha ganado, si se usa comentar la linea 30
     }
 
     public void ResetScore()
@@ -26,6 +27,7 @@ public class ScoreManager : MonoBehaviourSingleton<ScoreManager>
     public void AddPoints(float points)
     {
         score.CurrentValue += points;
+        CheckWinningCondition(score.CurrentValue);
     }
 
     public void CheckWinningCondition(float val)

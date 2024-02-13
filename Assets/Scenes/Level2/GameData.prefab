@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6685777980393262833
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6861430350458767951}
+  - component: {fileID: 9165276837012224978}
+  m_Layer: 0
+  m_Name: GameData
+  m_TagString: GameData
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6861430350458767951
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6685777980393262833}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.464793, y: -1.010643, z: -7.599638}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9165276837012224978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6685777980393262833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b980ec50217e5704386b5e858dcdcc15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  points: 0
+  stats:
+    actorName: 
+    HP:
+      indicatorName: 
+      icon: {fileID: 0}
+      currentValue: 0
+      initValue: 0
+      maxValue: 0
+      OnPercentChange:
+        m_PersistentCalls:
+          m_Calls: []
+      OnValueChange:
+        m_PersistentCalls:
+          m_Calls: []
+      gameEvent: {fileID: 0}
+    attDamage: 0
+    action1: {fileID: 0}
+    action2: {fileID: 0}
+    movementSpeed: 0
+    acceleration: 0
+    deceleration: 0
+    jumpSpeed: 0
+    airMomemtum: 0.8
+    jumpMax: 1
+    invulnerable: 0
+    invulnerabilityColor: {r: 1, g: 0, b: 0, a: 1}
+    invulnerabilitySeconds: 1
+  playerData: {fileID: 0}
+  statsInitialized: 0

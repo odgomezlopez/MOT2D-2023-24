@@ -29,9 +29,6 @@ public class Indicator
     public UnityEvent<float> OnPercentChange;
     public UnityEvent<float> OnValueChange;
 
-    public GameEventFloat gameEvent;
-
-
     //Opción 2. Delegate. Facil pasar parámetros asociados al evento.
     //public delegate void OnIndicatorChangeDelegate(float newValue);
     //public event OnIndicatorChangeDelegate OnIndicatorChange;
@@ -83,13 +80,6 @@ public class Indicator
                 OnValueChange?.Invoke(currentValue);
             }
             catch (Exception e) { Debug.LogError("An event attached to indicator have failed"); Debug.LogError(e); }
-
-            try
-            {
-                gameEvent?.TriggerEvent(GetPercentage());
-            }
-            catch (Exception e) { Debug.LogError("A gameevent attached to indicator have failed"); Debug.LogError(e); }
-
 
             //2. Delegate
             //if (OnIndicatorChange != null)

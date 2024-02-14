@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
     //Propiedades
     [SerializeField][Range(0, 1)] float backgroundSoundVolume = 1;
     [SerializeField][Range(0,1)] float SFXVolume = 1;
-    [SerializeField][Range(0, 1)] float dialogueSoundVolume = 1;
+    //[SerializeField][Range(0, 1)] float dialogueSoundVolume = 1;
 
     //Referencias a subcomponentes
     AudioSource backgroundAudioSource;

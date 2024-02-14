@@ -45,7 +45,7 @@ public class PlayerContextualActionTriggerer : MonoBehaviour
     void Start()
     {
         //Referencias
-        m_contextualAction = GameObject.FindGameObjectWithTag("PlayerInput").GetComponent<PlayerInput>().actions["ContextualAction"];
+        m_contextualAction = GameObject.FindGameObjectWithTag("PlayerInput").GetComponent<PlayerInput>().actions["ContextualAction"];//TODO Hacer que la acción concreta se elija en el editor
         player = GameObject.FindGameObjectWithTag("Player");
 
         //Inicializaciones

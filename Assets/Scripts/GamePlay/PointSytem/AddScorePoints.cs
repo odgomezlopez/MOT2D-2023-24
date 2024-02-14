@@ -5,7 +5,7 @@ using UnityEngine;
 
 using UnityEngine.Events;
 
-public class AddPoints : MonoBehaviour
+public class AddScorePoints : MonoBehaviour
 {
     //Datos propios
     [SerializeField] [Range(1,10)] private int points=1;

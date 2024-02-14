@@ -23,13 +23,13 @@ public class Stats
     //Metodos
     public virtual void ResetStats()
     {
-        HP.RestartStats();
+        HP.Restart();
     }
 
     public void Update(Stats newStats)
     {
         actorName = newStats.actorName;
-        HP.Update(newStats.HP);
+        //HP.Update(newStats.HP);
         attDamage = newStats.attDamage;
         movementSpeed = newStats.movementSpeed;
 

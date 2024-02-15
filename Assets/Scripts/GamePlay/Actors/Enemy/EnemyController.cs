@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -14,7 +15,8 @@ public class EnemyController : MonoBehaviour, IActorController
     private void Awake()
     {
         //Me suscribo a los cambios de HP de los stats
-        stats.HP.OnPercentChange.AddListener(OnHPUpdate);
+        stats.HP.OnValueUpdate.AddListener(OnHPUpdate);
+        stats.HP.Restart();
     }
 
     //Gestión del HP

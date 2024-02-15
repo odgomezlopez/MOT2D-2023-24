@@ -5,14 +5,15 @@ using UnityEngine.Events;
 [System.Serializable]
 public class GenericVariable<T>
 {
-    //Datos
-    [Header("Initial value")]
-    public T initialValue;
+    //TODO Falta investigar como hacer que se autosincronice, de forma bidireccional, con SharedGenericVariableSO
 
-    [Header("Float runtime value")]
+    //Datos
+    [Header("Variable value")]
+    public T initialValue;
     [SerializeField] private T runtimeValue;
 
-    [Header("Float onChange events")]
+    [Header("OnChange events")]
+    //public SharedGenericVariableSO<T> SyncSO;
     public UnityEvent<T> OnValueUpdate;
 
     //Get y Set publico
@@ -29,11 +30,10 @@ public class GenericVariable<T>
                 {
                     InvokeEvents();
                 }
-                catch (Exception e) { Debug.LogError("An event attached to indicator have failed"); Debug.LogError(e); }
+                catch (Exception e) { Debug.LogError("An event attached to indicator have failed"); Debug.LogException(e); }
             }
         }
     }
-
 
     protected virtual T CheckNewValue(T value)
     {
@@ -42,10 +42,12 @@ public class GenericVariable<T>
 
     protected virtual void InvokeEvents()
     {
-        OnValueUpdate?.Invoke(runtimeValue);
+        //if (SyncSO) SyncSO.CurrentValue = CurrentValue;
+        OnValueUpdate?.Invoke(CurrentValue);
     }
 
-    //Utilidades
+    #region Utils
+
     public void Restart()
     {
         CurrentValue = initialValue;
@@ -56,11 +58,7 @@ public class GenericVariable<T>
         initialValue = newValue.initialValue;
         CurrentValue = newValue.runtimeValue;
     }
-
-    public void Validate()
-    {
-        CurrentValue = runtimeValue;
-    }
+    #endregion
 }
 
 [System.Serializable]
@@ -71,15 +69,16 @@ public class RangedFloatVariable : GenericVariable<float>
     public float minValue = 0;
     public float maxValue = 100;
 
-    [Header("Additional Float Events")]
-    public UnityEvent<float> OnPercentChange;
+    [Header("Float Percent Events")]
+    public SharedGenericVariableSO<float> SyncPercentSO;
+    public UnityEvent<float> OnPercentUpdate;
 
     protected override void InvokeEvents()
     {
         base.InvokeEvents();
-        OnValueUpdate?.Invoke(GetPercentage());
+        OnPercentUpdate?.Invoke(GetPercentage());
+        if(SyncPercentSO) SyncPercentSO.CurrentValue=GetPercentage();
     }
-
 
     //Sobreescrito
     protected override float CheckNewValue(float value)
@@ -103,5 +102,4 @@ public class RangedFloatVariable : GenericVariable<float>
 
 //Backwards compatibility
 [System.Serializable]
-public class Indicator : RangedFloatVariable
-{ }
+public class Indicator : RangedFloatVariable { }

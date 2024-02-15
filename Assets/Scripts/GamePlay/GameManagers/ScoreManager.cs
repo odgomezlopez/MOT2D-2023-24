@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class ScoreManager : MonoBehaviourSingleton<ScoreManager>
 {
-    [SerializeField] private FloatVariableSO score;
+    [SerializeField] private GenericVariable<float> score;
     [SerializeField] private float winningScore = 10;
 
     public UnityEvent OnWinningScore;

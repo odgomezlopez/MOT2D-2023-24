@@ -139,7 +139,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: 774822fc298698d48b240fd6a099d058, type: 2}
-        m_TargetAssemblyTypeName: GameEventFloat, Assembly-CSharp
+        m_TargetAssemblyTypeName: SharedGenericVariableSO`1[[System.Single, mscorlib
         m_MethodName: TriggerEvent
         m_Mode: 0
         m_Arguments:

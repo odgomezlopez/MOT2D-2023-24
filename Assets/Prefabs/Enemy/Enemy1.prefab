@@ -658,12 +658,15 @@ MonoBehaviour:
   stats:
     actorName: 
     HP:
-      indicatorName: 
-      icon: {fileID: 0}
-      currentValue: 3
-      initValue: 3
+      initialValue: 2
+      runtimeValue: 0
+      OnValueUpdate:
+        m_PersistentCalls:
+          m_Calls: []
+      SharedVariable: {fileID: 0}
+      minValue: 0
       maxValue: 3
-      OnPercentChange:
+      OnPercentUpdate:
         m_PersistentCalls:
           m_Calls:
           - m_Target: {fileID: 311213098033167489}
@@ -678,10 +681,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-      OnValueChange:
-        m_PersistentCalls:
-          m_Calls: []
-      gameEvent: {fileID: 0}
+      SharedPercentVariable: {fileID: 0}
     attDamage: 1
     action1: {fileID: 0}
     action2: {fileID: 0}

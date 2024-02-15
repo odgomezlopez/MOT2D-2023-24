@@ -1,10 +1,11 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class GameEventFloatListener : MonoBehaviour
+public abstract class SharedGenericVariableSOListener<T> : MonoBehaviour
 {
-    public GameEventFloat gameEvent;
-    public UnityEvent<float> onEventTriggered;
+    public SharedGenericVariableSO<T> gameEvent;
+    public UnityEvent<T> onEventTriggered;
 
     void OnEnable()
     {
@@ -16,7 +17,7 @@ public class GameEventFloatListener : MonoBehaviour
         gameEvent.RemoveListener(this);
     }
 
-    public void OnEventTriggered(float val)
+    public void OnEventTriggered(T val)
     {
         onEventTriggered.Invoke(val);
     }

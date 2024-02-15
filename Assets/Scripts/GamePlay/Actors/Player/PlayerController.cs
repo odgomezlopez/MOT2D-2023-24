@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour, IActorController
 
         //Me suscribo a los cambios de HP de los stats
         stats.HP.Restart();
-        stats.HP.OnPercentChange.AddListener(OnHPUpdate);
+        stats.HP.OnValueUpdate.AddListener(OnHPUpdate);
 
         stats = (PlayerStats)GetComponent<PlayerController>().GetStats();
 
@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour, IActorController
 
     private void OnDestroy()
     {
-        stats.HP.OnPercentChange.RemoveListener(OnHPUpdate);
+        stats.HP.OnValueUpdate.RemoveListener(OnHPUpdate);
     }
 
 

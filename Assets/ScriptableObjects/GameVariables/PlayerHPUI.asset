@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PlayerHPUI
   m_EditorClassIdentifier: 
   InitialValue: 1
-  RuntimeValue: 0.6666667
+  RuntimeValue: 1

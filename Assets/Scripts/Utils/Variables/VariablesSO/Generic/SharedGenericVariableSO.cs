@@ -7,9 +7,12 @@ using UnityEngine.Events;
 public abstract class SharedGenericVariableSO<T> : ScriptableObject
 {
     //Propiedades
+    [Header("Variable value")]
     public T InitialValue;
     [SerializeField] private T RuntimeValue;
 
+
+    //GetterSetter
     public T CurrentValue
     {
         get => RuntimeValue;

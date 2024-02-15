@@ -5,15 +5,12 @@ using UnityEngine.Events;
 [System.Serializable]
 public class GenericVariable<T>
 {
-    //TODO Falta investigar como hacer que se autosincronice, de forma bidireccional, con SharedGenericVariableSO
-
     //Datos
     [Header("Variable value")]
     public T initialValue;
     [SerializeField] private T runtimeValue;
 
     [Header("OnChange events")]
-    //public SharedGenericVariableSO<T> SyncSO;
     public UnityEvent<T> OnValueUpdate;
 
     //Get y Set publico
@@ -42,11 +39,9 @@ public class GenericVariable<T>
 
     protected virtual void InvokeEvents()
     {
-        //if (SyncSO) SyncSO.CurrentValue = CurrentValue;
         OnValueUpdate?.Invoke(CurrentValue);
     }
 
-    #region Utils
 
     public void Restart()
     {
@@ -58,7 +53,6 @@ public class GenericVariable<T>
         initialValue = newValue.initialValue;
         CurrentValue = newValue.runtimeValue;
     }
-    #endregion
 }
 
 [System.Serializable]
@@ -70,14 +64,12 @@ public class RangedFloatVariable : GenericVariable<float>
     public float maxValue = 100;
 
     [Header("Float Percent Events")]
-    public SharedGenericVariableSO<float> SyncPercentSO;
     public UnityEvent<float> OnPercentUpdate;
 
     protected override void InvokeEvents()
     {
         base.InvokeEvents();
         OnPercentUpdate?.Invoke(GetPercentage());
-        if(SyncPercentSO) SyncPercentSO.CurrentValue=GetPercentage();
     }
 
     //Sobreescrito

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Score
   m_EditorClassIdentifier: 
   InitialValue: 0
-  RuntimeValue: 1
+  RuntimeValue: 0

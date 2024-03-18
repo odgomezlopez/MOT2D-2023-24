@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     public void LevelWin(float seconds = 0)
     {
+        //if(ScoreManager.Instance) ScoreManager.Instance.SaveCurrentScore();
+
         onWin.Invoke();
 
         StartCoroutine(
@@ -34,3 +36,4 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         action.Invoke();
     }
 }
+

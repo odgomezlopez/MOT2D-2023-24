@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour, IActorController
     void Start()
     {
         //1. Sincronizar la info local con GameData si existe 
-        #region SincronizacionGameData
+        /*#region SincronizacionGameData
         if (GameObject.FindGameObjectWithTag("GameData")) {
             Data data = GameObject.FindGameObjectWithTag("GameData").GetComponent<Data>();
             stats = data.stats;
@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour, IActorController
             //throw new System.Exception("Error: GameData gameobject/tag not found");
             Debug.LogError("Error: GameData gameobject/tag not found");
         }
-        #endregion
+        #endregion*/
 
         //2. Cargo la info del SO
         playerData?.Initialize(this);
@@ -77,11 +77,11 @@ public class PlayerController : MonoBehaviour, IActorController
         {
             statsInitialized = value;
 
-            if (GameObject.FindGameObjectWithTag("GameData"))
+            /*if (GameObject.FindGameObjectWithTag("GameData"))
             {
                 Data data = GameObject.FindGameObjectWithTag("GameData").GetComponent<Data>();
                 data.statsInitialized = statsInitialized;
-            }
+            }*/
         }
     }
 

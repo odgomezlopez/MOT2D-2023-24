@@ -15,15 +15,12 @@ public class InfoHUD : MonoBehaviour
         if (HPBar)
         {
             //Obtenemos el dato con el que queremos sincronizar la UI
-            Stats stats;
-            if (GameObject.FindObjectOfType<Data>())
-            {
-                stats = GameObject.FindObjectOfType<Data>().stats;
-            }
-            else
+            Stats stats=null;
+            if (GameObject.FindObjectOfType<PlayerController>())
             {
                 stats = GameObject.FindObjectOfType<PlayerController>().GetStats();
             }
+
 
             //Asociamos el stat con la UI
             if (stats!=null)

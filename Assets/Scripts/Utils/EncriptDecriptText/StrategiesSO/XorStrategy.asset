@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2be4261d12b137146a160168a2e7f471, type: 3}
-  m_Name: XorTextStrategy
+  m_Script: {fileID: 11500000, guid: 8429922b81ec9074fa65d137ab3e0eff, type: 3}
+  m_Name: XorStrategy
   m_EditorClassIdentifier: 
-  key: 91da52a2-9257-43c8-8640-c628d66d6e63
+  key: 49f9917d-751d-45ee-afaf-ced087e67502

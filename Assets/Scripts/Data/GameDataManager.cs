@@ -8,32 +8,53 @@ using UnityEngine;
 public class GameDataManager : MonoBehaviourSingletonPersistent<GameDataManager>
 {
     [Header("Save/Load Info")]
-    [SerializeField] string fileName = "Data01.json";
+    [SerializeField] string fileName = "Data01.dat";
+    private string fullFilePath = "";
+
     [SerializeField] bool loadOnStart = false;
     [SerializeField] bool saveOnAplicationQuit = false;
+
+    [SerializeField] EncriptDecriptStrategy encriptDecriptStrategy;
 
     [Header("Data")]
     public GameData gameData;
 
     #region Save/Load
-    private void Start() { if(loadOnStart) LoadData(); }
+    private void Start() {
+        fullFilePath = Path.Combine(Application.persistentDataPath, fileName);
+        if (loadOnStart) LoadData(); 
+    }
     private void OnApplicationQuit() { if(saveOnAplicationQuit) SaveData(); }
 
     //Saving Player Data(Serialization)
     public void SaveData()
     {
-        //string json = JsonConvert.SerializeObject(gameData);
-        string json = JsonUtility.ToJson(gameData);
-        System.IO.File.WriteAllText(Path.Combine(Application.persistentDataPath, fileName), json);
+        //Convertirmos los objetos a JSON
+        //string text = JsonConvert.SerializeObject(gameData);
+        string text = JsonUtility.ToJson(gameData);
+
+        //Encriptamos
+        if(encriptDecriptStrategy) text = encriptDecriptStrategy.EncodeString(text);
+
+        //Guardamos
+        System.IO.File.WriteAllText(fullFilePath, text);
      }
 
      //Loading Player Data (Deserialization)
      public void LoadData()
      {
-        string json = System.IO.File.ReadAllText(Path.Combine(Application.persistentDataPath, fileName));
-        //gameData = JsonConvert.DeserializeObject<GameData>(json);
-        gameData = JsonUtility.FromJson<GameData>(json);
+        //Comprobamos si el archivo de guardado existe
+        if (!System.IO.File.Exists(fullFilePath)) return;
 
+        //Leemos
+        string text = System.IO.File.ReadAllText(fullFilePath);
+
+        //Desencriptamos
+        if (encriptDecriptStrategy) text = encriptDecriptStrategy.DecodeString(text);
+
+        //Convertimos el JSON a Objetos
+        gameData = JsonUtility.FromJson<GameData>(text);
+        //gameData = JsonConvert.DeserializeObject<GameData>(text);
     }
 
     public void DeleteAllData()

@@ -1,6 +1,8 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -29,6 +31,9 @@ public class GameDataManager : MonoBehaviourSingletonPersistent<GameDataManager>
     //Saving Player Data(Serialization)
     public void SaveData()
     {
+        //Cargamos info desde los componentes a GameData
+        SaveInfoFromComponentsToGameData();
+
         //Convertirmos los objetos a JSON
         //string text = JsonConvert.SerializeObject(gameData);
         string text = JsonUtility.ToJson(gameData);
@@ -55,6 +60,9 @@ public class GameDataManager : MonoBehaviourSingletonPersistent<GameDataManager>
         //Convertimos el JSON a Objetos
         gameData = JsonUtility.FromJson<GameData>(text);
         //gameData = JsonConvert.DeserializeObject<GameData>(text);
+
+        //Enviamos la info desde GameData a los componentes
+        LoadInfoFromGameDataToComponents();
     }
 
     public void DeleteAllData()
@@ -63,26 +71,27 @@ public class GameDataManager : MonoBehaviourSingletonPersistent<GameDataManager>
     }
     #endregion
 
+    #region Isavable
+    public void SaveInfoFromComponentsToGameData()
+    {
+        var a_Saveables = FindObjectsOfType<MonoBehaviour>().OfType<ISaveable>();
 
-    /*private void LoadData()
-    {
-        FindFirstObjectByType<SavingSystem>().Load(fileName);
-    }
-    private void SaveData()
-    {
-        FindFirstObjectByType<SavingSystem>().Save(fileName);
-    }
-
-    public JToken CaptureAsJToken()
-    {
-        return JToken.FromObject(gameData);
+        foreach (var saveable in a_Saveables)
+        {
+            saveable.SaveInfoToGameData(gameData);
+        }
     }
 
-    public void RestoreFromJToken(JToken state)
+    public void LoadInfoFromGameDataToComponents()
     {
-        gameData = state.ToObject<GameData>();
+        var a_Saveables = FindObjectsOfType<MonoBehaviour>().OfType<ISaveable>();
+
+        foreach (var saveable in a_Saveables)
+        {
+            saveable.LoadInfoFromGameData(gameData);
+        }
     }
-    #endregion*/
+    #endregion
 }
 
 #if UNITY_EDITOR

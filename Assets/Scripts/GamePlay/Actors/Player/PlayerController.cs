@@ -7,19 +7,19 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 [ExecuteInEditMode]
-public class PlayerController : MonoBehaviour, IActorController
+public class PlayerController : MonoBehaviour, IActorController, ISaveable
 {
-    //Player default info
-    [Header("Player Info")]
-    [SerializeField] public PlayerDataSO playerData;
-    [SerializeField] private bool statsInitialized = false;
-
     //Referencia a los Stats
     [Header("Player Current Stats")]
 
     [SerializeField] PlayerStats stats;
 
     [HideInInspector] public PlayerInput playerInput;
+
+    //Player default info
+    [Header("Player Info")]
+    [SerializeField] public PlayerDataSO playerData;
+    [SerializeField] private bool statsInitialized = false;
 
     //Eventos generales
     [Header("Eventos generales")]
@@ -187,5 +187,15 @@ public class PlayerController : MonoBehaviour, IActorController
     public GameObject GetGameObject()
     {
         return gameObject;
+    }
+
+    public void SaveInfoToGameData(GameData g)
+    {
+        g.playerStats.Update(stats);
+    }
+
+    public void LoadInfoFromGameData(GameData g)
+    {
+        stats.Update(g.playerStats);
     }
 }

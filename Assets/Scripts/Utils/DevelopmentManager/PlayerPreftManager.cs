@@ -3,19 +3,21 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class DevelopmentManager : MonoBehaviour{}
+public class PlayerPrefManager : MonoBehaviour{}
 
+#if UNITY_EDITOR
 
-[CustomEditor(typeof(DevelopmentManager))]
-public class DevelopmentManagerEditor : Editor
+[CustomEditor(typeof(PlayerPrefManager))]
+public class PlayerPrefManagerEditor : Editor
 {
     public override void OnInspectorGUI()
     {
         //https://docs.unity3d.com/ScriptReference/GUILayout.html
         GUILayout.Label("Data Debug");
-        if (GUILayout.Button("Delete All Data (Player Pref)"))
+        if (GUILayout.Button("Delete All Player Pref"))
         {
             PlayerPrefs.DeleteAll();
         }
     }
 }
+#endif

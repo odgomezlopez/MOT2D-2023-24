@@ -37,7 +37,6 @@ public abstract class SharedGenericVariableSO<T> : ScriptableObject
 
     private void OnValidate()
     {
-        Debug.Log("aa");
         CurrentValue = RuntimeValue;
     }
 

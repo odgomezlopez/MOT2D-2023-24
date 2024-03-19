@@ -1,25 +1,50 @@
+using Newtonsoft.Json.Linq;
 using UnityEngine;
 
-public class GameDataManager : MonoBehaviourSingletonPersistent<GameDataManager>
+
+[RequireComponent(typeof(SaveableEntity))]
+public class GameDataManager : MonoBehaviourSingletonPersistent<GameDataManager>, ISaveable
 {
     public GameData gameData;
 
     #region Save/Load
     string fileName = "Data01.json";
 
+    private void Start() { LoadData(); }
+    private void OnDestroy() { SaveData(); }
+
     //Saving Player Data(Serialization)
-    public void SaveData()
+    /* public void SaveData()
+     {
+         string json = JsonUtility.ToJson(this);
+         System.IO.File.WriteAllText(Application.persistentDataPath + fileName, json);
+     }
+
+     //Loading Player Data (Deserialization)
+     public void LoadData()
+     {
+         string json = System.IO.File.ReadAllText(Application.persistentDataPath + fileName);
+
+         gameData = JsonUtility.FromJson<GameData>(json);
+     }*/
+
+    private void LoadData()
     {
-        string json = JsonUtility.ToJson(this);
-        System.IO.File.WriteAllText(Application.persistentDataPath + fileName, json);
+        FindFirstObjectByType<SavingSystem>().Load(fileName);
+    }
+    private void SaveData()
+    {
+        FindFirstObjectByType<SavingSystem>().Save(fileName);
     }
 
-    //Loading Player Data (Deserialization)
-    public void LoadData()
+    public JToken CaptureAsJToken()
     {
-        string json = System.IO.File.ReadAllText(Application.persistentDataPath + fileName);
+        return JToken.FromObject(gameData);
+    }
 
-        gameData = JsonUtility.FromJson<GameData>(json);
+    public void RestoreFromJToken(JToken state)
+    {
+        gameData = state.ToObject<GameData>();
     }
     #endregion
 }

@@ -2,21 +2,31 @@ using AYellowpaper.SerializedCollections;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Data : MonoBehaviourSingletonPersistent<Data>
-{
+[System.Serializable]
+public class GameData {
+
     //Puntos
-    [Header("Sistema de puntos")]
-    [SerializeField] private float points;
+    [SerializeField] private float points=0;
+
+    GameData() {
+        points = 0;//Valor inicial
+    }
+
+
+    #region Puntos
 
     public void AddPoints(float p)
     {
         points += p;
     }
+    #endregion
 
-    //FLAGS GLOBALES
+    #region FLAGS
+    #region FlagsGlobables
     private SerializedDictionary<string, bool> flags = new SerializedDictionary<string, bool>();
     public void MarkAsInteracted(string objectId)
     {
@@ -29,9 +39,9 @@ public class Data : MonoBehaviourSingletonPersistent<Data>
     {
         return flags.ContainsKey(objectId) && flags[objectId];
     }
+    #endregion
 
-    //FLAGS DE ESCENA
-
+    #region FlagsLocales
     private SerializedDictionary<string, SerializedDictionary<string, bool>> sceneFlags = new SerializedDictionary<string, SerializedDictionary<string, bool>>();
 
     // Método para marcar un objeto como interactuado en una escena.
@@ -54,14 +64,6 @@ public class Data : MonoBehaviourSingletonPersistent<Data>
         return sceneFlags.ContainsKey(sceneName) && sceneFlags[sceneName].ContainsKey(objectId) && sceneFlags[sceneName][objectId];
     }
 
-
-
-
-    /*[Header("Sistema de stats")]
-    [SerializeField] public PlayerStats stats;
-
-    //Player default info
-    [Header("Player Info")]
-    [SerializeField] public PlayerDataSO playerData;
-    [SerializeField] public bool statsInitialized = false;  */
+    #endregion
+    #endregion
 }

@@ -42,6 +42,6 @@ public class ScoreManager : MonoBehaviourSingleton<ScoreManager>
 
     public void SaveCurrentScore()
     {
-        Data.Instance?.AddPoints(score.CurrentValue);
+        GameDataManager.Instance?.gameData.AddPoints(score.CurrentValue);
     }
 }

@@ -430,10 +430,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982170a66180bf14e94ced83f792f9ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: 82282c7f8f28c864f867587d35d590cc, type: 2}
-  statsInitialized: 1
   stats:
-    actorName: Player
+    actorName: 
     HP:
       initialValue: 3
       runtimeValue: 3
@@ -444,20 +442,34 @@ MonoBehaviour:
       maxValue: 3
       OnPercentUpdate:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 11400000, guid: 3149713c210dabd4883a64ee05e95721, type: 2}
+            m_TargetAssemblyTypeName: SharedGenericVariableSO`1[[System.Single, mscorlib
+            m_MethodName: set_CurrentValue
+            m_Mode: 0
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
     attDamage: 1
     action1: {fileID: 11400000, guid: bc1861040c0a2bd4fbdc6fdcd42e0c57, type: 2}
     action2: {fileID: 11400000, guid: 346fdd742f4e6cb42a76a75c88503b36, type: 2}
-    movementSpeed: 7
-    acceleration: 15
-    deceleration: 20
+    movementSpeed: 5
+    acceleration: 20
+    deceleration: 10
     jumpSpeed: 7
     airMomemtum: 0.8
-    jumpMax: 2
+    jumpMax: 1
     invulnerable: 0
-    invulnerabilityColor: {r: 1, g: 0.0603773, b: 0.0603773, a: 1}
+    invulnerabilityColor: {r: 1, g: 0, b: 0, a: 1}
     invulnerabilitySeconds: 1
   playerInput: {fileID: 0}
+  playerData: {fileID: 0}
+  statsInitialized: 1
   onHurt:
     m_PersistentCalls:
       m_Calls:

@@ -29,23 +29,8 @@ public class PlayerController : MonoBehaviour, IActorController, ISaveable
     // Start is called before the first frame update
     void Start()
     {
-        //1. Sincronizar la info local con GameData si existe 
-        /*#region SincronizacionGameData
-        if (GameObject.FindGameObjectWithTag("GameData")) {
-            Data data = GameObject.FindGameObjectWithTag("GameData").GetComponent<Data>();
-            stats = data.stats;
-            playerData = data.playerData;
-            statsInitialized = data.statsInitialized;
-        }
-        else
-        {
-            //throw new System.Exception("Error: GameData gameobject/tag not found");
-            Debug.LogError("Error: GameData gameobject/tag not found");
-        }
-        #endregion*/
-
-        //2. Cargo la info del SO
-        playerData?.Initialize(this);
+        //1. Cargo la info del SO
+        //playerData?.Initialize(this);
 
         //Sincronizamos la actualización con data
         //Data data = GameObject.FindGameObjectWithTag("GameData").GetComponent<Data>();
@@ -53,7 +38,7 @@ public class PlayerController : MonoBehaviour, IActorController, ISaveable
 
 
 
-        //3.Obtengo el PlayerInput
+        //2.Obtengo el PlayerInput
         playerInput = GameObject.FindGameObjectWithTag("PlayerInput").GetComponent<PlayerInput>();
 
         //Me suscribo a los cambios de HP de los stats
@@ -88,7 +73,12 @@ public class PlayerController : MonoBehaviour, IActorController, ISaveable
 
     private void OnDestroy()
     {
+        //Guardamos los datos
+        if(GameDataManager.Instance) SaveData(GameDataManager.Instance.gameData);
+
+        //Desengachamos los eventos
         stats.HP.OnValueUpdate.RemoveListener(OnHPUpdate);
+
     }
 
 
@@ -189,13 +179,15 @@ public class PlayerController : MonoBehaviour, IActorController, ISaveable
         return gameObject;
     }
 
-    public void SaveInfoToGameData(GameData g)
+    public void SaveData(GameData g)
     {
+        if (g==null) return;
         g.playerStats.Update(stats);
     }
 
-    public void LoadInfoFromGameData(GameData g)
+    public void LoadData(GameData g)
     {
+        if (g == null) return;
         stats.Update(g.playerStats);
     }
 }

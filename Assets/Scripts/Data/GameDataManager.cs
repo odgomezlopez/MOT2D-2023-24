@@ -6,6 +6,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameDataManager : MonoBehaviourSingletonPersistent<GameDataManager>
 {
@@ -65,7 +66,7 @@ public class GameDataManager : MonoBehaviourSingletonPersistent<GameDataManager>
         LoadInfoFromGameDataToComponents();
     }
 
-    public void DeleteAllData()
+    public void DeleteData()
     {
         System.IO.File.Delete(Path.Combine(Application.persistentDataPath, fileName));
     }
@@ -74,23 +75,40 @@ public class GameDataManager : MonoBehaviourSingletonPersistent<GameDataManager>
     #region Isavable
     public void SaveInfoFromComponentsToGameData()
     {
-        var a_Saveables = FindObjectsOfType<MonoBehaviour>().OfType<ISaveable>();
+        var a_Saveables = FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>();
 
         foreach (var saveable in a_Saveables)
         {
-            saveable.SaveInfoToGameData(gameData);
+            saveable.SaveData(gameData);
         }
     }
 
     public void LoadInfoFromGameDataToComponents()
     {
-        var a_Saveables = FindObjectsOfType<MonoBehaviour>().OfType<ISaveable>();
+        var a_Saveables = FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>();
 
         foreach (var saveable in a_Saveables)
         {
-            saveable.LoadInfoFromGameData(gameData);
+            saveable.LoadData(gameData);
         }
     }
+
+
+    private void LoadDataToScene(Scene scene, LoadSceneMode mode) => LoadInfoFromGameDataToComponents();
+    private void SaveDataFromScene(Scene scene1, Scene scene2) => SaveInfoFromComponentsToGameData();
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += LoadDataToScene;
+        SceneManager.activeSceneChanged += SaveDataFromScene;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= LoadDataToScene;
+        SceneManager.activeSceneChanged -= SaveDataFromScene;
+    }
+
     #endregion
 }
 
@@ -112,7 +130,7 @@ public class GameDataManagerEditor : Editor
 
         if (GUILayout.Button("Delete Current Save File"))
         {
-            t.DeleteAllData();
+            t.DeleteData();
         }
     }
 }

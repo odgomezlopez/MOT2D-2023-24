@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface ISaveable
 {
-    void SaveInfoToGameData(GameData g);
-    void LoadInfoFromGameData(GameData g);
+    void SaveData(GameData g);
+    void LoadData(GameData g);
 }

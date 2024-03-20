@@ -80,9 +80,9 @@ public class RangedFloatVariable : GenericVariable<float>
 
     public void Update(RangedFloatVariable newValue)
     {
-        base.Update(newValue);
         minValue = newValue.minValue;
         maxValue = newValue.maxValue;
+        base.Update(newValue);
     }
 
     public float GetPercentage()

@@ -8,6 +8,10 @@ using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class GameData {
+    //Datos
+    [SerializeField] public string currentScene;
+    [SerializeField] public string nDeaths;
+
 
     //Puntos
     [SerializeField] public float points=0;

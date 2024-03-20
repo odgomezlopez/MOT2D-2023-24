@@ -50,10 +50,37 @@ MonoBehaviour:
   saveOnAplicationQuit: 1
   encriptDecriptStrategy: {fileID: 0}
   gameData:
+    currentScene: 
+    nDeaths: 
     points: 0
     flags:
       flags:
         _serializedList: []
+    playerStats:
+      actorName: 
+      HP:
+        initialValue: 3
+        runtimeValue: 3
+        OnValueUpdate:
+          m_PersistentCalls:
+            m_Calls: []
+        minValue: 0
+        maxValue: 3
+        OnPercentUpdate:
+          m_PersistentCalls:
+            m_Calls: []
+      attDamage: 1
+      action1: {fileID: 11400000, guid: bc1861040c0a2bd4fbdc6fdcd42e0c57, type: 2}
+      action2: {fileID: 11400000, guid: 346fdd742f4e6cb42a76a75c88503b36, type: 2}
+      movementSpeed: 5
+      acceleration: 20
+      deceleration: 10
+      jumpSpeed: 7
+      airMomemtum: 0.8
+      jumpMax: 1
+      invulnerable: 0
+      invulnerabilityColor: {r: 1, g: 0, b: 0, a: 1}
+      invulnerabilitySeconds: 1
 --- !u!114 &833637101694700561
 MonoBehaviour:
   m_ObjectHideFlags: 0

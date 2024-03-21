@@ -1,5 +1,3 @@
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,6 +5,14 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
+[System.Serializable]
+public class GameDataExtended : GameData
+{
+    //Utilidades extras de guardado
+    [SerializeField] public Flags flags;
+    [SerializeField] public SaveableEntityStorage entities;
+}
 
 public class GameDataManager : MonoBehaviourSingletonPersistent<GameDataManager>
 {
@@ -20,7 +26,10 @@ public class GameDataManager : MonoBehaviourSingletonPersistent<GameDataManager>
     [SerializeField] EncriptDecriptStrategy encriptDecriptStrategy;
 
     [Header("Data")]
-    public GameData gameData;
+    public GameDataExtended gameData;
+    public Flags flags => gameData?.flags;
+    public SaveableEntityStorage entities => gameData?.entities;
+
 
     #region Save/Load
     private void Start() {
@@ -32,9 +41,6 @@ public class GameDataManager : MonoBehaviourSingletonPersistent<GameDataManager>
     //Saving Player Data(Serialization)
     public void SaveData()
     {
-        //Cargamos info desde los componentes a GameData
-        SaveInfoFromComponentsToGameData();
-
         //Convertirmos los objetos a JSON
         //string text = JsonConvert.SerializeObject(gameData);
         string text = JsonUtility.ToJson(gameData);
@@ -59,11 +65,8 @@ public class GameDataManager : MonoBehaviourSingletonPersistent<GameDataManager>
         if (encriptDecriptStrategy) text = encriptDecriptStrategy.DecodeString(text);
 
         //Convertimos el JSON a Objetos
-        gameData = JsonUtility.FromJson<GameData>(text);
-        //gameData = JsonConvert.DeserializeObject<GameData>(text);
-
-        //Enviamos la info desde GameData a los componentes
-        LoadInfoFromGameDataToComponents();
+        gameData = JsonUtility.FromJson<GameDataExtended>(text);
+        //gameData = JsonConvert.DeserializeObject<GameDataExtended>(text);
     }
 
     public void DeleteData()
@@ -72,44 +75,7 @@ public class GameDataManager : MonoBehaviourSingletonPersistent<GameDataManager>
     }
     #endregion
 
-    #region Isavable
-    public void SaveInfoFromComponentsToGameData()
-    {
-        var a_Saveables = FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>();
 
-        foreach (var saveable in a_Saveables)
-        {
-            saveable.SaveData(gameData);
-        }
-    }
-
-    public void LoadInfoFromGameDataToComponents()
-    {
-        var a_Saveables = FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>();
-
-        foreach (var saveable in a_Saveables)
-        {
-            saveable.LoadData(gameData);
-        }
-    }
-
-
-    private void LoadDataToScene(Scene scene, LoadSceneMode mode) => LoadInfoFromGameDataToComponents();
-    private void SaveDataFromScene(Scene scene1, Scene scene2) => SaveInfoFromComponentsToGameData();
-
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += LoadDataToScene;
-        SceneManager.activeSceneChanged += SaveDataFromScene;
-    }
-
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= LoadDataToScene;
-        SceneManager.activeSceneChanged -= SaveDataFromScene;
-    }
-
-    #endregion
 }
 
 #if UNITY_EDITOR
@@ -123,10 +89,15 @@ public class GameDataManagerEditor : Editor
 
         GameDataManager t = (GameDataManager)target;
 
-        if (GUILayout.Button("Delete All Flags"))
+        /*if (GUILayout.Button("Delete All Flags (on editor runtime)"))
         {
-            t.gameData.flags.ClearFlags();
+            t.flags.ClearFlags();
         }
+
+        if (GUILayout.Button("Delete All Objects  (on editor runtime)"))
+        {
+            t.entities.ClearObjects();
+        }*/
 
         if (GUILayout.Button("Delete Current Save File"))
         {

@@ -32,14 +32,14 @@ public class PlayerActionController : MonoBehaviour
     void Update()
     {
         //Acción1
-        if (m_action1Action.triggered)
+        if (m_action1Action.triggered && stats.action1)
         {
             StartCoroutine(CoolDown(m_action1Action, stats.action1.cooldown));
             stats.action1?.Use(gameObject);
         }
 
         //Acción2
-        if (m_action2Action.triggered)
+        if (m_action2Action.triggered && stats.action2)
         {
             StartCoroutine(CoolDown(m_action2Action, stats.action2.cooldown));    
             stats.action2?.Use(gameObject);

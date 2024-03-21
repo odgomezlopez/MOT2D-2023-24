@@ -365,6 +365,7 @@ GameObject:
   - component: {fileID: 789091775286655687}
   - component: {fileID: 8568014910745595078}
   - component: {fileID: 724213633139486499}
+  - component: {fileID: 215579558908640333}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -469,7 +470,6 @@ MonoBehaviour:
     invulnerabilitySeconds: 1
   playerInput: {fileID: 0}
   playerData: {fileID: 0}
-  statsInitialized: 1
   onHurt:
     m_PersistentCalls:
       m_Calls:
@@ -563,3 +563,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed8e833d818fe84d974401dec556107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &215579558908640333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7397010729981599402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1adc8997a5cadf24c8b98b31119e58a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityId: Player

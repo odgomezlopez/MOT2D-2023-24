@@ -12,13 +12,10 @@ public class GameData {
     [SerializeField] public string currentScene;
     [SerializeField] public string nDeaths;
 
-
     //Puntos
     [SerializeField] public float points=0;
-    [SerializeField] public Flags flags;
-    [SerializeField] public PlayerStats playerStats;
 
-    GameData() {
+    public GameData() {
         points = 0;//Valor inicial
     }
 

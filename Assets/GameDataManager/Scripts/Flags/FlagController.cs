@@ -13,7 +13,7 @@ public class FlagController : MonoBehaviour
     string key;
 
     //Getter
-    Flags flags => GameDataManager.Instance.gameData.flags;
+    Flags flags => GameDataManager.Instance.flags;
 
     private void Start()
     {

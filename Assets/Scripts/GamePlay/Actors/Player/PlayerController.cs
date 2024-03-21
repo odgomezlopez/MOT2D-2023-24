@@ -7,7 +7,7 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 [ExecuteInEditMode]
-public class PlayerController : MonoBehaviour, IActorController, ISaveable
+public class PlayerController : MonoBehaviour, IActorController
 {
     //Referencia a los Stats
     [Header("Player Current Stats")]
@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour, IActorController, ISaveable
     //Player default info
     [Header("Player Info")]
     [SerializeField] public PlayerDataSO playerData;
-    [SerializeField] private bool statsInitialized = false;
 
     //Eventos generales
     [Header("Eventos generales")]
@@ -29,19 +28,10 @@ public class PlayerController : MonoBehaviour, IActorController, ISaveable
     // Start is called before the first frame update
     void Start()
     {
-        //1. Cargo la info del SO
-        //playerData?.Initialize(this);
-
-        //Sincronizamos la actualización con data
-        //Data data = GameObject.FindGameObjectWithTag("GameData").GetComponent<Data>();
-        //if (data) data.statsInitialized = true;
-
-
-
-        //2.Obtengo el PlayerInput
+        //1.Obtengo el PlayerInput
         playerInput = GameObject.FindGameObjectWithTag("PlayerInput").GetComponent<PlayerInput>();
 
-        //Me suscribo a los cambios de HP de los stats
+        //2. Me suscribo a los cambios de HP de los stats
         stats.HP.Restart();
         stats.HP.OnValueUpdate.AddListener(OnHPUpdate);
 
@@ -52,33 +42,10 @@ public class PlayerController : MonoBehaviour, IActorController, ISaveable
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemies"), false);
     }
 
-    public bool StatsInitialized
-    {
-        get
-        {
-            return statsInitialized;
-        }
-        set
-        {
-            statsInitialized = value;
-
-            /*if (GameObject.FindGameObjectWithTag("GameData"))
-            {
-                Data data = GameObject.FindGameObjectWithTag("GameData").GetComponent<Data>();
-                data.statsInitialized = statsInitialized;
-            }*/
-        }
-    }
-
-
     private void OnDestroy()
     {
-        //Guardamos los datos
-        if(GameDataManager.Instance) SaveData(GameDataManager.Instance.gameData);
-
         //Desengachamos los eventos
         stats.HP.OnValueUpdate.RemoveListener(OnHPUpdate);
-
     }
 
 
@@ -177,17 +144,5 @@ public class PlayerController : MonoBehaviour, IActorController, ISaveable
     public GameObject GetGameObject()
     {
         return gameObject;
-    }
-
-    public void SaveData(GameData g)
-    {
-        if (g==null) return;
-        g.playerStats.Update(stats);
-    }
-
-    public void LoadData(GameData g)
-    {
-        if (g == null) return;
-        stats.Update(g.playerStats);
     }
 }

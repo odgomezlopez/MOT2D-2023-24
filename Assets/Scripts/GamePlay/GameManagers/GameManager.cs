@@ -6,9 +6,18 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviourSingleton<GameManager>
 {
-
+    public UnityEvent onInit;
     public UnityEvent onWin;
     public UnityEvent onGameOver;
+
+    private void Start()
+    {
+        try
+        {
+            onInit?.Invoke();
+        }
+        catch { Debug.LogError("A function attached to OnInit event has failed"); }
+    }
 
     public void LevelWin(float seconds = 0)
     {

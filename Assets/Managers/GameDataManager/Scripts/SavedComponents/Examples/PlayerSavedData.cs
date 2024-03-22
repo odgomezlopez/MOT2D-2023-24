@@ -3,7 +3,7 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 //Clase de ayuda por si quieres guardar 
 
-[RequireComponent(typeof(PlayerController))]
+[RequireComponent(typeof(PlayerController)), RequireComponent(typeof(SaveableEntity))]
 public class PlayerSavedData : MonoBehaviour, ISaveable
 {
     
@@ -38,7 +38,7 @@ public class PlayerSavedData : MonoBehaviour, ISaveable
         SaveablePlayerData d = JsonUtility.FromJson<SaveablePlayerData>(json);
 
         //Pongo los datos donde toque
-         ((PlayerStats)gameObject.GetComponent<PlayerController>().GetStats()).Update(d.stats);
+         ((PlayerStats)gameObject.GetComponent<PlayerController>().GetStats()).Update((PlayerStats)d.stats);
         //transform.position = d.pos;
     }
 }

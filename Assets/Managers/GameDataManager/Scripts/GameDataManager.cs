@@ -7,7 +7,6 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
 public class GameDataManager : MonoBehaviourSingletonPersistent<GameDataManager>
 {
     [Header("Save/Load Info")]
@@ -21,8 +20,7 @@ public class GameDataManager : MonoBehaviourSingletonPersistent<GameDataManager>
     [SerializeField] EncriptDecriptStrategy encriptDecriptStrategy;
 
     //Save Data
-    [NonSerialized] 
-    public SavedComponents entities;
+    [SerializeField] public SavedComponents entities;
 
 
     #region Save/Load
@@ -48,6 +46,7 @@ public class GameDataManager : MonoBehaviourSingletonPersistent<GameDataManager>
 
         //Guardamos
         System.IO.File.WriteAllText(fullFilePath, text);
+        Debug.Log($"Save data to {fileName}");
      }
 
      //Loading Player Data (Deserialization)
@@ -68,6 +67,8 @@ public class GameDataManager : MonoBehaviourSingletonPersistent<GameDataManager>
 
         //Enviamos la info a los componentes
         LoadInfoFromGameDataToComponents();
+        Debug.Log($"Load data from {fileName}");
+
     }
 
     public void DeleteData()

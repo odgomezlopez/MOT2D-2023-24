@@ -22,7 +22,8 @@ public class SaveableEntity : MonoBehaviour
 
     private void Awake()
     {
-        GenerateUniqueIdentifier();
+        //if (g == null) Debug.LogError("GameDataManager not found. Save/Load entity is not at work.");
+        if (string.IsNullOrEmpty(entityId)) GenerateUniqueIdentifier();
     }
 
     public void GenerateUniqueIdentifier()

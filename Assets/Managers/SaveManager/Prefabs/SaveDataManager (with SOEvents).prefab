@@ -1,0 +1,172 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &5342571449116608616
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 523786629560399734, guid: b04af8b5deb396a4c8b8bfd14f0f7a50, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 523786629560399734, guid: b04af8b5deb396a4c8b8bfd14f0f7a50, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 523786629560399734, guid: b04af8b5deb396a4c8b8bfd14f0f7a50, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 523786629560399734, guid: b04af8b5deb396a4c8b8bfd14f0f7a50, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 523786629560399734, guid: b04af8b5deb396a4c8b8bfd14f0f7a50, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 523786629560399734, guid: b04af8b5deb396a4c8b8bfd14f0f7a50, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 523786629560399734, guid: b04af8b5deb396a4c8b8bfd14f0f7a50, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 523786629560399734, guid: b04af8b5deb396a4c8b8bfd14f0f7a50, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 523786629560399734, guid: b04af8b5deb396a4c8b8bfd14f0f7a50, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 523786629560399734, guid: b04af8b5deb396a4c8b8bfd14f0f7a50, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 523786629560399734, guid: b04af8b5deb396a4c8b8bfd14f0f7a50, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887412845499065380, guid: b04af8b5deb396a4c8b8bfd14f0f7a50, type: 3}
+      propertyPath: m_Name
+      value: SaveDataManager (with SOEvents)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1887412845499065380, guid: b04af8b5deb396a4c8b8bfd14f0f7a50, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1136026896447192765}
+    - targetCorrespondingSourceObject: {fileID: 1887412845499065380, guid: b04af8b5deb396a4c8b8bfd14f0f7a50, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6611049027369948523}
+    - targetCorrespondingSourceObject: {fileID: 1887412845499065380, guid: b04af8b5deb396a4c8b8bfd14f0f7a50, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7286159737171478690}
+  m_SourcePrefab: {fileID: 100100000, guid: b04af8b5deb396a4c8b8bfd14f0f7a50, type: 3}
+--- !u!114 &2810361999818368258 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7864632074787057002, guid: b04af8b5deb396a4c8b8bfd14f0f7a50, type: 3}
+  m_PrefabInstance: {fileID: 5342571449116608616}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5770746744652852300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bd4ee9e1a7371742a5e11792fc4c755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &5770746744652852300 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1887412845499065380, guid: b04af8b5deb396a4c8b8bfd14f0f7a50, type: 3}
+  m_PrefabInstance: {fileID: 5342571449116608616}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1136026896447192765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5770746744652852300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aae843911b6fcc43a7301f66961e1ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 3aa82df6a8576ca49ae1ebe479156b2e, type: 2}
+  onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2810361999818368258}
+        m_TargetAssemblyTypeName: SaveManager, Assembly-CSharp
+        m_MethodName: LoadData
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6611049027369948523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5770746744652852300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aae843911b6fcc43a7301f66961e1ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: f5db53867a670214bafe2320851c48eb, type: 2}
+  onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2810361999818368258}
+        m_TargetAssemblyTypeName: SaveManager, Assembly-CSharp
+        m_MethodName: SaveData
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7286159737171478690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5770746744652852300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aae843911b6fcc43a7301f66961e1ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: d5ca7d6780d10354e98555a7e9bc4cff, type: 2}
+  onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2810361999818368258}
+        m_TargetAssemblyTypeName: SaveManager, Assembly-CSharp
+        m_MethodName: DeleteData
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

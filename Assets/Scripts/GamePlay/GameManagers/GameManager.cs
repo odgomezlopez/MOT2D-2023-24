@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     {
         try
         {
+            Debug.Log("InitEvent");
             onInit?.Invoke();
         }
         catch { Debug.LogError("A function attached to OnInit event has failed"); }

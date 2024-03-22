@@ -17,8 +17,11 @@ public class OnCollisionPlayerAsChild2D : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            var player = collision.gameObject.GetComponentInParent<IActorController>().GetGameObject().transform;//TODO simplificar en UD3
-            player.SetParent(null);
+            try { 
+                var player = collision.gameObject.GetComponentInParent<IActorController>().GetGameObject().transform;//TODO simplificar en UD3
+                player.SetParent(null);
+            }
+            catch{}
         }
     }
 }

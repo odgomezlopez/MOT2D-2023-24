@@ -355,7 +355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cb3878520a68164b97e0d9e05d8196c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: LateralScene
+  nextSceneName: Level2
 --- !u!1 &7586592511626200886
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,9 +413,37 @@ PrefabInstance:
       value: ScoreManager
       objectReference: {fileID: 0}
     - target: {fileID: 6667134445815153514, guid: b07d1ee0177bec044bee93a76fddd070, type: 3}
+      propertyPath: winningScore
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6667134445815153514, guid: b07d1ee0177bec044bee93a76fddd070, type: 3}
+      propertyPath: score.OnValueUpdate.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6667134445815153514, guid: b07d1ee0177bec044bee93a76fddd070, type: 3}
       propertyPath: OnWinningScore.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1446201800601412980}
+    - target: {fileID: 6667134445815153514, guid: b07d1ee0177bec044bee93a76fddd070, type: 3}
+      propertyPath: score.OnValueUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 121a110fc31d17745aa6fe013a5846f4, type: 2}
+    - target: {fileID: 6667134445815153514, guid: b07d1ee0177bec044bee93a76fddd070, type: 3}
+      propertyPath: score.OnValueUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6667134445815153514, guid: b07d1ee0177bec044bee93a76fddd070, type: 3}
+      propertyPath: score.OnValueUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_CurrentValue
+      objectReference: {fileID: 0}
+    - target: {fileID: 6667134445815153514, guid: b07d1ee0177bec044bee93a76fddd070, type: 3}
+      propertyPath: score.OnValueUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SharedGenericVariableSO`1[[System.Single, mscorlib
+      objectReference: {fileID: 0}
+    - target: {fileID: 6667134445815153514, guid: b07d1ee0177bec044bee93a76fddd070, type: 3}
+      propertyPath: score.OnValueUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7676812303716370641, guid: b07d1ee0177bec044bee93a76fddd070, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -463,8 +491,86 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6560922752952464750, guid: b07d1ee0177bec044bee93a76fddd070, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5193990335840165377}
+    - targetCorrespondingSourceObject: {fileID: 6560922752952464750, guid: b07d1ee0177bec044bee93a76fddd070, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7095592291995792767}
   m_SourcePrefab: {fileID: 100100000, guid: b07d1ee0177bec044bee93a76fddd070, type: 3}
+--- !u!114 &720447516534775434 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6667134445815153514, guid: b07d1ee0177bec044bee93a76fddd070, type: 3}
+  m_PrefabInstance: {fileID: 6159200559456542176}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041725957436156046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99a5fda975841b04098615b34845e509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1041725957436156046 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6560922752952464750, guid: b07d1ee0177bec044bee93a76fddd070, type: 3}
+  m_PrefabInstance: {fileID: 6159200559456542176}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5193990335840165377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041725957436156046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37340ebd5784579418791bd57d9504a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 121a110fc31d17745aa6fe013a5846f4, type: 2}
+  onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 720447516534775434}
+        m_TargetAssemblyTypeName: ScoreManager, Assembly-CSharp
+        m_MethodName: SetScore
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7095592291995792767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041725957436156046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37340ebd5784579418791bd57d9504a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 774822fc298698d48b240fd6a099d058, type: 2}
+  onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 720447516534775434}
+        m_TargetAssemblyTypeName: ScoreManager, Assembly-CSharp
+        m_MethodName: AddPoints
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &4607292761955603761 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7676812303716370641, guid: b07d1ee0177bec044bee93a76fddd070, type: 3}
@@ -478,6 +584,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4213617832636071899}
     m_Modifications:
+    - target: {fileID: 4174304941650320694, guid: d9fb430c82a469841af87de22ac79f0d, type: 3}
+      propertyPath: SFXGroup
+      value: 
+      objectReference: {fileID: -6397362416495527857, guid: 3f4615ab2ee9b2641b6efffd44c306e7, type: 2}
+    - target: {fileID: 4174304941650320694, guid: d9fb430c82a469841af87de22ac79f0d, type: 3}
+      propertyPath: backGroup
+      value: 
+      objectReference: {fileID: 8991728210419008, guid: 3f4615ab2ee9b2641b6efffd44c306e7, type: 2}
+    - target: {fileID: 4174304941650320694, guid: d9fb430c82a469841af87de22ac79f0d, type: 3}
+      propertyPath: audioMixer
+      value: 
+      objectReference: {fileID: 24100000, guid: 3f4615ab2ee9b2641b6efffd44c306e7, type: 2}
+    - target: {fileID: 4174304941650320694, guid: d9fb430c82a469841af87de22ac79f0d, type: 3}
+      propertyPath: backgroundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f774745547be04e44b21c354aa711b9f, type: 3}
+    - target: {fileID: 4174304941650320694, guid: d9fb430c82a469841af87de22ac79f0d, type: 3}
+      propertyPath: audioBackgroundDictionary._serializedList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4174304941650320694, guid: d9fb430c82a469841af87de22ac79f0d, type: 3}
+      propertyPath: audioBackgroundDictionary._serializedList.Array.data[0].Key
+      value: Naturaleza
+      objectReference: {fileID: 0}
+    - target: {fileID: 4174304941650320694, guid: d9fb430c82a469841af87de22ac79f0d, type: 3}
+      propertyPath: audioBackgroundDictionary._serializedList.Array.data[0].Value
+      value: 
+      objectReference: {fileID: 8300000, guid: 4111b72ba979d774494cc3a088faeafd, type: 3}
+    - target: {fileID: 5071588861167165198, guid: d9fb430c82a469841af87de22ac79f0d, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 8991728210419008, guid: 3f4615ab2ee9b2641b6efffd44c306e7, type: 2}
     - target: {fileID: 5559887299497237503, guid: d9fb430c82a469841af87de22ac79f0d, type: 3}
       propertyPath: m_RootOrder
       value: -1

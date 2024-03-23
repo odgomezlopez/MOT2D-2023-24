@@ -20,8 +20,19 @@ public class GameData
 public class GameDataManager : MonoBehaviourSaveableSingleton<GameDataManager>
 {
     public GameData gameData;
-
-    //Si se hace con JSON, ten en cuenta que tienes que guardar partida antes de salir y no debes cargar antes de iniciar nivel. Sino se pierde
-    public void AddDeath() { gameData.numberOfDeaths++; } 
+    public void AddDeath() { gameData.numberOfDeaths++; }
     public void UpdateCurrentScene() { gameData.currentPlayableScene = SceneManager.GetActiveScene().name; }
+
+    public void LossProgresAndAddDeath()
+    {
+        SaveManager.Instance.LoadData();
+        AddDeath();
+        SaveManager.Instance.SaveData();
+    }
+
+    public void UpdateSceneAndSave() {
+        UpdateCurrentScene();    
+        SaveManager.Instance.SaveData(); 
+    }
+
 }

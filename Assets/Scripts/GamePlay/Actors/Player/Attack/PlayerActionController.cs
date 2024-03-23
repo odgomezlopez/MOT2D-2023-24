@@ -25,18 +25,7 @@ public class PlayerActionController : MonoBehaviour
         //Acciones de PlayerActionController
         m_action1Action = playerController.playerInput.actions["Action1"];
         m_action2Action = playerController.playerInput.actions["Action2"];
-
-        //Activamos las acciones
-        m_action1Action.Enable();
-        m_action2Action.Enable();
     }
-
-    private void OnDestroy()
-    {
-        m_action1Action.Enable();
-        m_action2Action.Enable();
-    }
-
 
     // Update is called once per frame
     void Update()

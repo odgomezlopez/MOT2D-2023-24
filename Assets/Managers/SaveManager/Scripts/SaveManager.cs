@@ -7,7 +7,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SaveManager : MonoBehaviourSingleton<SaveManager>
+public class SaveManager : MonoBehaviourSingletonPersistent<SaveManager> //Si no es persistant tiene algunos problemas de guardado. Investigar
 {
     [Header("Save/Load Info")]
     [SerializeField] string fileName = "Data01.dat";
@@ -24,7 +24,7 @@ public class SaveManager : MonoBehaviourSingleton<SaveManager>
 
 
     #region Save/Load
-    private void Start() {
+    private void OnEnable() {
         fullFilePath = Path.Combine(Application.persistentDataPath, fileName);
         if (loadOnStart) LoadData(); 
     }

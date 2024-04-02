@@ -29,11 +29,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 835519722415801558}
   - {fileID: 4176175108492748884}
+  - {fileID: 835519722415801558}
   - {fileID: 2538378692052991377}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1104730981287441996
 MonoBehaviour:
@@ -59,6 +59,7 @@ GameObject:
   - component: {fileID: 7356940569132368743}
   - component: {fileID: 924305191943321074}
   - component: {fileID: 1615442378742821457}
+  - component: {fileID: 8985457682063274083}
   m_Layer: 0
   m_Name: GameData
   m_TagString: Untagged
@@ -152,6 +153,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8985457682063274083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6521112850507207013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7416da048ae4cb842a64312cce64b780, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityId: 0ad3d3e4-40ab-45a6-b8bb-32e09a3617b9
 --- !u!1001 &816034155696239172
 PrefabInstance:
   m_ObjectHideFlags: 0

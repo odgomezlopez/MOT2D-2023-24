@@ -13,7 +13,8 @@ public class ScoreManager : MonoBehaviourSingleton<ScoreManager>
     //Inicialización
     private void Start()
     {
-        ResetScore();
+        //ResetScore();
+        //currentSceneScore.OnValueUpdate.Invoke(currentSceneScore.CurrentValue);
     }
     //Actualización del valor
     public void AddPoints(float points)

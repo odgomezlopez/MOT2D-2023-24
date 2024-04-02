@@ -6,7 +6,6 @@ using static UnityEngine.EventSystems.EventTrigger;
 [RequireComponent(typeof(PlayerController)), RequireComponent(typeof(SaveableEntity))]
 public class PlayerSavedData : MonoBehaviour, ISaveable
 {
-    
     [System.Serializable]
     class SaveablePlayerData
     {

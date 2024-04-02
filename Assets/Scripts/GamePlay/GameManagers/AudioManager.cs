@@ -25,6 +25,29 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
     [SerializeField] AudioMixer audioMixer;
     [SerializeField] AudioMixerGroup backGroup, SFXGroup;
 
+
+
+    #region Guardado configuracion en PlayerPrefs
+    private void Awake()
+    {
+        masterVolume = PlayerPrefs.GetFloat("masterVolume", 1);
+        backgroundVolume= PlayerPrefs.GetFloat("backgroundVolume", 1);
+        sfxVolume = PlayerPrefs.GetFloat("sfxVolume", 1);
+        OnValidate();
+    }
+
+    private void OnDestroy()
+    {
+        PlayerPrefs.SetFloat("masterVolume", masterVolume);
+        PlayerPrefs.SetFloat("backgroundVolume", backgroundVolume);
+        PlayerPrefs.SetFloat("sfxVolume", sfxVolume);
+    }
+    #endregion
+
+
+
+
+
     #region background
     void Start()
     {

@@ -32,6 +32,11 @@ public class SaveManager : MonoBehaviourSingletonPersistent<SaveManager> //Si no
     private void OnApplicationQuit() { if(saveOnAplicationQuit) SaveData(); }
 
     //Saving Player Data(Serialization)
+
+    public bool HasSaveData()
+    {
+        return System.IO.File.Exists(fullFilePath);
+    }
     public void SaveData()
     {
         //Recopilamos la info de los componentes

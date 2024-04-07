@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 379d72f354d0fe34a8749af62371c89a, type: 3}
   m_Name: BolaFuego
   m_EditorClassIdentifier: 
-  actionName: Bola de fuego
+  actionName: Fireball
   cooldown: 1
   damage: 1.5
   speed: 15

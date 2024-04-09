@@ -15,15 +15,10 @@ MonoBehaviour:
   m_GroupName: Localization-Assets-Shared
   m_Data:
     m_SerializedData: []
-  m_GUID: 82924ffdb5b166b41954e0038db30f24
+  m_GUID: 4641ed4f260b108499c16e558e6ff6cd
   m_SerializeEntries:
   - m_GUID: e7f7e88a6168cbb41baf7dffc63d09e4
     m_Address: Assets/Config/lang/UI Shared Data.asset
-    m_ReadOnly: 1
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: dd4f383235f2c334eb9cd51760e855a2
-    m_Address: Assets/Config/lang/New Table Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

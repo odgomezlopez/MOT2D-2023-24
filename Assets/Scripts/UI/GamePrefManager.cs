@@ -10,16 +10,36 @@ using UnityEngine.UI;
 public class GamePrefManager : MonoBehaviour
 {
     //Language
-    const string languagePrefKey = "lang";
+    /*[Header("Language")]
+    const string languagePrefKey = "lang";*/
     
     [SerializeField] TMP_Dropdown languageDropDown;
-    [SerializeField] int selectedLang;
+    //[SerializeField] int selectedLang;
 
-    private void Start()
+
+    IEnumerator Start()
     {
-        InitLanguageSettings();
+        // Wait for the localization system to initialize
+        yield return LocalizationSettings.InitializationOperation;
+
+        // Generate list of available Locales
+        var options = new List<TMP_Dropdown.OptionData>();
+        int selected = 0;
+        for (int i = 0; i < LocalizationSettings.AvailableLocales.Locales.Count; ++i)
+        {
+            var locale = LocalizationSettings.AvailableLocales.Locales[i];
+            if (LocalizationSettings.SelectedLocale == locale)
+                selected = i;
+            options.Add(new TMP_Dropdown.OptionData(locale.name));
+        }
+        languageDropDown.options = options;
+
+        languageDropDown.value = selected;
+        languageDropDown.onValueChanged.AddListener(ChangeLanguage);
     }
-    private void InitLanguageSettings()
+
+
+    /*private void InitLanguageSettings()
     {
         //1. Vacio
         languageDropDown.ClearOptions();
@@ -46,17 +66,17 @@ public class GamePrefManager : MonoBehaviour
         languageDropDown.onValueChanged.AddListener(ChangeLanguage);
 
         //4. Obento la lengua guardada en memoria
-        selectedLang = PlayerPrefs.GetInt(languagePrefKey, defaultLocaleIndex);
-        languageDropDown.value = selectedLang;
-    }
+        //selectedLang = PlayerPrefs.GetInt(languagePrefKey, 0);//defaultLocaleIndex);
+        //languageDropDown.value = selectedLang;
+    }*/
 
     public void ChangeLanguage(int option)
     {
         //Guardo la lengua en PlayerPrefs
-        selectedLang = option;
-        PlayerPrefs.SetInt(languagePrefKey, selectedLang);
+        //selectedLang = option;
+        //PlayerPrefs.SetInt(languagePrefKey, selectedLang);
 
         //Cambio la lengua
-        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[(int)option];
+        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[option];
     }
 }

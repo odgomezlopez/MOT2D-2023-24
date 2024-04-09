@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468a46d0ae32c3544b7d98094e6448a9, type: 3}
   m_Name: AddressableAssetSettings
   m_EditorClassIdentifier: 
-  m_DefaultGroup: 39c44a080d5f948408b13085fdbfc61d
+  m_DefaultGroup: 6ded6d54ce91ef9448510e5c62a4ec9b
   m_currentHash:
     serializedVersion: 2
-    Hash: 00000000000000000000000000000000
+    Hash: df31e06b7a3a3d026efc0f1448e1594b
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_BundleLocalCatalog: 0
@@ -50,8 +50,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fdcbffc9d16e0164ba50bba22971cb56, type: 2}
   - {fileID: 11400000, guid: 29e5ae1a4a73f0441bd2d8da3f8d5f5f, type: 2}
   - {fileID: 11400000, guid: 3baa8a373a2bbf349a439e6ea0c0c68c, type: 2}
-  - {fileID: 11400000, guid: 0669934f2a93d164bbc37e9cfff2569f, type: 2}
-  - {fileID: 11400000, guid: 0120ebcf3615784479ea80736d761a54, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -60,33 +58,33 @@ MonoBehaviour:
   m_ProfileSettings:
     m_Profiles:
     - m_InheritedParent: 
-      m_Id: a38fc00bf005d8b428a3dc61289ba696
+      m_Id: 8dc22df4c14febe4485c0a22a471423b
       m_ProfileName: Default
       m_Values:
-      - m_Id: 137a2a121c3cbaf428c6bde594c593cb
+      - m_Id: de0ab740ee3cb574889026b2b2b883d7
         m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
-      - m_Id: 0c87fa5c4e70c7a4ab0d71df34632a66
+      - m_Id: 2b0170f2240f5a947b6ee08a4040adda
         m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
-      - m_Id: d4d9504420d86bf40b1b87f172cbab86
+      - m_Id: dc139e8042355ba4b9615da7173d63cc
         m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
-      - m_Id: 0f8eca834f5c76b4397107ac843e1ad6
+      - m_Id: 95a3984f4a9be5640ba5838f94d1fced
         m_Value: ServerData/[BuildTarget]
-      - m_Id: f98be186b6ef61f418b80a4fd3d434d1
+      - m_Id: cadcd555592c4be4e9737e7868f3f88d
         m_Value: http://[PrivateIpAddress]:[HostingServicePort]
     m_ProfileEntryNames:
-    - m_Id: 137a2a121c3cbaf428c6bde594c593cb
+    - m_Id: de0ab740ee3cb574889026b2b2b883d7
       m_Name: BuildTarget
       m_InlineUsage: 0
-    - m_Id: 0c87fa5c4e70c7a4ab0d71df34632a66
+    - m_Id: 2b0170f2240f5a947b6ee08a4040adda
       m_Name: Local.BuildPath
       m_InlineUsage: 0
-    - m_Id: d4d9504420d86bf40b1b87f172cbab86
+    - m_Id: dc139e8042355ba4b9615da7173d63cc
       m_Name: Local.LoadPath
       m_InlineUsage: 0
-    - m_Id: 0f8eca834f5c76b4397107ac843e1ad6
+    - m_Id: 95a3984f4a9be5640ba5838f94d1fced
       m_Name: Remote.BuildPath
       m_InlineUsage: 0
-    - m_Id: f98be186b6ef61f418b80a4fd3d434d1
+    - m_Id: cadcd555592c4be4e9737e7868f3f88d
       m_Name: Remote.LoadPath
       m_InlineUsage: 0
     m_ProfileVersion: 1
@@ -110,7 +108,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d61205ed83c56eb40bd1939d69ab1976, type: 2}
   - {fileID: 11400000, guid: d57f074539e9e8447a5dd5011c820d0a, type: 2}
   - {fileID: 11400000, guid: f3809c0c33399b343a7adeac3ff1b6c9, type: 2}
-  m_ActiveProfileId: a38fc00bf005d8b428a3dc61289ba696
+  m_ActiveProfileId: 8dc22df4c14febe4485c0a22a471423b
   m_HostingServicesManager:
     m_HostingServiceInfos: []
     m_Settings: {fileID: 11400000}

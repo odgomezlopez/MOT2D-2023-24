@@ -18,28 +18,41 @@ MonoBehaviour:
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 62375063552
+  - m_Id: 70535348224
+    m_Localized: Nueva Partida
+    m_Metadata:
+      m_Items: []
+  - m_Id: 140446007296
+    m_Localized: Continuar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 286881742848
+    m_Localized: Ajustes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 330301177856
+    m_Localized: Creditos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 370671353856
+    m_Localized: Salir
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1702379651072
     m_Localized: Preferencias
     m_Metadata:
       m_Items: []
-  - m_Id: 129249046528
+  - m_Id: 2070777954304
     m_Localized: Idioma
     m_Metadata:
       m_Items: []
-  - m_Id: 153705019600896
-    m_Localized: Sonido
+  - m_Id: 2112616136704
+    m_Localized: Volver
     m_Metadata:
       m_Items: []
-  - m_Id: 158182791442432
-    m_Localized: Naranja
-    m_Metadata:
-      m_Items: []
-  - m_Id: 161609344872448
-    m_Localized: Naranja
-    m_Metadata:
-      m_Items: []
-  - m_Id: 171897079197696
-    m_Localized: Limon
+  - m_Id: 2423732830208
+    m_Localized: "Juego desarrollado  en el IES Al-Andalus en el curso 2023-2024.\n\nProgramador:
+      \xD3scar G\xF3mez\nArte: @Ansimuz"
     m_Metadata:
       m_Items: []
   references:

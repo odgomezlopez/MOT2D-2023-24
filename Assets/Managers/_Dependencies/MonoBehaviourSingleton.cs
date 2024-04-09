@@ -4,7 +4,15 @@ using System.Collections;
 public class MonoBehaviourSingleton<T> : MonoBehaviour
 	where T : Component
 {
-	private static T _instance;
+    private void Awake()
+    {
+        if (_instance != null)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private static T _instance;
 	public static T Instance {
 		get {
 			if (_instance == null) {

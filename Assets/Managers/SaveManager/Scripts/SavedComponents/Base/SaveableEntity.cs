@@ -45,8 +45,8 @@ public class SaveableEntity : MonoBehaviour
 
 
     #region Carga/Guardado en ciclo de vida
-    
-    private void OnEnable()
+
+    /*private void OnEnable()
     {
         if (g != null) LoadData();
     }
@@ -54,7 +54,7 @@ public class SaveableEntity : MonoBehaviour
     {
         if (g != null) SaveData();
     }
-    /*private void Start()
+    private void Start()
     {
          if (g != null) LoadData();
     }

@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 523786629560399734, guid: b04af8b5deb396a4c8b8bfd14f0f7a50, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 523786629560399734, guid: b04af8b5deb396a4c8b8bfd14f0f7a50, type: 3}
       propertyPath: m_LocalPosition.x
@@ -55,6 +55,14 @@ PrefabInstance:
     - target: {fileID: 1887412845499065380, guid: b04af8b5deb396a4c8b8bfd14f0f7a50, type: 3}
       propertyPath: m_Name
       value: SaveDataManager (with SOEvents)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7864632074787057002, guid: b04af8b5deb396a4c8b8bfd14f0f7a50, type: 3}
+      propertyPath: loadOnStart
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7864632074787057002, guid: b04af8b5deb396a4c8b8bfd14f0f7a50, type: 3}
+      propertyPath: saveOnAplicationQuit
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

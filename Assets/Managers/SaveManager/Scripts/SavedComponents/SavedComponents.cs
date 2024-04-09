@@ -15,7 +15,9 @@ public class SavedComponents
 
     public void StoreObject(string newKey, string json)
     {
+        Debug.Log(json);
         storage[newKey] = json;
+        Debug.Log(storage[newKey]);
     }
 
     public bool HasObject(string newKey)

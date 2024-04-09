@@ -15,42 +15,50 @@ MonoBehaviour:
   m_TableCollectionName: UI
   m_TableCollectionNameGuidString: e7f7e88a6168cbb41baf7dffc63d09e4
   m_Entries:
-  - m_Id: 62375063552
+  - m_Id: 70535348224
+    m_Key: Nueva Partida
+    m_Metadata:
+      m_Items: []
+  - m_Id: 140446007296
+    m_Key: Continuar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 286881742848
+    m_Key: Ajustes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 330301177856
+    m_Key: Creditos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 370671353856
+    m_Key: Salir
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1702379651072
     m_Key: Preferencias
     m_Metadata:
       m_Items: []
-  - m_Id: 129249046528
+  - m_Id: 2070777954304
     m_Key: Idioma
     m_Metadata:
       m_Items: []
-  - m_Id: 136277682286592
-    m_Key: New Entry
+  - m_Id: 2112616136704
+    m_Key: Volver
     m_Metadata:
       m_Items: []
-  - m_Id: 153705019600896
-    m_Key: Menu/Canvas/Panel/Prefs/Sonido
-    m_Metadata:
-      m_Items: []
-  - m_Id: 158182791442432
-    m_Key: Menu/Canvas/Panel/Prefs/Text (TMP)
-    m_Metadata:
-      m_Items: []
-  - m_Id: 161609344872448
-    m_Key: Menu/Canvas/Panel/Prefs/Text (TMP) 1
-    m_Metadata:
-      m_Items: []
-  - m_Id: 171897079197696
-    m_Key: Menu/Canvas/Panel/Prefs/Limon
+  - m_Id: 2423732830208
+    m_Key: Mensaje Creditos
     m_Metadata:
       m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
-    rid: 1002650298802241560
+    rid: 2967007058852577290
   references:
     version: 2
     RefIds:
-    - rid: 1002650298802241560
+    - rid: 2967007058852577290
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1712407708383
+        m_CustomEpoch: 1712690175544

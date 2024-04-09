@@ -248,9 +248,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onWin:
-    m_PersistentCalls:
-      m_Calls:
       - m_Target: {fileID: 11400000, guid: f5db53867a670214bafe2320851c48eb, type: 2}
         m_TargetAssemblyTypeName: GameEvent, Assembly-CSharp
         m_MethodName: TriggerEvent
@@ -263,6 +260,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onWin:
+    m_PersistentCalls:
+      m_Calls:
       - m_Target: {fileID: 6692797188354305616}
         m_TargetAssemblyTypeName: UnityEngine.Playables.PlayableDirector, UnityEngine
         m_MethodName: Play

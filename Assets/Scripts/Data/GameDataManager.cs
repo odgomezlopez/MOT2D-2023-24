@@ -22,9 +22,15 @@ public class GameDataManager : MonoBehaviourSaveableSingleton<GameDataManager>
 {
     public GameData gameData;
     public void AddDeath() { gameData.numberOfDeaths++; }
-    public void UpdateCurrentScene() { gameData.currentPlayableScene = SceneManager.GetActiveScene().name; }
+    /*public void UpdateCurrentScene() { 
+        var nuevaEscena = SceneManager.GetActiveScene().name;
+        Debug.Log("Nueva escena: " +nuevaEscena);
+        Debug.Log("Nueva escena2: " + SceneManager.GetActiveScene().name);
 
-    private void Awake()
+        if (nuevaEscena!=null) gameData.currentPlayableScene=nuevaEscena;
+    }*/
+
+    /*private void Awake()
     {
         gameData.numberOfDeaths = PlayerPrefs.GetInt("playerDeaths",0);
     }
@@ -32,7 +38,7 @@ public class GameDataManager : MonoBehaviourSaveableSingleton<GameDataManager>
     private void OnApplicationQuit()
     {
         PlayerPrefs.SetInt("playerDeaths", gameData.numberOfDeaths);
-    }
+    }*/
 
     public void LossProgresAndAddDeath()
     {
@@ -41,9 +47,27 @@ public class GameDataManager : MonoBehaviourSaveableSingleton<GameDataManager>
         SaveManager.Instance.SaveData();
     }
 
-    public void UpdateSceneAndSave() {
+    /*public void UpdateSceneAndSave() {
         UpdateCurrentScene();    
         SaveManager.Instance.SaveData(); 
+    }*/
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += UpdateScene;
     }
 
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= UpdateScene;
+    }
+
+    public void UpdateScene(Scene newScene, LoadSceneMode mode)
+    {
+        if (mode == LoadSceneMode.Single)
+        {
+            Debug.Log(newScene.path) ;
+            gameData.currentPlayableScene = newScene.name;
+        }
+    }
 }

@@ -51,6 +51,10 @@ MonoBehaviour:
     m_Key: Mensaje Creditos
     m_Metadata:
       m_Items: []
+  - m_Id: 1799227442720768
+    m_Key: deathsCountMessage
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -1,4 +1,17 @@
-﻿Key,Id,English(en),Spanish(es)
-"Preferencias",62375063552,"Preferences","Preferencias"
-"Idioma",129249046528,"Language","Idioma"
-"New Entry",136277682286592,,
+﻿Key,Id,English(en),Japanese(ja),Spanish(es)
+"Nueva Partida",70535348224,"New Game",,"Nueva Partida"
+"Continuar",140446007296,"Continue",,"Continuar"
+"Ajustes",286881742848,"Settings",,"Ajustes"
+"Creditos",330301177856,"Credits",,"Creditos"
+"Salir",370671353856,"Exit",,"Salir"
+"Preferencias",1702379651072,"Preferences",,"Preferencias"
+"Idioma",2070777954304,"Language",,"Idioma"
+"Volver",2112616136704,"Back",,"Volver"
+"Mensaje Creditos",2423732830208,"Game developed in the IES Al-Andalus  in the academic year 2023-2024.
+
+GameDev: Óscar Gómez
+Art: @Ansimuz",,"Juego desarrollado  en el IES Al-Andalus en el curso 2023-2024.
+
+Programador: Óscar Gómez
+Arte: @Ansimuz"
+"deathsCountMessage",1799227442720768,"{numberOfDeaths:plural:1 muerte|{} muertes}.","","{numberOfDeaths:plural:1 death|{} deaths}."

@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: UI_ja
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: ja
+  m_SharedData: {fileID: 11400000, guid: e7f7e88a6168cbb41baf7dffc63d09e4, type: 2}
+  m_Metadata:
+    m_Items:
+    - rid: 1002650485137866764
+  m_TableData:
+  - m_Id: 1799227442720768
+    m_Localized: "{numberOfDeaths}\u6B7B"
+    m_Metadata:
+      m_Items:
+      - rid: 1002650485137866764
+  - m_Id: 70535348224
+    m_Localized: "\u65B0\u3057\u3044\u30B2\u30FC\u30E0\r\n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 140446007296
+    m_Localized: "\u7D9A\u304F\r\n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 286881742848
+    m_Localized: "\u8A2D\u5B9A\r\n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 330301177856
+    m_Localized: "\u30AF\u30EC\u30B8\u30C3\u30C8\r\n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 370671353856
+    m_Localized: "\u3067\u308B\r\n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1702379651072
+    m_Localized: "\u597D\u307F\r\n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2070777954304
+    m_Localized: "\u8A00\u8A9E\r\n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2112616136704
+    m_Localized: "\u623B\u308B\r\n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2423732830208
+    m_Localized: "\u30B2\u30FC\u30E0\u306F IES Al-Andalus \u3067 2023 \uFF5E 2024
+      \u5B66\u5E74\u5EA6\u306B\u958B\u767A\u3055\u308C\u307E\u3057\u305F\u3002\r\n\n\u30D7\u30ED\u30B0\u30E9\u30DE\u30FC:
+      Oscar Gomez\n\u30A2\u30FC\u30C8: @Ansimuz\r"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 1002650485137866764
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 00f0974863640600

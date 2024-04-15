@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.Localization;
 
 public class PlayerContextualActionTriggerer : MonoBehaviour
 {
     [Header("Configuración general")]
     InputAction m_contextualAction;
-    [SerializeField] string UIText = "Activar";
+    [SerializeField] LocalizedString UIText;
     [SerializeField] bool actionEnabled = true;
     [SerializeField] bool playerInArea = false;
 
@@ -35,7 +36,7 @@ public class PlayerContextualActionTriggerer : MonoBehaviour
         set {
             if (value!=playerInArea)
             {
-                if(value) PlayerEnter?.Invoke(UIText,CheckRequirement());
+                if(value) PlayerEnter?.Invoke(UIText.GetLocalizedString(), CheckRequirement());
                 else PlayerExit?.Invoke();
                 playerInArea = value;
             }

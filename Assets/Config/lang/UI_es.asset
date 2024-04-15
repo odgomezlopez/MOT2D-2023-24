@@ -61,6 +61,10 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 1002650485137866765
+  - m_Id: 1834996827942912
+    m_Localized: Activar ascensor
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

@@ -80,6 +80,15 @@ public partial class @MOT2D: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShowHUD"",
+                    ""type"": ""Button"",
+                    ""id"": ""12b683ea-50f6-4a5e-90d0-89b7a48fda4a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -333,6 +342,28 @@ public partial class @MOT2D: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""ContextualAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bf028111-d07f-4969-b85c-adf30a94688f"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""ShowHUD"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d19d3b9e-22fb-4b58-95d9-33af6a43864e"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ShowHUD"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -926,6 +957,7 @@ public partial class @MOT2D: IInputActionCollection2, IDisposable
         m_Player_ContextualAction = m_Player.FindAction("ContextualAction", throwIfNotFound: true);
         m_Player_Action1 = m_Player.FindAction("Action1", throwIfNotFound: true);
         m_Player_Action2 = m_Player.FindAction("Action2", throwIfNotFound: true);
+        m_Player_ShowHUD = m_Player.FindAction("ShowHUD", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1005,6 +1037,7 @@ public partial class @MOT2D: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_ContextualAction;
     private readonly InputAction m_Player_Action1;
     private readonly InputAction m_Player_Action2;
+    private readonly InputAction m_Player_ShowHUD;
     public struct PlayerActions
     {
         private @MOT2D m_Wrapper;
@@ -1015,6 +1048,7 @@ public partial class @MOT2D: IInputActionCollection2, IDisposable
         public InputAction @ContextualAction => m_Wrapper.m_Player_ContextualAction;
         public InputAction @Action1 => m_Wrapper.m_Player_Action1;
         public InputAction @Action2 => m_Wrapper.m_Player_Action2;
+        public InputAction @ShowHUD => m_Wrapper.m_Player_ShowHUD;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1042,6 +1076,9 @@ public partial class @MOT2D: IInputActionCollection2, IDisposable
             @Action2.started += instance.OnAction2;
             @Action2.performed += instance.OnAction2;
             @Action2.canceled += instance.OnAction2;
+            @ShowHUD.started += instance.OnShowHUD;
+            @ShowHUD.performed += instance.OnShowHUD;
+            @ShowHUD.canceled += instance.OnShowHUD;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1064,6 +1101,9 @@ public partial class @MOT2D: IInputActionCollection2, IDisposable
             @Action2.started -= instance.OnAction2;
             @Action2.performed -= instance.OnAction2;
             @Action2.canceled -= instance.OnAction2;
+            @ShowHUD.started -= instance.OnShowHUD;
+            @ShowHUD.performed -= instance.OnShowHUD;
+            @ShowHUD.canceled -= instance.OnShowHUD;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1252,6 +1292,7 @@ public partial class @MOT2D: IInputActionCollection2, IDisposable
         void OnContextualAction(InputAction.CallbackContext context);
         void OnAction1(InputAction.CallbackContext context);
         void OnAction2(InputAction.CallbackContext context);
+        void OnShowHUD(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

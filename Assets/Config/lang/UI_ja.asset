@@ -62,6 +62,10 @@ MonoBehaviour:
       Oscar Gomez\n\u30A2\u30FC\u30C8: @Ansimuz\r"
     m_Metadata:
       m_Items: []
+  - m_Id: 1834996827942912
+    m_Localized: "\u6709\u52B9\u306B\u3059\u308B"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

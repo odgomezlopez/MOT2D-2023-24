@@ -78,5 +78,7 @@ public class GamePrefManager : MonoBehaviour
 
         //Cambio la lengua
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[option];
+        gameObject.SetActive(false);
+        gameObject.SetActive(true);
     }
 }

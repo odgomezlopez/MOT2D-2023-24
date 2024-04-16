@@ -65,6 +65,10 @@ MonoBehaviour:
     m_Localized: Enable elevator
     m_Metadata:
       m_Items: []
+  - m_Id: 2493802656563200
+    m_Localized: Add
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

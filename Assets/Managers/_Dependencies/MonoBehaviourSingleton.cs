@@ -6,10 +6,20 @@ public class MonoBehaviourSingleton<T> : MonoBehaviour
 {
     private void Awake()
     {
-        if (_instance != null)
+        if (_instance == null)
+        {
+            _instance = this as T;
+            //DontDestroyOnLoad(gameObject); // Optional: only if you want this to persist across scenes
+        }
+        else if (_instance != this)
         {
             Destroy(gameObject);
         }
+    }
+
+    private void OnDestroy()
+    {
+        _instance=null;
     }
 
     private static T _instance;

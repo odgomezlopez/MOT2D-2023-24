@@ -36,8 +36,9 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         onGameOver.Invoke();
 
         StartCoroutine(
-            DelayedAction(LevelManager.Instance.RestartLevel, seconds)
+            DelayedAction(GameOverScreen.Instance.ShowScreen, seconds)
         );
+        //LevelManager.Instance.RestartLevel
     }
 
     private IEnumerator DelayedAction(System.Action action, float seconds)

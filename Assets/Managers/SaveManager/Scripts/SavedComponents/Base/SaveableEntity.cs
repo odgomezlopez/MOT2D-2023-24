@@ -11,6 +11,7 @@ public class SaveableEntity : MonoBehaviour
 {
     //Propiedades
     [SerializeField] private string entityId="";
+    [SerializeField] bool saveOnDestroy = false;
 
     //Acceso directo
     private SaveManager g => SaveManager.Instance;
@@ -62,6 +63,12 @@ public class SaveableEntity : MonoBehaviour
     {
         if (g != null) SaveData();
     }*/
+
+    private void OnDestroy()
+    {
+        if (saveOnDestroy) SaveData();
+    }
+
     #endregion
 
     public void SaveData() {

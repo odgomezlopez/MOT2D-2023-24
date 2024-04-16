@@ -85,7 +85,7 @@ public class SaveManager : MonoBehaviourSingletonPersistent<SaveManager> //Si no
     #region recogida de ISaveables
     public void SaveInfoFromComponentsToGameData()
     {
-        var a_Saveables = FindObjectsOfType<SaveableEntity>(false);//.OfType<ISaveable>(); Plantearse poner true dentro para que pille a desactivados?
+        var a_Saveables = FindObjectsOfType<SaveableEntity>(true);//.OfType<ISaveable>(); Plantearse poner true dentro para que pille a desactivados?
 
         foreach (var saveable in a_Saveables)
         {

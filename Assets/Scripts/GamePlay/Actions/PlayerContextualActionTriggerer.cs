@@ -9,7 +9,9 @@ public class PlayerContextualActionTriggerer : MonoBehaviour
 {
     [Header("Configuración general")]
     InputAction m_contextualAction;
-    [SerializeField] LocalizedString UIText;
+    [SerializeField] string UITextEnable="Activar";
+    [SerializeField] string UITextDisable="Necesitas X";
+
     [SerializeField] bool actionEnabled = true;
     [SerializeField] bool playerInArea = false;
 
@@ -36,7 +38,7 @@ public class PlayerContextualActionTriggerer : MonoBehaviour
         set {
             if (value!=playerInArea)
             {
-                if(value) PlayerEnter?.Invoke(UIText.GetLocalizedString(), CheckRequirement());
+                if(value) PlayerEnter?.Invoke(UITextEnable, CheckRequirement());
                 else PlayerExit?.Invoke();
                 playerInArea = value;
             }

@@ -59,6 +59,10 @@ MonoBehaviour:
     m_Key: Ascensor
     m_Metadata:
       m_Items: []
+  - m_Id: 2493802656563200
+    m_Key: "A\xF1adir"
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -23,7 +23,7 @@ public class ActionSelector : MonoBehaviour
     }
 }
 
-
+#if UNITY_EDITOR
 [CustomEditor(typeof(ActionSelector), true )]
 [CanEditMultipleObjects] // This attribute allows the editor to handle multiple selections.
 public class ActionSelectorEditor : Editor
@@ -68,3 +68,4 @@ public class ActionSelectorEditor : Editor
         serializedObject.ApplyModifiedProperties(); // Apply changes to all selected objects
     }
 }
+#endif

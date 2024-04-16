@@ -20,7 +20,7 @@ MonoBehaviour:
     - rid: 1002650485137866764
   m_TableData:
   - m_Id: 1799227442720768
-    m_Localized: "{numberOfDeaths}\u6B7B"
+    m_Localized: "{data.numberOfDeaths}\u6B7B"
     m_Metadata:
       m_Items:
       - rid: 1002650485137866764

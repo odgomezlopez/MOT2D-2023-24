@@ -13,7 +13,7 @@ public class ShowHideCanvas : MonoBehaviour
     [SerializeField] Indicator remainingShowTime;
 
     [Header("Input")]
-    [SerializeField] public string actionName = "ShowHUD";
+    [SerializeField] string actionName = "ShowHUD";
     protected InputAction action;
 
 

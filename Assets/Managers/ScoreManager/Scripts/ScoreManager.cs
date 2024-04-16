@@ -21,6 +21,12 @@ public class ScoreManager : MonoBehaviourSingleton<ScoreManager>
     {
         currentSceneScore.CurrentValue += points;
     }
+
+    public float GetScore()
+    {
+        return currentSceneScore.CurrentValue;
+    }
+
     public void SetScore(float f)
     {
         currentSceneScore.CurrentValue = f;

@@ -13,7 +13,7 @@ public class RankingUI : MonoBehaviour
     [SerializeField] TMP_InputField nameValue;
     [SerializeField] TextMeshProUGUI pointValue;
 
-    int newScore => (int) ScoreManager.Instance.GetScore();//TODO Cambiar a la fuente de tus puntos
+    //int newScore => (int) ScoreManager.Instance.GetScore();//TODO Cambiar a la fuente de tus puntos
 
     [SerializeField] Button saveButton;
 
@@ -34,7 +34,7 @@ public class RankingUI : MonoBehaviour
             input.SetActive(true);
             ranking.SetActive(false);
 
-            pointValue.SetText(newScore.ToString("D3"));
+            pointValue.SetText(((int)ScoreManager.Instance.GetScore()).ToString("D3"));
             nameValue.Select();
         }
         else
@@ -52,7 +52,7 @@ public class RankingUI : MonoBehaviour
 
     public void OnSaveButton()
     {
-        int currentPlayerPos=RankingManager.Instance.AddPlayerRank(nameValue.text.ToUpper(), newScore);
+        int currentPlayerPos=RankingManager.Instance.AddPlayerRank(nameValue.text.ToUpper(), (int)ScoreManager.Instance.GetScore());
         ToRankingPanel();
 
     }

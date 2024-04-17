@@ -35,6 +35,7 @@ public class MainMenuController : MonoBehaviour
     }
     public void NewGameButton()
     {
+        PersistenSystem.Instance.ResetGameObject();
         SceneManager.LoadScene(newGameScene);
     }
     public void ContinueButton()

@@ -7,12 +7,20 @@ using UnityEngine.UI;
 
 public class ScreenController<T> : MonoBehaviourSingleton<T> where T : MonoBehaviourSingleton<T>
 {
+    //Internal references
     Canvas canvas;
-
     PlayerInput playerInput;
-    [SerializeField] string newActionMap = "GameOver";
+
+    [Header("Action map")]
+    [SerializeField] string newActionMap;
     string oldActionMap;
 
+
+    [Header("Actions")]
+    [SerializeField] InputActionReference showAction;
+    [SerializeField] InputActionReference hideAction;
+
+    [Header("UI references")]
     [SerializeField] Selectable firstSelectObject;
 
     //Guardamo el fixedDetalTime para poder pausar bien
@@ -29,6 +37,18 @@ public class ScreenController<T> : MonoBehaviourSingleton<T> where T : MonoBehav
         canvas.enabled = false;
     }
 
+    protected virtual void Update()
+    {
+        if (showAction && showAction.action.triggered)
+        {
+            ShowScreen();
+        }
+        if (hideAction && hideAction.action.triggered)
+        {
+            HideScreen();
+        }
+    }
+
     public virtual void ShowScreen()
     {
         canvas.enabled = true;
@@ -37,7 +57,7 @@ public class ScreenController<T> : MonoBehaviourSingleton<T> where T : MonoBehav
 
         //Pausar
         ChangeTimeScale(0f);
-        if (firstSelectObject) firstSelectObject.Select();
+        firstSelectObject?.Select();
     }
     public virtual void HideScreen()
     {

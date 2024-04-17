@@ -15,6 +15,10 @@ public class InventoryUI : ScreenController<InventoryUI>
 {
 
     //Celdas
+    [Header("Inventory actions")]
+    [SerializeField] InputActionReference useAction;
+
+
     [Header("Inventory info")]
 
     List<InventoryCellController> cells;
@@ -47,6 +51,12 @@ public class InventoryUI : ScreenController<InventoryUI>
         EventSystem.current.firstSelectedGameObject = null;
     }
 
+    protected override void Update()
+    {
+        base.Update();
+        if (useAction && useAction.action.triggered) OnUseButton();   
+    }
+
     //Activar/Desactivar Inventario
     public override void ShowScreen()
     {
@@ -65,6 +75,7 @@ public class InventoryUI : ScreenController<InventoryUI>
         //Selecciono el primer elemento
         if (inventory.Count != 0)
         {
+            SelectItem(cells[0]);
             EventSystem.current.SetSelectedGameObject(cells[0].gameObject);
         }
     }
@@ -123,7 +134,6 @@ public class InventoryUI : ScreenController<InventoryUI>
     {
         //Guardo la seleccion
         selectedCell = sC;
-
         //Actualizo la info de la interfaz
         SelectCellInfo(selectedCell.item);
     }
@@ -138,7 +148,7 @@ public class InventoryUI : ScreenController<InventoryUI>
         useButtonUI.gameObject.SetActive(true);
     }
 
-    private void CleanSelectInfo()
+    public void CleanSelectInfo()
     {
         nameUI.text = "";
         descriptionUI.text = "";

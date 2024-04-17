@@ -36,22 +36,22 @@ public class InventoryCellController : MonoBehaviour, ISelectHandler, IDeselectH
     }
 
     #region Utilización de navegacion con el EventSystem
-    public void OnSubmit(BaseEventData eventData)
+    public void OnSubmit(BaseEventData eventData) => OnSubmit();
+    public void OnSubmit()
     {
         if (item != null) InventoryUI.Instance.OnUseButton();
     }
 
-    public void OnSelect(BaseEventData eventData)
-    {
-        OnSelect();
-    }
+    public void OnSelect(BaseEventData eventData) => OnSelect();
     public void OnSelect()
     {
         background.color = Color.white;//TODO poner colores mediante materiales
         if (item != null) InventoryUI.Instance.SelectItem(this);
     }
 
-    public void OnDeselect(BaseEventData eventData)
+    public void OnDeselect(BaseEventData eventData) => OnDeselect();
+
+    public void OnDeselect()
     {
         if (item == null)
         {
@@ -61,6 +61,7 @@ public class InventoryCellController : MonoBehaviour, ISelectHandler, IDeselectH
         {
             background.color = Color.Lerp(Color.gray, Color.white, 0.4f);
         }
+        InventoryUI.Instance.CleanSelectInfo();
     }
     #endregion
 
@@ -79,6 +80,7 @@ public class InventoryCellController : MonoBehaviour, ISelectHandler, IDeselectH
         background.color = Color.white;
 
         boton.interactable = true;
+        boton.enabled = true;
 
     }
 
@@ -92,6 +94,7 @@ public class InventoryCellController : MonoBehaviour, ISelectHandler, IDeselectH
 
         background.color = background.color = Color.Lerp(Color.gray, Color.black, 0.8f);
         boton.interactable= false;
+        boton.enabled = false;
     }
     #endregion
 }

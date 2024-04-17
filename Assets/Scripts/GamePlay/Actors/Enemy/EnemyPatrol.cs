@@ -84,6 +84,26 @@ public class EnemyPatrol : MonoBehaviour
             yield return new WaitForEndOfFrame();
 
         }
+
+        /*float checkInterval = 0.5f;
+        float lastCheckTime = Time.time;
+        Vector3 currentDirection = (patrolDestinations[currentDestination] - transform.position).normalized;
+
+        while (true)
+        {
+            if (Time.time - lastCheckTime > checkInterval)
+            {
+                lastCheckTime = Time.time;
+                if (Vector3.Distance(transform.position, patrolDestinations[currentDestination]) < 0.3f)
+                {
+                    currentDestination = (currentDestination + 1) % patrolDestinations.Count;
+                    currentDirection = (patrolDestinations[currentDestination] - transform.position).normalized;
+                    yield return new WaitForSeconds(1); // Optional wait at the new destination
+                }
+            }
+            rb.velocity = currentDirection * stats.movementSpeed;
+            yield return new WaitForEndOfFrame();
+        }*/
     }
 
     private void Flip()

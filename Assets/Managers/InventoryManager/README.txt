@@ -1,14 +1,14 @@
-=Input Action=
-Añadir al action Map de "Player" la acción
--Inventory. Button.
+=Inventario=
+1. Crea las acciones del Player Input
+* En el action map de Player crea la acción "Inventory".
+* Crea un nuevo action map de Inventory y crea las acciones "Use" y "Exit"
 
-Añadir el Action Map de "Inventory" con las acciones:
--Move. Value, Vector 2
--Use. Button.
--Exit. Button.
+2. Instancia los prefabs del InventoryManager e InventoryUI en la escena
+3. Rellena las referencias a las acciones en GameObject de InventoryUI.
 
-Conectar las acciones del PlayerInput con la UI.
+=Items=
 
-=Persistencia en memoria=
-- Hacer versión sin los saveable
+
+
+TODO - Hacer versión sin los saveable
 

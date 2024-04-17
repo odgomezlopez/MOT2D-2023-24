@@ -8,7 +8,7 @@ using UnityEngine.Localization;
 public class PlayerContextualActionTriggerer : MonoBehaviour
 {
     [Header("Configuración general")]
-    InputAction m_contextualAction;
+    [SerializeField] InputActionReference m_contextualAction;
     [SerializeField] string UITextEnable="Activar";
     [SerializeField] string UITextDisable="Necesitas X";
 
@@ -48,7 +48,7 @@ public class PlayerContextualActionTriggerer : MonoBehaviour
     void Start()
     {
         //Referencias
-        m_contextualAction = GameObject.FindGameObjectWithTag("PlayerInput").GetComponent<PlayerInput>().actions["ContextualAction"];//TODO Hacer que la acción concreta se elija en el editor
+       // m_contextualAction = GameObject.FindGameObjectWithTag("PlayerInput").GetComponent<PlayerInput>().actions["ContextualAction"];//TODO Hacer que la acción concreta se elija en el editor
         player = GameObject.FindGameObjectWithTag("Player");
 
         //Inicializaciones
@@ -64,7 +64,7 @@ public class PlayerContextualActionTriggerer : MonoBehaviour
         if(ActionEnabled)
         {
             CheckDistance2D();
-            if(PlayerInArea && CheckRequirement() && m_contextualAction.triggered)
+            if(PlayerInArea && CheckRequirement() && m_contextualAction &&  m_contextualAction.action.triggered)
             {
                 //se desactiva el componente
                 ActionEnabled = false;

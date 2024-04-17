@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2445986550246248015, guid: 5d5586f793b1955488b757be5017e638, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2869377716598528773, guid: 5d5586f793b1955488b757be5017e638, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -52,6 +56,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3166999619401856096, guid: 5d5586f793b1955488b757be5017e638, type: 3}
+      propertyPath: stats.HP.initialValue
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3196887904526873007, guid: 5d5586f793b1955488b757be5017e638, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -60,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: e5756c1b620217a40857bb96572017b4, type: 2}
+    - target: {fileID: 6736850033286488087, guid: 5d5586f793b1955488b757be5017e638, type: 3}
+      propertyPath: inverseFlip
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8761127814153965868, guid: 5d5586f793b1955488b757be5017e638, type: 3}
       propertyPath: m_Name
       value: Enemy3 Variant

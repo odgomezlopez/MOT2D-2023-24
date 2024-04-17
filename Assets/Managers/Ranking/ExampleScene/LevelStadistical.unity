@@ -394,10 +394,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ===RankingUI===
       objectReference: {fileID: 0}
-    - target: {fileID: 7070123930924290492, guid: e51a246fac0bbb642a70a25d578c371f, type: 3}
-      propertyPath: m_HorizontalAlignment
-      value: 16
-      objectReference: {fileID: 0}
     - target: {fileID: 7567825356521945176, guid: e51a246fac0bbb642a70a25d578c371f, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -441,10 +437,6 @@ PrefabInstance:
     - target: {fileID: 7567825356521945176, guid: e51a246fac0bbb642a70a25d578c371f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9078148893929459847, guid: e51a246fac0bbb642a70a25d578c371f, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 62
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

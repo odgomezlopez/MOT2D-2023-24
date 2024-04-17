@@ -1,3 +1,6 @@
+=Requisitos=
+- Input System https://docs.unity3d.com/Packages/com.unity.inputsystem@1.8/manual/Installation.html
+
 =Uso básico=
 1. Crear una nueva escena para el Ranking
 2. Instanciar los dos objetos, RankingManager y Ranking UI en una escena. 

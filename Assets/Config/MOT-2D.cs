@@ -322,10 +322,10 @@ public partial class @MOT2D: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""cb55e883-dbf2-4b31-a90a-5c4081d5880e"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Action2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -337,6 +337,17 @@ public partial class @MOT2D: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Action2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""00390aa7-0419-48b2-8e03-1c5d8e4f7e29"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
                     ""action"": ""Action2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false

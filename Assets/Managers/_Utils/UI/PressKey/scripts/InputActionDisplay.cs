@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.DualShock;
@@ -12,6 +13,7 @@ public class InputActionDisplay : MonoBehaviour
 {
     PlayerInput playerInput;
     [SerializeField] InputActionReference inputAction;
+    [SerializeField] string activeControlScheme;
 
     TextMeshProUGUI texto;
 
@@ -19,38 +21,45 @@ public class InputActionDisplay : MonoBehaviour
     //Font https://shinmera.github.io/promptfont/
     private Dictionary<(string, string), string> symbols = new Dictionary<(string, string), string>
     {
-        {("keyboard", "space"), "␺"},
-        {("keyboard", "leftarrow"), "←"},
-        {("keyboard", "rightarrow"), "→"},
-        {("keyboard", "uparrow"), "↑"},
-        {("keyboard", "downarrow"), "↓"},
+        {("keyboard&mouse", "space"), "␺"},
+        {("keyboard&mouse", "leftarrow"), "←"},
+        {("keyboard&mouse", "rightarrow"), "→"},
+        {("keyboard&mouse", "uparrow"), "↑"},
+        {("keyboard&mouse", "downarrow"), "↓"},
         //{("keyboard", "tab"), "␫"},
 
-         {("keyboard", "w"), "␣"}, //Move
+        {("keyboard&mouse", "w"), "␣"}, //Move
 
+        {("keyboard&mouse", "delta"), "␾"},  //Mouse Left click
+        {("keyboard&mouse", "lmb"), "⟵"},  //Mouse Left click
+        {("keyboard&mouse", "rmb"), "⟶"}, //Mouse Right click
 
-        {("keyboard", "lmb"), "⟵"},  //Mouse Left click
-        {("keyboard", "rmb"), "⟶"}, //Mouse Right click
+        {("xbox", "rt"), "↗"},
+        {("xbox", "rb"), "↝"},
+        {("xbox", "rs"), "⇌"},
 
-        {("xbox", "buttonsouth"), "A"},
-        {("xbox", "buttonnorth"), "Y"},
-        {("xbox", "buttoneast"), "B"},
-        {("xbox", "buttonwest"), "X"},
+        {("playstation", "a"), "⇣"},//X
+        {("playstation", "y"), "⇡"},//Triangle
+        {("playstation", "b"), "⇢"},//Circle
+        {("playstation", "x"), "⇠"},//Square
 
-        {("playstation", "buttonsouth"), "⇣"},//X
-        {("playstation", "buttonnorth"), "⇡"},//Triangle
-        {("playstation", "buttoneast"), "⇢"},//Circle
-        {("playstation", "buttonwest"), "⇠"},//Square
+        {("playstation", "lt"), "↖"},
+        {("playstation", "lb"), "↜"},
+        {("playstation", "ls"), "⇱"},
 
-        {("switch", "buttonsouth"), "B"},
-        {("switch", "buttonnorth"), "X"},
-        {("switch", "buttoneast"), "A"},
-        {("switch", "buttonwest"), "Y"},
+        {("playstation", "rt"), "↗"},
+        {("playstation", "rb"), "↝"},
+        {("playstation", "rs"), "⇲"},
 
-        {("gamepad", "buttonsouth"), "↧"},
-        {("gamepad", "buttonnorth"), "↥"},
-        {("gamepad", "buttoneast"), "↦"},
-        {("gamepad", "buttonwest"), "↤"}
+        {("switch", "a"), "B"},
+        {("switch", "y"), "X"},
+        {("switch", "b"), "A"},
+        {("switch", "x"), "Y"},
+
+        {("gamepad", "rt"), "↗"},
+        {("gamepad", "rb"), "↝"},
+        {("gamepad", "rs"), "⇌"}
+
     };
     #endregion
 
@@ -59,45 +68,67 @@ public class InputActionDisplay : MonoBehaviour
     {
         playerInput = FindObjectOfType<PlayerInput>();
         texto = GetComponent<TextMeshProUGUI>();
+        activeControlScheme = playerInput.currentControlScheme;
 
         // Initialize text with current binding
         UpdateDisplay();
-
-        // Optionally, subscribe to control scheme changes if available
-        playerInput.onControlsChanged += OnControlsChanged;
     }
 
-    private void OnControlsChanged(PlayerInput pi)
+    private void Update()
     {
-        UpdateDisplay();
+        if (Time.frameCount % 10 == 0)
+        {
+            if (activeControlScheme != playerInput.currentControlScheme)
+            {
+                activeControlScheme = playerInput.currentControlScheme;
+                UpdateDisplay();
+            }
+        }
+        //UpdateDisplay();
     }
 
     private void UpdateDisplay()
     {
         string key = DisplayString();
-        string symbol = KeyToSymbol(key);
-        texto.SetText(symbol);
+        texto.SetText(key);
     }
 
-    private string DisplayString() { 
+    private string DisplayString() {
+        //0. Defino las variables
+        string key= "No active binding";
+        string controlScheme = playerInput.currentControlScheme.ToLower();
+    
+        //2. Obtengo el binding
         InputBinding activeBinding = inputAction.action.bindings
-            .FirstOrDefault(binding =>
-                binding.groups
-                .Split(";")
-                .Any(scheme => scheme == playerInput.currentControlScheme)
-            );
-        string cadena= activeBinding != default
-            ? activeBinding.ToDisplayString(InputBinding.DisplayStringOptions.DontIncludeInteractions)
+             .FirstOrDefault(binding =>
+                 binding.groups
+                 .Split(";")
+                 .Any(scheme => scheme.ToLower() == controlScheme.ToLower())
+             );
+
+        key = activeBinding != default
+            ? activeBinding.ToDisplayString(InputBinding.DisplayStringOptions.DontIncludeInteractions) 
+            //activeBinding.effectivePath.Split("/")[1]
             : "No active binding";
 
-        //TODO Parsear al simbolo del mando concreto.
 
-        return cadena;
+        //3. Comrpuebo si estoy en consola;
+        if (controlScheme == "gamepad") controlScheme = GetDeviceType();
+
+        // 4. Comrpuebo si hay simbolo especial asociado
+        if (symbols.TryGetValue((controlScheme, key.ToLower()), out string symbol))
+        {
+            return symbol;
+        }
+
+        return key; 
     }
-    private string KeyToSymbol(string key)
+  
+    private string GetDeviceType()
     {
-        // Determine the device type
-        string deviceType = "keyboard"; // Default device type
+        string deviceType = "keyboard&mouse";
+
+        //playerInput.currentControlScheme;
         if (Gamepad.current != null)
         {
             deviceType = Gamepad.current switch
@@ -108,23 +139,6 @@ public class InputActionDisplay : MonoBehaviour
                 _ => "gamepad" // Generic gamepad if type is unknown
             };
         }
-
-        // Lookup symbol in the unified dictionary
-        if (symbols.TryGetValue((deviceType, key.ToLower()), out string symbol))
-        {
-            return symbol;
-        }
-
-        return key; // Return the original key if no symbol is found
-    }
-
-
-    private void OnDestroy()
-    {
-        // Unsubscribe to avoid memory leaks
-        if (playerInput != null)
-        {
-            playerInput.onControlsChanged -= OnControlsChanged;
-        }
+        return deviceType;
     }
 }

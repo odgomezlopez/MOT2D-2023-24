@@ -6,122 +6,100 @@ using UnityEngine.U2D;
 [RequireComponent(typeof(EnemyController))]
 public class EnemyPatrol : MonoBehaviour
 {
-    //Referencia al enemyController
-    EnemyStats stats;
-    //Otras referencias
-    SpriteRenderer sprite;
-    Animator animator;
-    Rigidbody2D rb;
+    // Cached references
+    private EnemyStats stats;
+    private SpriteRenderer sprite;
+    private Animator animator;
+    private Rigidbody2D rb;
 
-    //Patrulla
-    [SerializeField] int currentDestination = 0;
-    [SerializeField] List<Vector3> patrolDestinations;
-    [SerializeField] bool inverseFlip = false;
+    [SerializeField] private int currentDestination = 0;
+    [SerializeField] private List<Vector3> patrolDestinations;
+    [SerializeField] private bool inverseFlip = false;
 
+    private float waitTime = 1f;
+    private float waitTimer = 0f;
+    private bool isWaiting = false;
 
-    //Corutina activa
-    Coroutine cortina;
-
-    // Start is called before the first frame update
     void Start()
     {
-        #region Inicialización
-        //Obtenemos los stats
-        stats = (EnemyStats) GetComponent<EnemyController>().GetStats();
-        //Obtenemos otras referencias
-        sprite=GetComponentInChildren<SpriteRenderer>();
-        animator = GetComponentInChildren<Animator>();
-
-        rb = GetComponent<Rigidbody2D>();
-
-        //Obtengo la lista de puntos a recorrer
-        patrolDestinations = new List<Vector3>();
-
-        //Añadir la posición inicial
-        patrolDestinations.Add(transform.position);
-
-        //Rellenarlo con la ruta
-        Transform patrolGO = gameObject.transform.Find("Patrol");
-        for(int i=0;i < patrolGO.childCount; i++)
-        {
-            patrolDestinations.Add(patrolGO.GetChild(i).position);
-        }
-        #endregion
-        //Inicializo la posición inicial a la que voy
-        currentDestination = 0;
-
-        //Iniciamos en el Start
-        cortina=StartCoroutine(Patrol());
+        InitializeComponents();
+        InitializePatrolRoute();
+        if (patrolDestinations.Count > 0)
+            MoveToNextDestination();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //Patrol();
+        if (isWaiting)
+        {
+            if (waitTimer < waitTime)
+            {
+                waitTimer += Time.deltaTime;
+            }
+            else
+            {
+                isWaiting = false;
+                waitTimer = 0f;
+                MoveToNextDestination();
+            }
+        }
+        else
+        {
+            Vector3 targetPosition = patrolDestinations[currentDestination];
+            if (Vector3.Distance(transform.position, targetPosition) < 1f)
+            {
+                rb.velocity = Vector2.zero;
+                isWaiting = true;
+            }
+            else
+            {
+                Vector3 direction = (targetPosition - transform.position).normalized;
+                rb.velocity = direction * stats.movementSpeed;
+            }
+        }
 
-        //Compruebo si hace falta Flip
         Flip();
-
-        //Paso la información al animator
         UpdateAnimatorParameters();
     }
 
-    private IEnumerator Patrol()
+    private void InitializeComponents()
     {
-        //Compruebo si he llegado a mi destino actual y si es así lo cambio
-        while (true)
+        stats = (EnemyStats)GetComponent<EnemyController>().GetStats();
+        sprite = GetComponentInChildren<SpriteRenderer>();
+        animator = GetComponentInChildren<Animator>();
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void InitializePatrolRoute()
+    {
+        patrolDestinations = new List<Vector3> { transform.position };
+        Transform patrolRoute = transform.Find("Patrol");
+        foreach (Transform child in patrolRoute)
         {
-            if (Vector3.Distance(transform.position, patrolDestinations[currentDestination]) < 0.3f)
-            {
-                currentDestination = (currentDestination + 1) % patrolDestinations.Count;
-                //yield return new WaitForSecondsRealtime(1f);
-            }
-
-            //Me muevo hacia mi siguiente destino
-            Vector3 dir = (patrolDestinations[currentDestination] - transform.position).normalized;
-            rb.velocity = dir * stats.movementSpeed;
-
-            yield return new WaitForEndOfFrame();
-
+            patrolDestinations.Add(child.position);
         }
+    }
 
-        /*float checkInterval = 0.5f;
-        float lastCheckTime = Time.time;
-        Vector3 currentDirection = (patrolDestinations[currentDestination] - transform.position).normalized;
-
-        while (true)
-        {
-            if (Time.time - lastCheckTime > checkInterval)
-            {
-                lastCheckTime = Time.time;
-                if (Vector3.Distance(transform.position, patrolDestinations[currentDestination]) < 0.3f)
-                {
-                    currentDestination = (currentDestination + 1) % patrolDestinations.Count;
-                    currentDirection = (patrolDestinations[currentDestination] - transform.position).normalized;
-                    yield return new WaitForSeconds(1); // Optional wait at the new destination
-                }
-            }
-            rb.velocity = currentDirection * stats.movementSpeed;
-            yield return new WaitForEndOfFrame();
-        }*/
+    private void MoveToNextDestination()
+    {
+        currentDestination = (currentDestination + 1) % patrolDestinations.Count;
     }
 
     private void Flip()
     {
-
-        Vector2 aux = sprite.transform.localScale;
-        if (rb.velocity.x > 0) aux.x = Mathf.Abs(aux.x);
-        else if (rb.velocity.x < 0) aux.x = -Mathf.Abs(aux.x);
-
-        if(inverseFlip) aux.x = -aux.x;
-
-        sprite.transform.localScale = aux;
+        if (rb.velocity.x != 0)
+        {
+            float xScale = Mathf.Abs(sprite.transform.localScale.x) * (rb.velocity.x > 0 ? 1 : -1);
+            if (inverseFlip) xScale = -xScale;
+            sprite.transform.localScale = new Vector3(xScale, sprite.transform.localScale.y, sprite.transform.localScale.z);
+        }
     }
 
     private void UpdateAnimatorParameters()
     {
         animator.SetFloat("velocityX", Mathf.Abs(rb.velocity.x));
         animator.SetFloat("velocityY", rb.velocity.y);
-        animator.SetBool("isGrounded", Utils.Utils.IsGrounded2D(gameObject,0.5f));
+        // Assume Utils.IsGrounded2D is efficient, otherwise consider caching its result if it involves heavy calculations
+        animator.SetBool("isGrounded", Utils.Utils.IsGrounded2D(gameObject, 0.5f));
     }
 }

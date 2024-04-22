@@ -108,7 +108,6 @@ public class InventoryUI : ScreenController<InventoryUI>
         {
             if (selectedCell.item?.itemName == item.itemName) return;
             else EventSystem.current.SetSelectedGameObject(cells[0].gameObject);
-
         }
     }
 

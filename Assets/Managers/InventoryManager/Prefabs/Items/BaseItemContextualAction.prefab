@@ -183,8 +183,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_contextualAction: {fileID: 1861632850430365276, guid: a715eedaf881103479c1bed232b016a0, type: 3}
-  UITextEnable: Activar
-  UITextDisable: Necesitas X
+  UITextEnable: Coger
+  UITextDisable: 
   actionEnabled: 1
   playerInArea: 1
   detectTrigger: 1

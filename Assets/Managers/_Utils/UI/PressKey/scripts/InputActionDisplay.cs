@@ -126,19 +126,25 @@ public class InputActionDisplay : MonoBehaviour
   
     private string GetDeviceType()
     {
-        string deviceType = "keyboard&mouse";
+        string deviceType = "none";
+        string controlScheme = playerInput.currentControlScheme.ToLower();
 
-        //playerInput.currentControlScheme;
-        if (Gamepad.current != null)
+        if (controlScheme == "keyboard&mouse")
+            deviceType = "keyboard&mouse";
+        else if (controlScheme == "gamepad")
         {
-            deviceType = Gamepad.current switch
+            if (Gamepad.current != null)
             {
-                DualShockGamepad => "playstation",
-                XInputController => "xbox",
-                SwitchProControllerHID => "switch",
-                _ => "gamepad" // Generic gamepad if type is unknown
-            };
+                deviceType = Gamepad.current switch
+                {
+                    DualShockGamepad => "playstation",
+                    XInputController => "xbox",
+                    SwitchProControllerHID => "switch",
+                    _ => "gamepad" // Generic gamepad if type is unknown
+                };
+            }
         }
+        //TODO Añadir else if para XR, etc. 
         return deviceType;
     }
 }

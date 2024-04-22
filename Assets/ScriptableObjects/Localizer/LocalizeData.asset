@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3a05bb70baf5aa418de9123f5e3c4a3, type: 3}
-  m_Name: new LocalizerData
+  m_Name: LocalizeData
   m_EditorClassIdentifier: 

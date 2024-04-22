@@ -11,4 +11,11 @@ public class GameOverScreen : ScreenController<GameOverScreen>
         //base.HideScreen();
     }
 
+
+    public override void ShowScreen()
+    {
+        base.ShowScreen();
+        gameObject.SetActive(false);
+        gameObject.SetActive(true);
+    }
 }

@@ -14,9 +14,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TableCollectionName: Mot
   m_TableCollectionNameGuidString: 7a8dc1848a3c0d44284d1104a7acf37a
-  m_Entries: []
+  m_Entries:
+  - m_Id: 2869370992459776
+    m_Key: Level1/===UI===/GameOverUI/Fondo/GameOver/Muertes/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2869375279038464
+    m_Key: Level1/===UI===/GameOverUI/Fondo/GameOver/Muertes/Text (TMP) 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2878338720595968
+    m_Key: Level1/===UI===/GameOverUI/Fondo/GameOver/Muertes/Text (TMP) 2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2878338829647872
+    m_Key: Level1/===UI===/GameOverUI/Fondo/GameOver/Muertes/Text (TMP) 3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2887882901291008
+    m_Key: Level1/===UI===/GameOverUI/Fondo/GameOver/Mensaje
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2887883001954304
+    m_Key: Level1/===UI===/GameOverUI/Fondo/GameOver/Mensaje 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2888329691136000
+    m_Key: Level1/===UI===/GameOverUI/Fondo/GameOver/Mensaje 2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2888329712107520
+    m_Key: Level1/===UI===/GameOverUI/Fondo/GameOver/Mensaje 3
+    m_Metadata:
+      m_Items: []
   m_Metadata:
-    m_Items: []
+    m_Items:
+    - rid: 2967007351406854162
+    - rid: 2967007351406854165
   m_KeyGenerator:
     rid: 1002650485137866794
   references:
@@ -26,3 +60,51 @@ MonoBehaviour:
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
         m_CustomEpoch: 1713120817254
+    - rid: 2967007351406854162
+      type: {class: AssetTypeMetadata, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries:
+        - m_KeyId: 2869370992459776
+          m_TableCodes:
+          - es
+          - ja
+        - m_KeyId: 2878338720595968
+          m_TableCodes:
+          - es
+          - ja
+          - en
+        - m_KeyId: 2887882901291008
+          m_TableCodes:
+          - es
+          - ja
+        - m_KeyId: 2888329691136000
+          m_TableCodes:
+          - es
+          - ja
+          - en
+        m_TypeString: TMPro.TMP_FontAsset, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+    - rid: 2967007351406854165
+      type: {class: AssetTypeMetadata, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries:
+        - m_KeyId: 2869375279038464
+          m_TableCodes:
+          - es
+          - ja
+        - m_KeyId: 2878338829647872
+          m_TableCodes:
+          - es
+          - ja
+          - en
+        - m_KeyId: 2887883001954304
+          m_TableCodes:
+          - es
+          - ja
+        - m_KeyId: 2888329712107520
+          m_TableCodes:
+          - es
+          - ja
+          - en
+        m_TypeString: UnityEngine.Material, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null

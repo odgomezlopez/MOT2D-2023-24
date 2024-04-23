@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using UnityEngine.Localization;
 
-public class PlayerContextualActionTriggerer : MonoBehaviour
-{
+public class PlayerContextualActionTriggererV2 : MonoBehaviour //MonoBehaviourSaveable Cambiar para guardado en memoria
+{ 
     [Header("Configuración general")]
     [SerializeField] InputActionReference m_contextualAction;
     [SerializeField] protected string UITextEnable="Activar";

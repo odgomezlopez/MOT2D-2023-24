@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class UseItem : PlayerContextualActionTriggerer
+public class ActionItemRequiered : PlayerContextualActionTriggererV2
 {
     [Header("Required Item")]
     public Item requiredItem;
     public bool unlocked=false;
 
-    private void Awake()
+    private void Start()
     {
-        UITextDisable+= requiredItem.itemName;
+        if(unlocked) gameObject.SetActive(false);
+        //UITextDisable+= requiredItem.itemName;
     }
 
     public void RemoveItem()

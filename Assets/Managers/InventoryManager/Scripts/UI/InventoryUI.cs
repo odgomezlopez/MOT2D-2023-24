@@ -9,12 +9,13 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class InventoryUI : ScreenController<InventoryUI>
+public class InventoryUI : ScreenControllerV2<InventoryUI>
 {
 
     //Celdas
     [Header("Inventory actions")]
     [SerializeField] InputActionReference useAction;
+    [SerializeField] InputActionDisplay useButtonKey;
 
 
     [Header("Inventory info")]
@@ -26,7 +27,6 @@ public class InventoryUI : ScreenController<InventoryUI>
     private TextMeshProUGUI nameUI;
     private TextMeshProUGUI descriptionUI;
     private Button useButtonUI;
-
     //Acceso directo
     InventoryManager inventory => InventoryManager.Instance;
 
@@ -44,6 +44,7 @@ public class InventoryUI : ScreenController<InventoryUI>
 
         //Añado la funcion al boton de añadir
         useButtonUI.onClick.AddListener(OnUseButton);
+        useButtonKey.inputAction = useAction;
 
         //Activamos la navegación de UI
         EventSystem.current.firstSelectedGameObject = null;

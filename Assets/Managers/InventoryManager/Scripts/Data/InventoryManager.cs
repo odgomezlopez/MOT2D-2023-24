@@ -7,7 +7,8 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class InventoryManager : MonoBehaviourSaveableSingleton<InventoryManager> {
+public class InventoryManager : MonoBehaviourSingleton<InventoryManager> //MonoBehaviourSaveableSingleton<InventoryManager> Cambiar para guardado en memoria
+{ 
     //Item, Cantidad
     [SerializeField] private SerializedDictionary<Item, int> data = new();
     public int Count => data.Count;

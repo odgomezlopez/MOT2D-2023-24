@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class GameOverScreen : ScreenController<GameOverScreen>
+public class GameOverScreen : ScreenControllerV2<GameOverScreen>
 {
     public override void HideScreen()
     {

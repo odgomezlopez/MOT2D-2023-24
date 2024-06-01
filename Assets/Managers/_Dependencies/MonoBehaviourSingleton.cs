@@ -41,6 +41,25 @@ public class MonoBehaviourSingleton<T> : MonoBehaviour
 			return _instance;
 		}
 	}
+
+	/*
+	protected virtual void Awake()
+	{
+
+		SceneManager.sceneLoaded += OnSceneLoaded;
+	}
+
+	protected virtual void OnDestroy()
+	{
+		// Unsubscribe from the sceneLoaded event
+		SceneManager.sceneLoaded -= OnSceneLoaded;
+	}
+
+	private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+	{
+		if (_instance) _instance = null;
+	}
+	*/
 }
 
 

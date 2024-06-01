@@ -12,7 +12,7 @@ using UnityEngine.InputSystem.XInput;
 public class InputActionDisplay : MonoBehaviour
 {
     PlayerInput playerInput;
-    [SerializeField] InputActionReference inputAction;
+    [SerializeField] public InputActionReference inputAction;
     [SerializeField] string activeControlScheme;
 
     TextMeshProUGUI texto;

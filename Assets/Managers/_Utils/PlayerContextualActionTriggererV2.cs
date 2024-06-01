@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using UnityEngine.Localization;
 
-public class PlayerContextualActionTriggerer : MonoBehaviour
-{
+public class PlayerContextualActionTriggererV2 : MonoBehaviour //MonoBehaviourSaveable Cambiar para guardado en memoria
+{ 
     [Header("Configuración general")]
     [SerializeField] InputActionReference m_contextualAction;
-    [SerializeField] string UITextEnable="Activar";
-    [SerializeField] string UITextDisable="Necesitas X";
+    [SerializeField] protected string UITextEnable="Activar";
+    [SerializeField] protected string UITextDisable ="Necesitas X";
 
     [SerializeField] bool actionEnabled = true;
     [SerializeField] bool playerInArea = false;
@@ -38,7 +37,11 @@ public class PlayerContextualActionTriggerer : MonoBehaviour
         set {
             if (value!=playerInArea)
             {
-                if(value) PlayerEnter?.Invoke(UITextEnable, CheckRequirement());
+                if (value)
+                {
+                    if(CheckRequirement()) PlayerEnter?.Invoke(UITextEnable, true);
+                    else PlayerEnter?.Invoke(UITextDisable, false);
+                }
                 else PlayerExit?.Invoke();
                 playerInArea = value;
             }

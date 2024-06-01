@@ -57,7 +57,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1799227442720768
-    m_Localized: '{data.numberOfDeaths:plural:1 death|{} deaths}.'
+    m_Localized: '{data.numberOfDeaths:plural:1 death|{} deaths}'
     m_Metadata:
       m_Items:
       - rid: 1002650485137866763
@@ -67,6 +67,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 2493802656563200
     m_Localized: Add
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4692407442210816
+    m_Localized: Press                       to continue
     m_Metadata:
       m_Items: []
   references:

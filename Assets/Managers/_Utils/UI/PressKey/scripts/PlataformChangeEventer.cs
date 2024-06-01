@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.DualShock;
 using UnityEngine.InputSystem.Switch;
 using UnityEngine.InputSystem.XInput;
-using UnityEngine.Localization;
 
 [ExecuteAlways]
 public class PlataformChangeEventer : MonoBehaviour

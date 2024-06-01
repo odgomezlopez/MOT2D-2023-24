@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour, IActorController
     public void OnDie()
     {
         stats.HP.CurrentValue = 0;
-        onDie?.Invoke();
+        //onDie?.Invoke();
     }
 
     public void OnDamage(float damage)

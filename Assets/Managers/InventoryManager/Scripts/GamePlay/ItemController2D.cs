@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
-public class ItemController : MonoBehaviourSaveable //MonoBehaviourSaveable Cambiar para guardado en memoria
+public class ItemController2D : MonoBehaviour //MonoBehaviourSaveable Cambiar para guardado en memoria
 {
     [Header("Item Data")]
     public Item itemData;

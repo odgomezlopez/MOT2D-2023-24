@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XInput;
 using UnityEngine.UI;
 
-public class ScreenController<T> : MonoBehaviourSingleton<T> where T : MonoBehaviourSingleton<T>
+public class ScreenControllerV2<T> : MonoBehaviourSingleton<T> where T : MonoBehaviourSingleton<T>
 {
     //Internal references
     Canvas canvas;
@@ -76,6 +76,6 @@ public class ScreenController<T> : MonoBehaviourSingleton<T> where T : MonoBehav
     private void ChangeTimeScale(float newScale)
     {
         Time.timeScale = newScale;
-        Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
+        //Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
     }
 }

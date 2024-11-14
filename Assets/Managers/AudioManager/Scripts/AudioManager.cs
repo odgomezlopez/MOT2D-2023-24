@@ -16,8 +16,8 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
 
     private void Start()
     {
-        if (audioClipManager.DefaultBackgroundClip)
-            PlayBackgroundSound(audioClipManager.DefaultBackgroundClip);
+        //if (audioClipManager.DefaultBackgroundClip)
+        //    PlayBackgroundSound(audioClipManager.DefaultBackgroundClip);
     }
 
     private void OnDestroy()
@@ -26,17 +26,39 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
     }
 
     #region Metodos de uso simple
+    public void PlayBackgroundSound(AudioClip clip, float volume = -1, float pitch = 1)
+    {
+        if (clip == null) return;
+        backgroundAudioSource.clip = clip;
+        backgroundAudioSource.outputAudioMixerGroup = audioMixerController.backgroundGroup;
+        backgroundAudioSource.volume = (volume == -1) ? volumeSettings.BackgroundVolume : volume;
+        backgroundAudioSource.pitch = pitch;
+        backgroundAudioSource.loop = true;
+        backgroundAudioSource.Play();
+    }
+
+
     public void PlayBackgroundSound(AudioClipSO clipSO)
     {
         if (clipSO == null || clipSO.GetRandomClip() == null) return;
 
-        backgroundAudioSource.outputAudioMixerGroup = audioMixerController.backgroundGroup;
-        backgroundAudioSource.clip = clipSO.GetRandomClip();
-        backgroundAudioSource.volume = clipSO.GetAdjustedVolume() * volumeSettings.BackgroundVolume;
-        backgroundAudioSource.pitch = clipSO.GetAdjustedPitch();
-        backgroundAudioSource.loop = true;
-        backgroundAudioSource.Play();
+        PlayBackgroundSound(clipSO.GetRandomClip(), clipSO.GetAdjustedVolume() * volumeSettings.BackgroundVolume, clipSO.GetAdjustedPitch());
     }
+
+
+    public void PlaySFX(AudioClip clip, Vector3 position = default)
+    {
+        if (clip == null) return;
+
+        PlaySoundAtPoint(
+            clip,
+            position == default ? Camera.main.transform.position : position,
+            audioMixerController.sfxGroup,
+            volumeSettings.SFXVolume,
+            1
+        );
+    }
+
 
     public void PlaySFX(AudioClipSO clipSO, Vector3 position = default)
     {
@@ -49,21 +71,6 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
             clipSO.GetAdjustedVolume() * volumeSettings.SFXVolume,
             clipSO.GetAdjustedPitch()
         );
-    }
-    #endregion
-
-    #region Uso del AudioClipManager
-    [SerializeField] private AudioClipManager audioClipManager;
-
-    public void PlayBackgroundSound(string key)
-    {
-        PlayBackgroundSound(audioClipManager.GetBackgroundClip(key));
-    }
-
-
-    public void PlaySFX(string key)
-    {
-        PlaySFX(audioClipManager.GetSFXClip(key));
     }
     #endregion
 
@@ -82,4 +89,23 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
         Destroy(tempGO, clip.length / Mathf.Abs(pitch));
     }
     #endregion
+
+
+
+    /*#region Uso del AudioClipManager
+    [SerializeField] private AudioClipManager audioClipManager;
+
+    public void PlayBackgroundSound(string key)
+    {
+        PlayBackgroundSound(audioClipManager.GetBackgroundClip(key));
+    }
+
+
+    public void PlaySFX(string key)
+    {
+        PlaySFX(audioClipManager.GetSFXClip(key));
+    }
+    #endregion
+    */
+
 }

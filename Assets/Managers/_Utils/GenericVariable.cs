@@ -75,7 +75,7 @@ public class RangedFloatVariable : GenericVariable<float>
     //Sobreescrito
     protected override float CheckNewValue(float value)
     {
-        return Mathf.Clamp(value, 0.0f, maxValue);
+        return Mathf.Clamp(value, minValue, maxValue);
     }
 
     public void Update(RangedFloatVariable newValue)

@@ -1,15 +1,15 @@
-using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class CameraTrigger : MonoBehaviour
 {
-    CinemachineVirtualCamera triggerCamera;
+    CinemachineCamera triggerCamera;
 
     void Start()
     {
-        triggerCamera = GetComponentInChildren<CinemachineVirtualCamera>();
+        triggerCamera = GetComponentInChildren<CinemachineCamera>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

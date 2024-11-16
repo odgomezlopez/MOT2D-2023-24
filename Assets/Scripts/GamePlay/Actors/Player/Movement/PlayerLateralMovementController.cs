@@ -25,7 +25,7 @@ public class PlayerLateralMovementController : MonoBehaviour
     private float inputX;
     private bool jump = false;
 
-    //Información para salto
+    //Informaciï¿½n para salto
     private bool isGrounded = false;
     private int jumpPerformed = 0;
 
@@ -89,16 +89,16 @@ public class PlayerLateralMovementController : MonoBehaviour
         //1. Asignando directamente la velocidad
         //rb.velocity = new Vector2(inputX * velModified * stats.movementSpeed, rb.velocity.y);
 
-        //2. Mediante aceleración
-        if (inputX != 0)//Aceleración
+        //2. Mediante aceleraciï¿½n
+        if (inputX != 0)//Aceleraciï¿½n
         {
             rb.AddForce(Vector2.right * inputX * velModified * stats.acceleration);
-            rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -stats.movementSpeed, stats.movementSpeed), rb.velocity.y);
+            rb.linearVelocity = new Vector2(Mathf.Clamp(rb.linearVelocity.x, -stats.movementSpeed, stats.movementSpeed), rb.linearVelocity.y);
         }
         else//Deceleracion
         {
             //A. Directa
-            rb.velocity=new Vector2(0, rb.velocity.y);
+            rb.linearVelocity=new Vector2(0, rb.linearVelocity.y);
             
             // B. Gradual
             /*rb.AddForce(new Vector2(-rb.velocity.x * stats.deceleration, 0f));
@@ -114,7 +114,7 @@ public class PlayerLateralMovementController : MonoBehaviour
 
     private void RunnerMove()
     {
-        rb.velocity = new Vector2(stats.movementSpeed, rb.velocity.y);
+        rb.linearVelocity = new Vector2(stats.movementSpeed, rb.linearVelocity.y);
         Flip();
     }
 
@@ -127,12 +127,12 @@ public class PlayerLateralMovementController : MonoBehaviour
         transform.localScale = aux;
         */
 
-        //Flip utilizando la rotación
-        if(rb.velocity.x > 0)
+        //Flip utilizando la rotaciï¿½n
+        if(rb.linearVelocity.x > 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
-        if (rb.velocity.x < 0)
+        if (rb.linearVelocity.x < 0)
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
@@ -147,7 +147,7 @@ public class PlayerLateralMovementController : MonoBehaviour
             OnJump.Invoke();
 
             //Hacemos el salto
-            rb.velocity = new Vector2(rb.velocity.x, 0);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
             rb.AddForce(Vector2.up * stats.jumpSpeed, ForceMode2D.Impulse);
             jump = false;
         }
@@ -155,8 +155,8 @@ public class PlayerLateralMovementController : MonoBehaviour
 
     private void UpdateAnimatorParameters()
     {
-        animator.SetFloat("velocityX", Mathf.Abs(rb.velocity.x));
-        animator.SetFloat("velocityY", Mathf.Abs(rb.velocity.y));
+        animator.SetFloat("velocityX", Mathf.Abs(rb.linearVelocity.x));
+        animator.SetFloat("velocityY", Mathf.Abs(rb.linearVelocity.y));
         animator.SetBool("isGrounded", isGrounded);
 
     }

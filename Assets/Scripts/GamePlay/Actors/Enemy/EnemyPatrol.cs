@@ -48,13 +48,13 @@ public class EnemyPatrol : MonoBehaviour
             Vector3 targetPosition = patrolDestinations[currentDestination];
             if (Vector3.Distance(transform.position, targetPosition) < 1f)
             {
-                rb.velocity = Vector2.zero;
+                rb.linearVelocity = Vector2.zero;
                 isWaiting = true;
             }
             else
             {
                 Vector3 direction = (targetPosition - transform.position).normalized;
-                rb.velocity = direction * stats.movementSpeed;
+                rb.linearVelocity = direction * stats.movementSpeed;
             }
         }
 
@@ -87,9 +87,9 @@ public class EnemyPatrol : MonoBehaviour
 
     private void Flip()
     {
-        if (rb.velocity.x != 0)
+        if (rb.linearVelocity.x != 0)
         {
-            float xScale = Mathf.Abs(sprite.transform.localScale.x) * (rb.velocity.x > 0 ? 1 : -1);
+            float xScale = Mathf.Abs(sprite.transform.localScale.x) * (rb.linearVelocity.x > 0 ? 1 : -1);
             if (inverseFlip) xScale = -xScale;
             sprite.transform.localScale = new Vector3(xScale, sprite.transform.localScale.y, sprite.transform.localScale.z);
         }
@@ -97,8 +97,8 @@ public class EnemyPatrol : MonoBehaviour
 
     private void UpdateAnimatorParameters()
     {
-        animator.SetFloat("velocityX", Mathf.Abs(rb.velocity.x));
-        animator.SetFloat("velocityY", rb.velocity.y);
+        animator.SetFloat("velocityX", Mathf.Abs(rb.linearVelocity.x));
+        animator.SetFloat("velocityY", rb.linearVelocity.y);
         // Assume Utils.IsGrounded2D is efficient, otherwise consider caching its result if it involves heavy calculations
         animator.SetBool("isGrounded", Utils.Utils.IsGrounded2D(gameObject, 0.5f));
     }

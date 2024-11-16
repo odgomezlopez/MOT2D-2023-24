@@ -4,25 +4,21 @@ using UnityEngine.Audio;
 public class AudioManager : MonoBehaviourSingleton<AudioManager>
 {
     [SerializeField] private VolumeSettings volumeSettings;
-    [SerializeField] private AudioMixerController audioMixerController;
 
     private AudioSource backgroundAudioSource;
 
-    private void Awake()
-    {
-        volumeSettings.Initialize(audioMixerController);
-        backgroundAudioSource = GetComponentInChildren<AudioSource>();
-    }
 
     private void Start()
     {
-        //if (audioClipManager.DefaultBackgroundClip)
-        //    PlayBackgroundSound(audioClipManager.DefaultBackgroundClip);
+        if (!volumeSettings) Debug.LogError("VolumeSettings scriptable objects not attacked");
+
+        volumeSettings.LoadVolumeSettings();
+        backgroundAudioSource = GetComponentInChildren<AudioSource>();
     }
 
     private void OnDestroy()
     {
-        volumeSettings.SaveVolumeSettings();
+        volumeSettings?.SaveVolumeSettings();
     }
 
     #region Metodos de uso simple
@@ -30,8 +26,8 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
     {
         if (clip == null) return;
         backgroundAudioSource.clip = clip;
-        backgroundAudioSource.outputAudioMixerGroup = audioMixerController.backgroundGroup;
-        backgroundAudioSource.volume = (volume == -1) ? volumeSettings.BackgroundVolume : volume;
+        backgroundAudioSource.outputAudioMixerGroup = volumeSettings.background.Group ?? default;
+        backgroundAudioSource.volume = (volume == -1) ? volumeSettings.background.Volume : volume;
         backgroundAudioSource.pitch = pitch;
         backgroundAudioSource.loop = true;
         backgroundAudioSource.Play();
@@ -42,7 +38,7 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
     {
         if (clipSO == null || clipSO.GetRandomClip() == null) return;
 
-        PlayBackgroundSound(clipSO.GetRandomClip(), clipSO.GetAdjustedVolume() * volumeSettings.BackgroundVolume, clipSO.GetAdjustedPitch());
+        PlayBackgroundSound(clipSO.GetRandomClip(), clipSO.GetAdjustedVolume() * volumeSettings.background.Volume, clipSO.GetAdjustedPitch());
     }
 
 
@@ -53,9 +49,9 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
         PlaySoundAtPoint(
             clip,
             position == default ? Camera.main.transform.position : position,
-            audioMixerController.sfxGroup,
-            volumeSettings.SFXVolume,
-            1
+            volumeSettings.sfx.Volume,
+            1,
+            volumeSettings.sfx.Group
         );
     }
 
@@ -67,22 +63,22 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
         PlaySoundAtPoint(
             clipSO.GetRandomClip(),
             position == default ? Camera.main.transform.position : position,
-            audioMixerController.sfxGroup,
-            clipSO.GetAdjustedVolume() * volumeSettings.SFXVolume,
-            clipSO.GetAdjustedPitch()
+            clipSO.GetAdjustedVolume() * volumeSettings.sfx.Volume,
+            clipSO.GetAdjustedPitch(),
+            volumeSettings.sfx.Group
         );
     }
     #endregion
 
     #region Metodo generico para hacer sonar mis sonidos
-    private void PlaySoundAtPoint(AudioClip clip, Vector3 position, AudioMixerGroup mixerGroup, float volume, float pitch)
+    public static void PlaySoundAtPoint(AudioClip clip, Vector3 position, float volume = 1, float pitch = 1, AudioMixerGroup mixerGroup = null)
     {
         if (clip == null) return;
 
         var tempGO = new GameObject("TempAudio") { transform = { position = position } };
         var audioSource = tempGO.AddComponent<AudioSource>();
         audioSource.clip = clip;
-        audioSource.outputAudioMixerGroup = mixerGroup;
+        if(mixerGroup) audioSource.outputAudioMixerGroup = mixerGroup;
         audioSource.volume = volume;
         audioSource.pitch = pitch;
         audioSource.Play();

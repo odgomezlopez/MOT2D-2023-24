@@ -15,7 +15,7 @@ public class AttackMoveTowards2D : MonoBehaviour
     void Start()//Se puede cambiar a Awake
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.velocity = dir * speed;
+        rb.linearVelocity = dir * speed;
     }
     public void Initialize(float newSpeed, Vector2 newDir)
     {
@@ -25,6 +25,6 @@ public class AttackMoveTowards2D : MonoBehaviour
 
         //Actualizo la velocidad
         rb = GetComponent<Rigidbody2D>();
-        rb.velocity = dir * speed;
+        rb.linearVelocity = dir * speed;
     }
 }

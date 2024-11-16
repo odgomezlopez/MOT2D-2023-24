@@ -13,15 +13,8 @@ MonoBehaviour:
   m_Name: Localization-Assets-Shared
   m_EditorClassIdentifier: 
   m_GroupName: Localization-Assets-Shared
-  m_Data:
-    m_SerializedData: []
   m_GUID: 4641ed4f260b108499c16e558e6ff6cd
   m_SerializeEntries:
-  - m_GUID: e7f7e88a6168cbb41baf7dffc63d09e4
-    m_Address: Assets/Config/lang/UI Shared Data.asset
-    m_ReadOnly: 1
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7a8dc1848a3c0d44284d1104a7acf37a
     m_Address: Assets/Config/lang/Mot Shared Data.asset
     m_ReadOnly: 1
@@ -31,8 +24,13 @@ MonoBehaviour:
     m_Address: LiberationSans SDF
     m_ReadOnly: 1
     m_SerializedLabels:
-    - Locale-es
     - Locale-en
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e7f7e88a6168cbb41baf7dffc63d09e4
+    m_Address: Assets/Config/lang/UI Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: ee9c4feb9b96cc041b84859e2d0a5f47, type: 2}

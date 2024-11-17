@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerDistanceManager : MonoBehaviour
 {
-    private PlayerController player;
+    private ActorController player;
     [SerializeField] private GameObject[] managedObjects;
     [SerializeField] private float maxDistance = 20f;
 
@@ -17,7 +17,7 @@ public class PlayerDistanceManager : MonoBehaviour
         // Attempt to get the PlayerController if not assigned
         if (player == null)
         {
-            player = FindObjectOfType<PlayerController>();
+            player = GameObject.FindGameObjectWithTag("Player").GetComponentInParent<ActorController>();
         }
 
         // Ensure player is found and assign transforms

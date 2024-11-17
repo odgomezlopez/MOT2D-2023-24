@@ -11,7 +11,6 @@ using UnityEngine.UI;
 
 public class InventoryUI : ScreenControllerV2<InventoryUI>
 {
-
     //Celdas
     [Header("Inventory actions")]
     [SerializeField] InputActionReference useAction;

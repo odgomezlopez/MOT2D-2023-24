@@ -3,13 +3,13 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 //Clase de ayuda por si quieres guardar 
 
-[RequireComponent(typeof(PlayerController)), RequireComponent(typeof(SaveableEntity))]
+[RequireComponent(typeof(ActorController)), RequireComponent(typeof(SaveableEntity))]
 public class PlayerSavedData : MonoBehaviour, ISaveable
 {
     [System.Serializable]
     class SaveablePlayerData
     {
-        public PlayerStats stats;
+        public Stats stats;
         public Vector3 pos;
     }
     private void Start()    {}
@@ -19,7 +19,7 @@ public class PlayerSavedData : MonoBehaviour, ISaveable
         //La pongo en la estructura
         SaveablePlayerData data = new SaveablePlayerData
         {
-            stats = (PlayerStats)gameObject.GetComponent<PlayerController>().GetStats(),
+            stats = gameObject.GetComponent<ActorController>().Stats,
             pos=transform.position,
         };
 
@@ -36,7 +36,7 @@ public class PlayerSavedData : MonoBehaviour, ISaveable
         SaveablePlayerData d = JsonUtility.FromJson<SaveablePlayerData>(json);
 
         //Pongo los datos donde toque
-         ((PlayerStats)gameObject.GetComponent<PlayerController>().GetStats()).Update((PlayerStats)d.stats);
+         (gameObject.GetComponent<ActorController>().Stats).Update(d.stats);
         //transform.position = d.pos;
     }
 }

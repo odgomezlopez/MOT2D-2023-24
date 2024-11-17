@@ -10,6 +10,8 @@ public class Potion : Item
     [SerializeField] private int HP = 1;
     public override void Use()
     {
-        FindObjectOfType<PlayerController>().GetStats().HP.CurrentValue += HP;
+        ActorController target = GameObject.FindGameObjectWithTag("Player").GetComponentInParent<ActorController>();
+        target.Stats.HP.CurrentValue += HP;
+        base.Use();
     }
 }

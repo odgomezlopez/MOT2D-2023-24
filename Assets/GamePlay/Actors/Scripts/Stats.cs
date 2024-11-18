@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+
+
+
 [System.Serializable]
 public class Stats
 {
     [Header("Basic")]
     public string actorName;
 
-    public Indicator HP;
+    public RangedFloatVariable HP;
 
     [Header("Att")]
     public float attDamage;

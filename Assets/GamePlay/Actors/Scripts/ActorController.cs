@@ -11,6 +11,7 @@ using UnityEngine.InputSystem;
 [ExecuteInEditMode]
 public class ActorController : MonoBehaviour
 {
+    #region Data
     [Header("Player Info")]
     [SerializeField] public ActorDisplayConfig displayConfig;
     [SerializeField] public ActorMovementConfig movementConfig;
@@ -29,9 +30,9 @@ public class ActorController : MonoBehaviour
     public ActorMovementConfig MovementConfig => movementConfig;
     #endregion
 
-
+    #endregion
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         if (!movementConfig) Debug.LogError("Not movement config attached to player controller");
 
@@ -44,7 +45,7 @@ public class ActorController : MonoBehaviour
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemies"), false);
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
         //Desengachamos los eventos
         stats.HP.OnValueUpdate.RemoveListener(OnHPUpdate);
@@ -58,18 +59,18 @@ public class ActorController : MonoBehaviour
     }
     #endregion
 
-    private void OnHPUpdate(float val)
+    protected virtual void OnHPUpdate(float val)
     {
         if (val <= 0)        {
             onDie.Invoke();
         }
     }
 
-    public void OnHeal(float heal)
+    public virtual void OnHeal(float heal)
     {
         stats.HP.CurrentValue += heal;
     }
-    public void OnDamage(float damage)
+    public virtual void OnDamage(float damage)
     {
         if (stats.invulnerable) return;
 

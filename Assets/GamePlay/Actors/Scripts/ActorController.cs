@@ -37,7 +37,7 @@ public class ActorController : MonoBehaviour
         if (!movementConfig) Debug.LogError("Not movement config attached to player controller");
 
         //1. Me suscribo a los cambios de HP de los stats
-        stats.HP.Restart();
+        stats.HP.Reset();
         stats.HP.OnValueUpdate.AddListener(OnHPUpdate);
 
 

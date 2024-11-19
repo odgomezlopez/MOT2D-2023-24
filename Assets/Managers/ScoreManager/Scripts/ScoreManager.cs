@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviourSingleton<ScoreManager>
 {
-    [SerializeField] private GenericVariable<float> currentSceneScore;
+    [SerializeField] private SmartVariable<float> currentSceneScore;
     [SerializeField] private bool resetOnNewScene = false;
 
     //Inicialización
@@ -52,7 +52,7 @@ public class ScoreManager : MonoBehaviourSingleton<ScoreManager>
         if (l == LoadSceneMode.Single)
         {
             //Compruebo si hay que reiniciar
-            if (resetOnNewScene) currentSceneScore.Restart();
+            if (resetOnNewScene) currentSceneScore.Reset();
 
             //Invoco el evento de actualización de UI
             currentSceneScore.OnValueUpdate.Invoke(currentSceneScore.CurrentValue);

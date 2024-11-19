@@ -2,4 +2,4 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SharedFloatSOListener : SharedGenericVariableSOListener<float> {}
+public class GlobalFloatListener : GlobalVariableListener<float> {}

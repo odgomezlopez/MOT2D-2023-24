@@ -12,7 +12,7 @@ public class Stats
     [Header("Basic")]
     public string actorName;
 
-    public RangedFloatVariable HP;
+    public RangedSmartFloat HP;
 
     [Header("Att")]
     public float attDamage;
@@ -28,7 +28,7 @@ public class Stats
     //Metodos
     public virtual void ResetStats()
     {
-        HP.Restart();
+        HP.Reset();
         invulnerable= false;
     }
 

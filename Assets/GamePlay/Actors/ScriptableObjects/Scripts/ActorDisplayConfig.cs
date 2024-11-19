@@ -30,7 +30,7 @@ public class ActorDisplayConfig : ScriptableObject
             animatorComponent.runtimeAnimatorController = animator;
         }
 
-        AdjustCollider(actor, renderer);
+        //AdjustCollider(actor, renderer);
     }
 
     private void AdjustCollider(GameObject actor, SpriteRenderer renderer)

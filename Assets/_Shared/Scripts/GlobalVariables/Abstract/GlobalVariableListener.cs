@@ -2,9 +2,9 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-public abstract class SharedGenericVariableSOListener<T> : MonoBehaviour
+public abstract class GlobalVariableListener<T> : MonoBehaviour
 {
-    public SharedGenericVariableSO<T> gameEvent;
+    public GlobalVariable<T> gameEvent;
     public UnityEvent<T> onEventTriggered;
 
     void OnEnable()

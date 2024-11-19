@@ -10,7 +10,8 @@ public class ShowHideCanvas : MonoBehaviour
     Canvas canvas;
 
     [Header("Timer")]
-    [SerializeField] Indicator remainingShowTime;
+    [SerializeField] RangedSmartFloat
+        remainingShowTime;
 
     [Header("Input")]
     [SerializeField] string actionName = "ShowHUD";
@@ -34,7 +35,7 @@ public class ShowHideCanvas : MonoBehaviour
     {
         if (action.IsPressed())
         {
-            remainingShowTime.Restart();
+            remainingShowTime.Reset();
             canvas.enabled = true;
             return;
         }

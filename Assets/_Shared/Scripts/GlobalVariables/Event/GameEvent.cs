@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Shared Variable/Event")]
+[CreateAssetMenu(menuName = "_Global Variables/_Event")]
 public class GameEvent : ScriptableObject
 {
     List<GameEventListener> listeners = new List<GameEventListener>();

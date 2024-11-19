@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-//[CreateAssetMenu(menuName = "Game Event/Base")]
-public abstract class SharedGenericVariableSO<T> : ScriptableObject
+
+public abstract class GlobalVariable<T> : ScriptableObject
 {
     //Propiedades
     [Header("Variable value")]
@@ -41,7 +41,7 @@ public abstract class SharedGenericVariableSO<T> : ScriptableObject
     }
 
     //Gestión de eventos
-    List<SharedGenericVariableSOListener<T>> listeners = new List<SharedGenericVariableSOListener<T>>();
+    List<GlobalVariableListener<T>> listeners = new List<GlobalVariableListener<T>>();
 
     public void TriggerEvent(T value)
     {
@@ -49,12 +49,12 @@ public abstract class SharedGenericVariableSO<T> : ScriptableObject
             listeners[i].OnEventTriggered(value);
     }
 
-    public void AddListener(SharedGenericVariableSOListener<T> listener)
+    public void AddListener(GlobalVariableListener<T> listener)
     {
         listeners.Add(listener);
     }
 
-    public void RemoveListener(SharedGenericVariableSOListener<T> listener)
+    public void RemoveListener(GlobalVariableListener<T> listener)
     {
         listeners.Remove(listener);
     }

@@ -251,7 +251,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 72de0c64f2c6a498096698322c976a67, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 2.0625, y: 2}
@@ -455,26 +455,10 @@ MonoBehaviour:
           m_Calls: []
       minValue: 0
       maxValue: 3
-      OnPercentUpdate:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 11400000, guid: 3149713c210dabd4883a64ee05e95721, type: 2}
-            m_TargetAssemblyTypeName: SharedGenericVariableSO`1[[System.Single, mscorlib
-            m_MethodName: set_CurrentValue
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
     attDamage: 1
     action1: {fileID: 11400000, guid: bc1861040c0a2bd4fbdc6fdcd42e0c57, type: 2}
     action2: {fileID: 11400000, guid: fb97c822b91071d4da28943abfca86fd, type: 2}
     invulnerable: 0
-  playerInput: {fileID: 0}
   onHurt:
     m_PersistentCalls:
       m_Calls: []
@@ -520,6 +504,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  m_moveAction: {fileID: 0}
+  m_jumpAction: {fileID: 0}
 --- !u!114 &724213633139486499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -532,6 +518,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed8e833d818fe84d974401dec556107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_action1Action: {fileID: 0}
+  m_action2Action: {fileID: 0}
 --- !u!114 &215579558908640333
 MonoBehaviour:
   m_ObjectHideFlags: 0

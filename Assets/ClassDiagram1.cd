@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ActorDisplayConfig">
+    <Position X="6" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BABAAAAAAAAAACAAAAAAAAAAABAAAAAAAAAAAIIAAAA=</HashCode>
+      <FileName>Assets\GamePlay\Actors\ScriptableObjects\Scripts\ActorDisplayConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActorMovementConfig">
+    <Position X="6" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAQAAAAEAAAAAAACAAgQJAAAAAIAAAAA=</HashCode>
+      <FileName>Assets\GamePlay\Actors\ScriptableObjects\Scripts\ActorMovementConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActorController">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABIRAAATACIAAAACgAAAgAAEABAAAAAAAAAACEAAAAA=</HashCode>
+      <FileName>Assets\GamePlay\Actors\Scripts\ActorController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="displayConfig" />
+      <Field Name="movementConfig" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

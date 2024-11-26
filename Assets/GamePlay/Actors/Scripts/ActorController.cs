@@ -35,6 +35,7 @@ public class ActorController : MonoBehaviour
     protected virtual void Start()
     {
         if (!movementConfig) Debug.LogError("Not movement config attached to player controller");
+        displayConfig?.ApplyGraphics(gameObject);
 
         //1. Me suscribo a los cambios de HP de los stats
         stats.HP.Reset();
@@ -134,3 +135,62 @@ public class ActorController : MonoBehaviour
     }
     #endregion
 }
+
+#if UNITY_EDITOR
+[CustomEditor(typeof(ActorController))]
+public class ActorControllerEditor : Editor
+{
+    private bool showDisplayConfig;
+    private bool showMovementConfig;
+
+    public override void OnInspectorGUI()
+    {
+        serializedObject.Update(); // Sync serialized object
+
+        SerializedProperty property = serializedObject.GetIterator();
+        property.NextVisible(true); // Skip the script reference
+
+        while (property.NextVisible(false))
+        {
+            EditorGUILayout.PropertyField(property, true);
+
+            // Insert foldouts directly after relevant properties
+            if (property.name == nameof(ActorController.displayConfig))
+            {
+                DrawFoldout("Display Config", ref showDisplayConfig, (target as ActorController).displayConfig);
+            }
+            else if (property.name == nameof(ActorController.movementConfig))
+            {
+                DrawFoldout("Movement Config", ref showMovementConfig, (target as ActorController).movementConfig);
+            }
+        }
+
+        serializedObject.ApplyModifiedProperties(); // Apply changes
+    }
+
+    private void DrawFoldout(string title, ref bool foldoutState, Object configObject)
+    {
+        foldoutState = EditorGUILayout.Foldout(foldoutState, title, true, EditorStyles.foldoutHeader);
+        if (foldoutState)
+        {
+            if (configObject != null)
+            {
+                Editor configEditor = CreateEditor(configObject);
+                configEditor.OnInspectorGUI();
+            }
+            else
+            {
+                EditorGUILayout.HelpBox($"No {title} assigned.", MessageType.Warning);
+            }
+        }
+    }
+
+    private void AddSeparator()
+    {
+        GUILayout.Space(10);
+        var rect = EditorGUILayout.GetControlRect(false, 2);
+        EditorGUI.DrawRect(rect, Color.gray);
+        GUILayout.Space(10);
+    }
+}
+#endif
